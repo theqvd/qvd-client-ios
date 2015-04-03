@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "QVDProxyService.h"
+#import "QVDXvncService.h"
+#include "tcpconnect.h"
 
 @interface ViewController ()
 
@@ -15,13 +18,29 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startXVNC)
+                                                 name:@"QVDProxyServiceStarted"
+                                               object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+-(void)viewDidAppear:(BOOL)animated{
+    QVDProxyService *proxyService =  [[QVDProxyService alloc] init];
+    [proxyService startService];
+
 }
+
+-(void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"Desaparezzzzzzco......");
+}
+
+-(void)startXVNC{
+    NSLog(@"STAAAAAAAART XVNC");
+    QVDXvncService *xvncService =  [[QVDXvncService alloc] init];
+    [xvncService startService];
+}
+
+
 
 @end

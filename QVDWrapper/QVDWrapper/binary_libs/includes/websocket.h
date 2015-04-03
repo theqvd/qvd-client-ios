@@ -1,4 +1,4 @@
-#include <openssl/ssl.h>
+#include "ssl.h"
 
 #define BUFSIZE 65536
 #define DBUFSIZE (BUFSIZE * 3) / 4 - 20
