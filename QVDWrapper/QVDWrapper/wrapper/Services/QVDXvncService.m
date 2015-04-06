@@ -141,7 +141,8 @@ static char passwdargchr[MAXPATH];
             weakSelf.doCheck = YES;
             [weakSelf logToMainThread:@"Start control service"];
             while(weakSelf.doCheck){
-                int result = wait_for_tcpconnect("127.0.0.1", 5900, 15, 0);
+                [weakSelf logToMainThread:@"control thread checking"];
+                int result = wait_for_tcpconnect("127.0.0.1", 5900, 1, 0);
                 if (result != 0) {
                     [weakSelf logToMainThread:@"Service check error...."];
                     if(weakSelf.initialCheck){
@@ -162,7 +163,7 @@ static char passwdargchr[MAXPATH];
                         }
                     }
                 }
-                [NSThread sleepForTimeInterval:5.0f];
+                [NSThread sleepForTimeInterval:.5f];
             }
         });
     }

@@ -81,7 +81,7 @@
              weakSelf.doCheck = YES;
              [weakSelf logToMainThread:@"Start control service"];
              while(weakSelf.doCheck){
-                 int result = wait_for_tcpconnect("127.0.0.1", 5800, 10, 0);
+                 int result = wait_for_tcpconnect("127.0.0.1", 5800, 1, 0);
                  if (result != 0) {
                      [weakSelf logToMainThread:@"Service check error...."];
                  } else {
@@ -94,7 +94,7 @@
                          [weakSelf logToMainThread:@"Service check success... no stopControl"];
                      }
                  }
-                 [NSThread sleepForTimeInterval:2.0f];
+                 [NSThread sleepForTimeInterval:.5f];
              }
          });
     }

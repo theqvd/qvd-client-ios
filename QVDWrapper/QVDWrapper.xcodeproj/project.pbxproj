@@ -1326,10 +1326,15 @@
 		545519361A9E54FE003E42CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 545519351A9E54FE003E42CA /* main.m */; };
 		545519391A9E54FE003E42CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 545519381A9E54FE003E42CA /* AppDelegate.m */; };
 		5455193C1A9E54FE003E42CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455193B1A9E54FE003E42CA /* ViewController.m */; };
-		5455193F1A9E54FE003E42CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5455193D1A9E54FE003E42CA /* Main.storyboard */; };
 		545519411A9E54FE003E42CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545519401A9E54FE003E42CA /* Images.xcassets */; };
 		545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545519421A9E54FE003E42CA /* LaunchScreen.xib */; };
 		545519501A9E54FE003E42CA /* QVDWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */; };
+		545C87711AD2CE3100CB9776 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C87701AD2CE3100CB9776 /* libcurl.a */; };
+		545C87751AD30FFB00CB9776 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 545C87731AD30FFB00CB9776 /* LoginViewController.m */; };
+		545C87761AD30FFB00CB9776 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545C87741AD30FFB00CB9776 /* LoginViewController.xib */; };
+		545C877B1AD310D100CB9776 /* VncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 545C87791AD310D100CB9776 /* VncViewController.m */; };
+		545C877C1AD310D100CB9776 /* VncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545C877A1AD310D100CB9776 /* VncViewController.xib */; };
+		545C89511AD33CBE00CB9776 /* html_resources in Resources */ = {isa = PBXBuildFile; fileRef = 545C89501AD33CBE00CB9776 /* html_resources */; };
 		549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 549E787D1ACFF448006E7714 /* QVDVmVO.m */; };
 		54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B29A051AB43F9C004408AE /* QVDXvncService.m */; };
 		54B29A0C1AB44E64004408AE /* QVDClientWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B29A0B1AB44E64004408AE /* QVDClientWrapper.m */; };
@@ -2756,6 +2761,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		545C894D1AD3363D00CB9776 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -4083,12 +4097,19 @@
 		545519381A9E54FE003E42CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5455193A1A9E54FE003E42CA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5455193B1A9E54FE003E42CA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		5455193E1A9E54FE003E42CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		545519401A9E54FE003E42CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		545519431A9E54FE003E42CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		545519491A9E54FE003E42CA /* QVDWrapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QVDWrapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5455194E1A9E54FE003E42CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QVDWrapperTests.m; sourceTree = "<group>"; };
+		545C87701AD2CE3100CB9776 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = QVDWrapper/binary_libs/libcurl.a; sourceTree = "<group>"; };
+		545C87721AD30FFB00CB9776 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = client/LoginViewController.h; sourceTree = "<group>"; };
+		545C87731AD30FFB00CB9776 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = client/LoginViewController.m; sourceTree = "<group>"; };
+		545C87741AD30FFB00CB9776 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = client/LoginViewController.xib; sourceTree = "<group>"; };
+		545C87781AD310D100CB9776 /* VncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VncViewController.h; path = client/VncViewController.h; sourceTree = "<group>"; };
+		545C87791AD310D100CB9776 /* VncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VncViewController.m; path = client/VncViewController.m; sourceTree = "<group>"; };
+		545C877A1AD310D100CB9776 /* VncViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VncViewController.xib; path = client/VncViewController.xib; sourceTree = "<group>"; };
+		545C89501AD33CBE00CB9776 /* html_resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html_resources; sourceTree = "<group>"; };
 		549E787C1ACFF448006E7714 /* QVDVmVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QVDVmVO.h; path = wrapper/VO/QVDVmVO.h; sourceTree = "<group>"; };
 		549E787D1ACFF448006E7714 /* QVDVmVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QVDVmVO.m; path = wrapper/VO/QVDVmVO.m; sourceTree = "<group>"; };
 		549E787F1ACFF812006E7714 /* curl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curl.h; sourceTree = "<group>"; };
@@ -4207,6 +4228,7 @@
 			files = (
 				54B85CA31A9E55CC0098B49E /* libc++.dylib in Frameworks */,
 				54B85CA51A9E55D50098B49E /* libresolv.dylib in Frameworks */,
+				545C87711AD2CE3100CB9776 /* libcurl.a in Frameworks */,
 				544B2C251AAC44DA0037101E /* UIKit.framework in Frameworks */,
 				54B85CA01A9E55930098B49E /* libqvdxvnc.a in Frameworks */,
 				54B85CA11A9E55930098B49E /* libwebsockify.a in Frameworks */,
@@ -5631,6 +5653,7 @@
 		545519271A9E54FE003E42CA = {
 			isa = PBXGroup;
 			children = (
+				545C87701AD2CE3100CB9776 /* libcurl.a */,
 				544B2C281AAC44EC0037101E /* CoreGraphics.framework */,
 				544B2C261AAC44E20037101E /* Foundation.framework */,
 				544B2C241AAC44DA0037101E /* UIKit.framework */,
@@ -5654,16 +5677,17 @@
 		545519321A9E54FE003E42CA /* QVDWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				545C89501AD33CBE00CB9776 /* html_resources */,
 				54B85C921A9E55930098B49E /* binary_libs */,
 				545519371A9E54FE003E42CA /* AppDelegate.h */,
 				545519381A9E54FE003E42CA /* AppDelegate.m */,
 				5455193A1A9E54FE003E42CA /* ViewController.h */,
 				5455193B1A9E54FE003E42CA /* ViewController.m */,
-				5455193D1A9E54FE003E42CA /* Main.storyboard */,
 				545519401A9E54FE003E42CA /* Images.xcassets */,
 				545519421A9E54FE003E42CA /* LaunchScreen.xib */,
 				545519331A9E54FE003E42CA /* Supporting Files */,
 				544B2C2D1AAC46070037101E /* wrapper */,
+				545C87771AD3100200CB9776 /* client */,
 			);
 			path = QVDWrapper;
 			sourceTree = "<group>";
@@ -5692,6 +5716,19 @@
 				5455194E1A9E54FE003E42CA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		545C87771AD3100200CB9776 /* client */ = {
+			isa = PBXGroup;
+			children = (
+				545C87721AD30FFB00CB9776 /* LoginViewController.h */,
+				545C87731AD30FFB00CB9776 /* LoginViewController.m */,
+				545C87741AD30FFB00CB9776 /* LoginViewController.xib */,
+				545C87781AD310D100CB9776 /* VncViewController.h */,
+				545C87791AD310D100CB9776 /* VncViewController.m */,
+				545C877A1AD310D100CB9776 /* VncViewController.xib */,
+			);
+			name = client;
 			sourceTree = "<group>";
 		};
 		549E787B1ACFF418006E7714 /* VO */ = {
@@ -5835,6 +5872,7 @@
 				5423EC7F1AAC42FC00B3BA76 /* CopyFiles */,
 				5423ECBB1AAC433300B3BA76 /* CopyFiles */,
 				5423ED141AAC43C100B3BA76 /* CopyFiles */,
+				545C894D1AD3363D00CB9776 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -5906,9 +5944,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5455193F1A9E54FE003E42CA /* Main.storyboard in Resources */,
+				545C877C1AD310D100CB9776 /* VncViewController.xib in Resources */,
 				545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */,
 				545519411A9E54FE003E42CA /* Images.xcassets in Resources */,
+				545C89511AD33CBE00CB9776 /* html_resources in Resources */,
+				545C87761AD30FFB00CB9776 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5926,6 +5966,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				545C877B1AD310D100CB9776 /* VncViewController.m in Sources */,
 				54B29A0C1AB44E64004408AE /* QVDClientWrapper.m in Sources */,
 				5455193C1A9E54FE003E42CA /* ViewController.m in Sources */,
 				545519391A9E54FE003E42CA /* AppDelegate.m in Sources */,
@@ -5935,6 +5976,7 @@
 				545519361A9E54FE003E42CA /* main.m in Sources */,
 				54EAADE21AB8975F00AF84C7 /* QVDConnectService.m in Sources */,
 				54EB36B01AAF7C2200710DCC /* QVDProxyService.m in Sources */,
+				545C87751AD30FFB00CB9776 /* LoginViewController.m in Sources */,
 				544B2C2C1AAC46020037101E /* QVDConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5958,14 +6000,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5455193D1A9E54FE003E42CA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5455193E1A9E54FE003E42CA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		545519421A9E54FE003E42CA /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

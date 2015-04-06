@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QVDClientWrapper.h"
 
-@interface ViewController : UIViewController<NSStreamDelegate>
+@interface ViewController : UIViewController<NSStreamDelegate,QVDStatusDelegate>
 
 
 @end
