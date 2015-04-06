@@ -1330,6 +1330,7 @@
 		545519411A9E54FE003E42CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545519401A9E54FE003E42CA /* Images.xcassets */; };
 		545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545519421A9E54FE003E42CA /* LaunchScreen.xib */; };
 		545519501A9E54FE003E42CA /* QVDWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */; };
+		549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 549E787D1ACFF448006E7714 /* QVDVmVO.m */; };
 		54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B29A051AB43F9C004408AE /* QVDXvncService.m */; };
 		54B29A0C1AB44E64004408AE /* QVDClientWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B29A0B1AB44E64004408AE /* QVDClientWrapper.m */; };
 		54B85C9E1A9E55930098B49E /* tcpconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = 54B85C981A9E55930098B49E /* tcpconnect.c */; };
@@ -4088,6 +4089,19 @@
 		545519491A9E54FE003E42CA /* QVDWrapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QVDWrapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5455194E1A9E54FE003E42CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QVDWrapperTests.m; sourceTree = "<group>"; };
+		549E787C1ACFF448006E7714 /* QVDVmVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QVDVmVO.h; path = wrapper/VO/QVDVmVO.h; sourceTree = "<group>"; };
+		549E787D1ACFF448006E7714 /* QVDVmVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QVDVmVO.m; path = wrapper/VO/QVDVmVO.m; sourceTree = "<group>"; };
+		549E787F1ACFF812006E7714 /* curl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curl.h; sourceTree = "<group>"; };
+		549E78801ACFF812006E7714 /* curlbuild-32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "curlbuild-32.h"; sourceTree = "<group>"; };
+		549E78811ACFF812006E7714 /* curlbuild-64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "curlbuild-64.h"; sourceTree = "<group>"; };
+		549E78821ACFF812006E7714 /* curlbuild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curlbuild.h; sourceTree = "<group>"; };
+		549E78831ACFF812006E7714 /* curlrules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curlrules.h; sourceTree = "<group>"; };
+		549E78841ACFF812006E7714 /* curlver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curlver.h; sourceTree = "<group>"; };
+		549E78851ACFF812006E7714 /* easy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easy.h; sourceTree = "<group>"; };
+		549E78861ACFF812006E7714 /* mprintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mprintf.h; sourceTree = "<group>"; };
+		549E78871ACFF812006E7714 /* multi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multi.h; sourceTree = "<group>"; };
+		549E78881ACFF812006E7714 /* stdcheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdcheaders.h; sourceTree = "<group>"; };
+		549E78891ACFF812006E7714 /* typecheck-gcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "typecheck-gcc.h"; sourceTree = "<group>"; };
 		54B29A041AB43F9C004408AE /* QVDXvncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QVDXvncService.h; path = wrapper/Services/QVDXvncService.h; sourceTree = "<group>"; };
 		54B29A051AB43F9C004408AE /* QVDXvncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QVDXvncService.m; path = wrapper/Services/QVDXvncService.m; sourceTree = "<group>"; };
 		54B29A071AB43FCB004408AE /* QVDService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QVDService.h; path = wrapper/Services/QVDService.h; sourceTree = "<group>"; };
@@ -5590,6 +5604,7 @@
 		544B2C2D1AAC46070037101E /* wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				549E787B1ACFF418006E7714 /* VO */,
 				544B2C2E1AACB2E10037101E /* Services */,
 				544B2C2A1AAC46020037101E /* QVDConfig.h */,
 				544B2C2B1AAC46020037101E /* QVDConfig.m */,
@@ -5679,6 +5694,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		549E787B1ACFF418006E7714 /* VO */ = {
+			isa = PBXGroup;
+			children = (
+				549E787C1ACFF448006E7714 /* QVDVmVO.h */,
+				549E787D1ACFF448006E7714 /* QVDVmVO.m */,
+			);
+			name = VO;
+			sourceTree = "<group>";
+		};
 		54B85C921A9E55930098B49E /* binary_libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -5694,6 +5718,17 @@
 		54B85C931A9E55930098B49E /* includes */ = {
 			isa = PBXGroup;
 			children = (
+				549E787F1ACFF812006E7714 /* curl.h */,
+				549E78801ACFF812006E7714 /* curlbuild-32.h */,
+				549E78811ACFF812006E7714 /* curlbuild-64.h */,
+				549E78821ACFF812006E7714 /* curlbuild.h */,
+				549E78831ACFF812006E7714 /* curlrules.h */,
+				549E78841ACFF812006E7714 /* curlver.h */,
+				549E78851ACFF812006E7714 /* easy.h */,
+				549E78861ACFF812006E7714 /* mprintf.h */,
+				549E78871ACFF812006E7714 /* multi.h */,
+				549E78881ACFF812006E7714 /* stdcheaders.h */,
+				549E78891ACFF812006E7714 /* typecheck-gcc.h */,
 				54EB36B11AB0633C00710DCC /* aes.h */,
 				54EB36B21AB0633C00710DCC /* asn1_mac.h */,
 				54EB36B31AB0633C00710DCC /* asn1.h */,
@@ -5894,6 +5929,7 @@
 				54B29A0C1AB44E64004408AE /* QVDClientWrapper.m in Sources */,
 				5455193C1A9E54FE003E42CA /* ViewController.m in Sources */,
 				545519391A9E54FE003E42CA /* AppDelegate.m in Sources */,
+				549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */,
 				54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */,
 				54B85C9E1A9E55930098B49E /* tcpconnect.c in Sources */,
 				545519361A9E54FE003E42CA /* main.m in Sources */,

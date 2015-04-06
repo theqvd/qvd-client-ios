@@ -28,6 +28,6 @@
 -(void)listOfVms;
 -(int)connectToVm;
 -(int)stopVm;
--(void)disconnect;
+-(void)endConnection;
 
 @end

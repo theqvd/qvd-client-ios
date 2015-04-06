@@ -7,7 +7,7 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <curl/curl.h>
+#include "curl.h"
 /* Also used for vm list  normally 16KB*2 */
 /* #define BUFFER_SIZE CURL_MAX_WRITE_SIZE * 2 */
 #define BUFFER_SIZE 65536

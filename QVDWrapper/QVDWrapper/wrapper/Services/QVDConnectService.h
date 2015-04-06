@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "QVDService.h"
 
 @interface QVDConnectService : NSObject
+
+@property (assign,nonatomic) QVDServiceState srvStatus;
+
+-(void)startService;
+-(void)stopService;
+-(void)setServiceStatus:(QVDServiceState) newStatus;
 
 @end

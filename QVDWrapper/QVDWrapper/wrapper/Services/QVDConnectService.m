@@ -10,9 +10,17 @@
 
 @implementation QVDConnectService
 
-@property (assign,nonatomic) QVDServiceState srvStatus;
--(void)startService;
--(void)stopService;
--(void)setServiceStatus:(QVDServiceState) newStatus;
+
+-(void)startService{
+    
+}
+
+-(void)stopService{
+    
+}
+
+-(void)setServiceStatus:(QVDServiceState) newStatus{
+    
+}
 
 @end
