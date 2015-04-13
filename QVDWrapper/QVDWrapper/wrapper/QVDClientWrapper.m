@@ -99,11 +99,11 @@
     int i;
     vmlist *vm_ptr;
     NSMutableArray *vms = nil;
-    
+    vms = [[NSMutableArray alloc] init];
     if (self.qvd->vmlist == NULL) {
         return nil;
     }
-    vms = [[NSMutableArray alloc] initWithCapacity:self.qvd->numvms];
+
     for (vm_ptr = self.qvd->vmlist, i=0; i < self.qvd->numvms; ++i, vm_ptr = vm_ptr->next) {
         if (vm_ptr == NULL) {
             NSLog(@"QVDClientWrapper: Internal error converting vmlist in position %d, pointer is null and should not be", i);
@@ -275,6 +275,14 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
 -(void)xvncServiceStarted{
     self.xvncStarted = YES;
     [self listOfVms];
+}
+
+- (void) qvdProgressMessage:(NSString *) aMessage{
+    NSLog(@"Message from delegate: [%@]",aMessage);
+}
+
+- (void) vmListRetreived:(NSArray *) aVmList{
+    
 }
 
 

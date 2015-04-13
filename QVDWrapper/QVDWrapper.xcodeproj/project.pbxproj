@@ -1323,6 +1323,11 @@
 		544B2C271AAC44E20037101E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C261AAC44E20037101E /* Foundation.framework */; };
 		544B2C291AAC44EC0037101E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C281AAC44EC0037101E /* CoreGraphics.framework */; };
 		544B2C2C1AAC46020037101E /* QVDConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B2C2B1AAC46020037101E /* QVDConfig.m */; };
+		544F9AB51ADBB05A000A5609 /* VmListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F9AB41ADBB05A000A5609 /* VmListViewController.m */; };
+		544F9AB71ADBB070000A5609 /* VmListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544F9AB61ADBB070000A5609 /* VmListViewController.xib */; };
+		544F9ABB1ADBB32F000A5609 /* ConnectionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F9ABA1ADBB32F000A5609 /* ConnectionVO.m */; };
+		544F9AC01ADBB986000A5609 /* VmMachineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F9ABE1ADBB986000A5609 /* VmMachineCollectionViewCell.m */; };
+		544F9AC11ADBB986000A5609 /* VmMachineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544F9ABF1ADBB986000A5609 /* VmMachineCollectionViewCell.xib */; };
 		545519361A9E54FE003E42CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 545519351A9E54FE003E42CA /* main.m */; };
 		545519391A9E54FE003E42CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 545519381A9E54FE003E42CA /* AppDelegate.m */; };
 		5455193C1A9E54FE003E42CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455193B1A9E54FE003E42CA /* ViewController.m */; };
@@ -1346,6 +1351,7 @@
 		54B85CA51A9E55D50098B49E /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54B85CA41A9E55D50098B49E /* libresolv.dylib */; };
 		54EAADE21AB8975F00AF84C7 /* QVDConnectService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54EAADE11AB8975F00AF84C7 /* QVDConnectService.m */; };
 		54EB36B01AAF7C2200710DCC /* QVDProxyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54EB36AF1AAF7C2200710DCC /* QVDProxyService.m */; };
+		F70FE8A80CCF37FE97D31920 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 798567CA8D10C5571AA86896 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2773,6 +2779,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4CBE628F23443D49FD27108A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5423D53D1AA7901500C487CB /* charB08.pcf.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = charB08.pcf.gz; sourceTree = "<group>"; };
 		5423D53E1AA7901500C487CB /* charB10.pcf.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = charB10.pcf.gz; sourceTree = "<group>"; };
 		5423D53F1AA7901500C487CB /* charB12.pcf.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = charB12.pcf.gz; sourceTree = "<group>"; };
@@ -4090,6 +4097,14 @@
 		544B2C281AAC44EC0037101E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		544B2C2A1AAC46020037101E /* QVDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QVDConfig.h; path = wrapper/QVDConfig.h; sourceTree = "<group>"; };
 		544B2C2B1AAC46020037101E /* QVDConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QVDConfig.m; path = wrapper/QVDConfig.m; sourceTree = "<group>"; };
+		544F9AB31ADBB05A000A5609 /* VmListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VmListViewController.h; path = client/VmListViewController.h; sourceTree = "<group>"; };
+		544F9AB41ADBB05A000A5609 /* VmListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VmListViewController.m; path = client/VmListViewController.m; sourceTree = "<group>"; };
+		544F9AB61ADBB070000A5609 /* VmListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmListViewController.xib; path = client/VmListViewController.xib; sourceTree = "<group>"; };
+		544F9AB91ADBB32F000A5609 /* ConnectionVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionVO.h; path = client/VO/ConnectionVO.h; sourceTree = "<group>"; };
+		544F9ABA1ADBB32F000A5609 /* ConnectionVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnectionVO.m; path = client/VO/ConnectionVO.m; sourceTree = "<group>"; };
+		544F9ABD1ADBB986000A5609 /* VmMachineCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VmMachineCollectionViewCell.h; path = client/Cells/VmMachineCollectionViewCell.h; sourceTree = "<group>"; };
+		544F9ABE1ADBB986000A5609 /* VmMachineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VmMachineCollectionViewCell.m; path = client/Cells/VmMachineCollectionViewCell.m; sourceTree = "<group>"; };
+		544F9ABF1ADBB986000A5609 /* VmMachineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmMachineCollectionViewCell.xib; path = client/Cells/VmMachineCollectionViewCell.xib; sourceTree = "<group>"; };
 		545519301A9E54FE003E42CA /* QVDWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QVDWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		545519341A9E54FE003E42CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		545519351A9E54FE003E42CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -4219,6 +4234,8 @@
 		54EB36F91AB0633C00710DCC /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		54EB36FA1AB0633C00710DCC /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		54EB36FB1AB0633C00710DCC /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		5559F4D1FE8DC57CED9B2376 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		798567CA8D10C5571AA86896 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4235,6 +4252,7 @@
 				544B2C271AAC44E20037101E /* Foundation.framework in Frameworks */,
 				544B2C291AAC44EC0037101E /* CoreGraphics.framework in Frameworks */,
 				54B85C9F1A9E55930098B49E /* libqvdclient.a in Frameworks */,
+				F70FE8A80CCF37FE97D31920 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5650,6 +5668,25 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		544F9AB81ADBB316000A5609 /* VO */ = {
+			isa = PBXGroup;
+			children = (
+				544F9AB91ADBB32F000A5609 /* ConnectionVO.h */,
+				544F9ABA1ADBB32F000A5609 /* ConnectionVO.m */,
+			);
+			name = VO;
+			sourceTree = "<group>";
+		};
+		544F9ABC1ADBB958000A5609 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				544F9ABD1ADBB986000A5609 /* VmMachineCollectionViewCell.h */,
+				544F9ABE1ADBB986000A5609 /* VmMachineCollectionViewCell.m */,
+				544F9ABF1ADBB986000A5609 /* VmMachineCollectionViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		545519271A9E54FE003E42CA = {
 			isa = PBXGroup;
 			children = (
@@ -5662,6 +5699,8 @@
 				545519321A9E54FE003E42CA /* QVDWrapper */,
 				5455194C1A9E54FE003E42CA /* QVDWrapperTests */,
 				545519311A9E54FE003E42CA /* Products */,
+				85C920B0E4960B11866F8C17 /* Pods */,
+				83A0F1182EA60F5D3F5B1733 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -5721,12 +5760,17 @@
 		545C87771AD3100200CB9776 /* client */ = {
 			isa = PBXGroup;
 			children = (
+				544F9ABC1ADBB958000A5609 /* Cells */,
+				544F9AB81ADBB316000A5609 /* VO */,
 				545C87721AD30FFB00CB9776 /* LoginViewController.h */,
 				545C87731AD30FFB00CB9776 /* LoginViewController.m */,
 				545C87741AD30FFB00CB9776 /* LoginViewController.xib */,
 				545C87781AD310D100CB9776 /* VncViewController.h */,
 				545C87791AD310D100CB9776 /* VncViewController.m */,
 				545C877A1AD310D100CB9776 /* VncViewController.xib */,
+				544F9AB31ADBB05A000A5609 /* VmListViewController.h */,
+				544F9AB41ADBB05A000A5609 /* VmListViewController.m */,
+				544F9AB61ADBB070000A5609 /* VmListViewController.xib */,
 			);
 			name = client;
 			sourceTree = "<group>";
@@ -5852,6 +5896,23 @@
 			path = includes;
 			sourceTree = "<group>";
 		};
+		83A0F1182EA60F5D3F5B1733 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				798567CA8D10C5571AA86896 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		85C920B0E4960B11866F8C17 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CBE628F23443D49FD27108A /* Pods.debug.xcconfig */,
+				5559F4D1FE8DC57CED9B2376 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5859,6 +5920,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 545519531A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "QVDWrapper" */;
 			buildPhases = (
+				7AF95E9800DBC2A9D4AB5C9A /* Check Pods Manifest.lock */,
 				5455192C1A9E54FE003E42CA /* Sources */,
 				5455192D1A9E54FE003E42CA /* Frameworks */,
 				5455192E1A9E54FE003E42CA /* Resources */,
@@ -5873,6 +5935,7 @@
 				5423ECBB1AAC433300B3BA76 /* CopyFiles */,
 				5423ED141AAC43C100B3BA76 /* CopyFiles */,
 				545C894D1AD3363D00CB9776 /* CopyFiles */,
+				935F0229B4F7BDC302D73974 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5945,8 +6008,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				545C877C1AD310D100CB9776 /* VncViewController.xib in Resources */,
+				544F9AB71ADBB070000A5609 /* VmListViewController.xib in Resources */,
 				545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */,
 				545519411A9E54FE003E42CA /* Images.xcassets in Resources */,
+				544F9AC11ADBB986000A5609 /* VmMachineCollectionViewCell.xib in Resources */,
 				545C89511AD33CBE00CB9776 /* html_resources in Resources */,
 				545C87761AD30FFB00CB9776 /* LoginViewController.xib in Resources */,
 			);
@@ -5961,12 +6026,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7AF95E9800DBC2A9D4AB5C9A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		935F0229B4F7BDC302D73974 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5455192C1A9E54FE003E42CA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				544F9ABB1ADBB32F000A5609 /* ConnectionVO.m in Sources */,
 				545C877B1AD310D100CB9776 /* VncViewController.m in Sources */,
+				544F9AC01ADBB986000A5609 /* VmMachineCollectionViewCell.m in Sources */,
 				54B29A0C1AB44E64004408AE /* QVDClientWrapper.m in Sources */,
 				5455193C1A9E54FE003E42CA /* ViewController.m in Sources */,
 				545519391A9E54FE003E42CA /* AppDelegate.m in Sources */,
@@ -5978,6 +6078,7 @@
 				54EB36B01AAF7C2200710DCC /* QVDProxyService.m in Sources */,
 				545C87751AD30FFB00CB9776 /* LoginViewController.m in Sources */,
 				544B2C2C1AAC46020037101E /* QVDConfig.m in Sources */,
+				544F9AB51ADBB05A000A5609 /* VmListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6095,6 +6196,7 @@
 		};
 		545519541A9E54FE003E42CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CBE628F23443D49FD27108A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = (
 					armv7,
@@ -6119,6 +6221,7 @@
 		};
 		545519551A9E54FE003E42CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5559F4D1FE8DC57CED9B2376 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ARCHS = (
 					armv7,

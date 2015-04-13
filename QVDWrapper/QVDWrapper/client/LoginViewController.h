@@ -11,4 +11,10 @@
 
 @interface LoginViewController : UIViewController<QVDStatusDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *txtHost;
+@property (weak, nonatomic) IBOutlet UITextField *txtLogin;
+@property (weak, nonatomic) IBOutlet UISwitch *switchRemember;
+@property (weak, nonatomic) IBOutlet UITextField *txtPassword;
+@property (weak, nonatomic) IBOutlet UIButton *btLogin;
+
 @end

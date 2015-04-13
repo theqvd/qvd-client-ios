@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QVDVmVO.h"
+#import "QVDClientWrapper.h"
 
-@interface VncViewController : UIViewController<UIWebViewDelegate>
+@interface VncViewController : UIViewController<UIWebViewDelegate,QVDStatusDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *navegador;
 
+
+-(id)initWithVm:(QVDVmVO *)anVm;
 
 @end

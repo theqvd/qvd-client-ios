@@ -13,6 +13,7 @@
 #include "tcpconnect.h"
 #import "QVDClientWrapper.h"
 #import "VncViewController.h"
+#import "VmListViewController.h"
 
 @interface LoginViewController ()
 
@@ -22,11 +23,22 @@
 
 
 
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.title = @"The QVD";
+}
+
 - (IBAction)doLogin:(id)sender {
+    VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:nil];
+    [self.navigationController pushViewController:vmList animated:YES];
     
-    [[QVDClientWrapper sharedManager] setStatusDelegate:self];
+    
+   /* [[QVDClientWrapper sharedManager] setStatusDelegate:self];
     [[QVDClientWrapper sharedManager] setCredentialsWitUser:@"appledevprogram@qindel.com" password: @"applepass" host:@"demo.theqvd.com"];
-     [[QVDClientWrapper sharedManager] listOfVms];
+     [[QVDClientWrapper sharedManager] listOfVms];*/
 }
 
 
