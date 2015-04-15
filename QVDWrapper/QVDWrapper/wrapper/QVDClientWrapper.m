@@ -226,6 +226,8 @@
         return;
     }
     qvd_end_connection(self.qvd);
+    //Stop services
+    [self stopServices];
 }
 
 #pragma mark - Notification Methods
@@ -253,6 +255,13 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
 }
 
 #pragma mark - Service Status
+
+-(void)stopServices{
+    if(self.xvncStarted){
+        [self.srvProxy stopService];
+        [self.srvXvnc stopService];
+    }
+}
 
 -(BOOL)servicesRunning{
     if(!self.xvncStarted){
@@ -283,6 +292,10 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
 
 - (void) vmListRetreived:(NSArray *) aVmList{
     
+}
+
+-(NSString *)getLastError{
+    return [NSString stringWithUTF8String:qvd_get_last_error(self.qvd)];
 }
 
 

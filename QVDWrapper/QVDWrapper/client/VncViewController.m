@@ -35,13 +35,18 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.title = @"The QVD";
-    NSLog(@"testing load resource: %@",[[NSBundle mainBundle] pathForResource:@"qvd_vnc" ofType:@"html"]);
     if(self.hasToConnect){
         if(self.selectedVm){
             [self showLoading];
             [[QVDClientWrapper sharedManager] setStatusDelegate:self];
-            [[QVDClientWrapper sharedManager] connectToVm:[self.selectedVm id]];
-            [self loadUrl];
+            int result = [[QVDClientWrapper sharedManager] connectToVm:[self.selectedVm id]];
+            if(result >= 0){
+                [self loadUrl];
+            }else {
+                NSString *anErrorMessage = [NSString stringWithFormat:@"Error conectando a la vm: %@",[[QVDClientWrapper sharedManager] getLastError]];
+                [KVNProgress showErrorWithStatus:anErrorMessage];
+            }
+            
         }
     }
   
@@ -53,7 +58,6 @@
     NSString *novnc_url = [ NSString stringWithFormat:@"file://%@?autoconnect=true&logging=%@&host=%s&port=%d&encrypt=false&true_color=1&password=%s", novnc_path, loglevel, "127.0.0.1", 5800, "ben1to" ];
     NSLog(@"novnc_url %@", novnc_url);
     NSURL *url = [NSURL URLWithString:novnc_url];
-    // TODO use
     self.serviceRequest = [NSURLRequest requestWithURL:url];
 }
 
@@ -102,13 +106,13 @@
 }
 
 - (void) qvdProgressMessage:(NSString *) aMessage{
-    NSLog(@"Tengo el progresooooooooo: %@",aMessage);
+    NSLog(@"Progress message: %@",aMessage);
     [KVNProgress updateStatus:aMessage];
     [self loadUrl];
 }
 
 - (void) vmListRetreived:(NSArray *) aVmList{
-    
+    //Not required
 }
 
 @end

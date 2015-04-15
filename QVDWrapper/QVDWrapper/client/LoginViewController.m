@@ -14,6 +14,7 @@
 #import "QVDClientWrapper.h"
 #import "VncViewController.h"
 #import "VmListViewController.h"
+#import "ConnectionVO.h"
 
 @interface LoginViewController ()
 
@@ -32,28 +33,15 @@
 }
 
 - (IBAction)doLogin:(id)sender {
-    VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:nil];
+    NSString *auxLogin = [self.txtLogin.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *auxPassword = [self.txtPassword.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *auxHost = [self.txtHost.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    ConnectionVO *auxConnection = nil;
+    if(![auxHost isEqualToString:@""] || ![auxLogin isEqualToString:@""] || ![auxPassword isEqualToString:@""]){
+        auxConnection = [ConnectionVO initWithUser:auxLogin andPassword:auxPassword andHost:auxHost];
+    }
+    VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:auxConnection];
     [self.navigationController pushViewController:vmList animated:YES];
-    
-    
-   /* [[QVDClientWrapper sharedManager] setStatusDelegate:self];
-    [[QVDClientWrapper sharedManager] setCredentialsWitUser:@"appledevprogram@qindel.com" password: @"applepass" host:@"demo.theqvd.com"];
-     [[QVDClientWrapper sharedManager] listOfVms];*/
-}
-
-
-
-- (void) qvdProgressMessage:(NSString *) aMessage{
-    NSLog(@"QVD CLIENT WRAPPER MESSAGE RECEIVED [%@]",aMessage);
-}
-
-- (void) vmListRetreived:(NSArray *) aVmList{
-    NSLog(@"QVD CLIENT WRAPPER VM LIST RECEIVED [%@]",aVmList);
-    QVDVmVO *anVm = [aVmList objectAtIndex:0];
-    [[QVDClientWrapper sharedManager] connectToVm:[anVm id]];
-    VncViewController *vnc = [[VncViewController alloc] initWithNibName:nil bundle:nil];
-    
-    [self.navigationController pushViewController:vnc animated:YES];
 }
 
 

@@ -39,5 +39,6 @@
     -(int)connectToVm:(int) anVmId;
     -(int)stopVm;
     -(void)endConnection;
+    -(NSString *)getLastError;
 
 @end
