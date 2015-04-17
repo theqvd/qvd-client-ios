@@ -5975,7 +5975,7 @@
 				TargetAttributes = {
 					5455192F1A9E54FE003E42CA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = M9A9AUBW65;
+						DevelopmentTeam = MA65P2J3XT;
 					};
 					545519481A9E54FE003E42CA = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -6198,10 +6198,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CBE628F23443D49FD27108A /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -6223,10 +6220,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5559F4D1FE8DC57CED9B2376 /* Pods.release.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
