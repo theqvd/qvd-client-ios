@@ -4105,7 +4105,7 @@
 		544F9ABD1ADBB986000A5609 /* VmMachineCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VmMachineCollectionViewCell.h; path = client/Cells/VmMachineCollectionViewCell.h; sourceTree = "<group>"; };
 		544F9ABE1ADBB986000A5609 /* VmMachineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VmMachineCollectionViewCell.m; path = client/Cells/VmMachineCollectionViewCell.m; sourceTree = "<group>"; };
 		544F9ABF1ADBB986000A5609 /* VmMachineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmMachineCollectionViewCell.xib; path = client/Cells/VmMachineCollectionViewCell.xib; sourceTree = "<group>"; };
-		545519301A9E54FE003E42CA /* qvdclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qvdclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		545519301A9E54FE003E42CA /* client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		545519341A9E54FE003E42CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		545519351A9E54FE003E42CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		545519371A9E54FE003E42CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -4114,7 +4114,7 @@
 		5455193B1A9E54FE003E42CA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		545519401A9E54FE003E42CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		545519431A9E54FE003E42CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		545519491A9E54FE003E42CA /* qvdclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = qvdclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		545519491A9E54FE003E42CA /* clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5455194E1A9E54FE003E42CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QVDWrapperTests.m; sourceTree = "<group>"; };
 		545C87701AD2CE3100CB9776 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = QVDWrapper/binary_libs/libcurl.a; sourceTree = "<group>"; };
@@ -5707,8 +5707,8 @@
 		545519311A9E54FE003E42CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				545519301A9E54FE003E42CA /* qvdclient.app */,
-				545519491A9E54FE003E42CA /* qvdclientTests.xctest */,
+				545519301A9E54FE003E42CA /* client.app */,
+				545519491A9E54FE003E42CA /* clientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5916,9 +5916,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5455192F1A9E54FE003E42CA /* qvdclient */ = {
+		5455192F1A9E54FE003E42CA /* client */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 545519531A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "qvdclient" */;
+			buildConfigurationList = 545519531A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "client" */;
 			buildPhases = (
 				7AF95E9800DBC2A9D4AB5C9A /* Check Pods Manifest.lock */,
 				5455192C1A9E54FE003E42CA /* Sources */,
@@ -5941,14 +5941,14 @@
 			);
 			dependencies = (
 			);
-			name = qvdclient;
+			name = client;
 			productName = QVDWrapper;
-			productReference = 545519301A9E54FE003E42CA /* qvdclient.app */;
+			productReference = 545519301A9E54FE003E42CA /* client.app */;
 			productType = "com.apple.product-type.application";
 		};
-		545519481A9E54FE003E42CA /* qvdclientTests */ = {
+		545519481A9E54FE003E42CA /* clientTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 545519561A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "qvdclientTests" */;
+			buildConfigurationList = 545519561A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "clientTests" */;
 			buildPhases = (
 				545519451A9E54FE003E42CA /* Sources */,
 				545519461A9E54FE003E42CA /* Frameworks */,
@@ -5959,9 +5959,9 @@
 			dependencies = (
 				5455194B1A9E54FE003E42CA /* PBXTargetDependency */,
 			);
-			name = qvdclientTests;
+			name = clientTests;
 			productName = QVDWrapperTests;
-			productReference = 545519491A9E54FE003E42CA /* qvdclientTests.xctest */;
+			productReference = 545519491A9E54FE003E42CA /* clientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -5970,7 +5970,7 @@
 		545519281A9E54FE003E42CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Qindel;
 				TargetAttributes = {
 					5455192F1A9E54FE003E42CA = {
@@ -5983,7 +5983,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5455192B1A9E54FE003E42CA /* Build configuration list for PBXProject "qvdclient" */;
+			buildConfigurationList = 5455192B1A9E54FE003E42CA /* Build configuration list for PBXProject "client" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -5996,8 +5996,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5455192F1A9E54FE003E42CA /* qvdclient */,
-				545519481A9E54FE003E42CA /* qvdclientTests */,
+				5455192F1A9E54FE003E42CA /* client */,
+				545519481A9E54FE003E42CA /* clientTests */,
 			);
 		};
 /* End PBXProject section */
@@ -6095,7 +6095,7 @@
 /* Begin PBXTargetDependency section */
 		5455194B1A9E54FE003E42CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5455192F1A9E54FE003E42CA /* qvdclient */;
+			target = 5455192F1A9E54FE003E42CA /* client */;
 			targetProxy = 5455194A1A9E54FE003E42CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -6149,7 +6149,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = NO;
@@ -6198,10 +6198,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CBE628F23443D49FD27108A /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -6212,7 +6209,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/QVDWrapper/binary_libs",
 				);
-				PRODUCT_NAME = qvdclient;
+				PRODUCT_NAME = client;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -6223,10 +6220,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5559F4D1FE8DC57CED9B2376 /* Pods.release.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -6237,7 +6231,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/QVDWrapper/binary_libs",
 				);
-				PRODUCT_NAME = qvdclient;
+				PRODUCT_NAME = client;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -6247,6 +6241,7 @@
 		545519571A9E54FE003E42CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -6258,14 +6253,15 @@
 				);
 				INFOPLIST_FILE = QVDWrapperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = qvdclientTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QVDWrapper.app/QVDWrapper";
+				PRODUCT_NAME = clientTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/client.app/client";
 			};
 			name = Debug;
 		};
 		545519581A9E54FE003E42CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -6273,15 +6269,15 @@
 				);
 				INFOPLIST_FILE = QVDWrapperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = qvdclientTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QVDWrapper.app/QVDWrapper";
+				PRODUCT_NAME = clientTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/client.app/client";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5455192B1A9E54FE003E42CA /* Build configuration list for PBXProject "qvdclient" */ = {
+		5455192B1A9E54FE003E42CA /* Build configuration list for PBXProject "client" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				545519511A9E54FE003E42CA /* Debug */,
@@ -6290,7 +6286,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		545519531A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "qvdclient" */ = {
+		545519531A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "client" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				545519541A9E54FE003E42CA /* Debug */,
@@ -6299,7 +6295,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		545519561A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "qvdclientTests" */ = {
+		545519561A9E54FE003E42CA /* Build configuration list for PBXNativeTarget "clientTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				545519571A9E54FE003E42CA /* Debug */,
