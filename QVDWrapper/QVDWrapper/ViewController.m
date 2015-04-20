@@ -41,26 +41,29 @@
 -(void)testServices{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(startXVNC)
-                                                 name:@"QVDProxyServiceStarted"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(testWrapper)
                                                  name:@"QVDXVNCServiceStarted"
                                                object:nil];
-    QVDProxyService *proxyService =  [[QVDProxyService alloc] init];
-    [proxyService startService];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startProxy)
+                                                 name:@"QVDProxyServiceStarted"
+                                               object:nil];
+
 }
 
 -(void)startXVNC{
-    NSLog(@"STAAAAAAAART XVNC");
+    NSLog(@"START XVNC");
     QVDXvncService *xvncService =  [[QVDXvncService alloc] init];
     [xvncService startService];
 }
 
-
+-(void)startProxy{
+    QVDProxyService *proxyService =  [[QVDProxyService alloc] init];
+    [proxyService startService];
+}
 #pragma mark - Wrapper
 
 -(void)testWrapper{
+    // TODO setup credentials from config
     [[QVDClientWrapper sharedManager] setCredentialsWitUser:@"appledevprogram@qindel.com"
                                                    password:@"applepass"
                                                        host:@"demo.theqvd.com"];
@@ -72,7 +75,7 @@
     NSLog(@"QVD CLIENT WRAPPER MESSAGE RECEIVED [%@]",aMessage);
 }
 
-- (void) vmListRetreived:(NSArray *) aVmList{
+- (void) vmListRetrieved:(NSArray *) aVmList{
     NSLog(@"QVD CLIENT WRAPPER VM LIST RECEIVED [%@]",aVmList);
     QVDVmVO *anVm = [aVmList objectAtIndex:0];
     [[QVDClientWrapper sharedManager] connectToVm:[anVm id]];

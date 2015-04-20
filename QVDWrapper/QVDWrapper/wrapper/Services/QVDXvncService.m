@@ -7,6 +7,7 @@
 //
 
 #import "QVDXvncService.h"
+#import "QVDConfig.h"
 #define SERVICE_QUEUE "com.qindel.qvd.xvnc"
 #define SERVICE_CHECK "com.qindel.qvd.xvnccheck"
 #include "qvdxvnc.h"
@@ -28,14 +29,14 @@ const int NOVNC_TOP_FRAME_HEIGHT = 36;
 @property (nonatomic) dispatch_group_t group;
 @property BOOL doCheck;
 @property BOOL initialCheck;
-
+@property (nonatomic) QVDConfig *cfg;
 
 //Properties
 @property (strong,nonatomic) NSString *basePath;
 @property (strong,nonatomic) NSString *fontPath;
 @property (strong,nonatomic) NSString *passwordPath;
 @property (strong,nonatomic) NSString *passwordArgPath;
-
+@property (strong,nonatomic) NSString *rfbPort;
 @end
 
 @implementation QVDXvncService
@@ -44,7 +45,7 @@ const int NOVNC_TOP_FRAME_HEIGHT = 36;
 static char fontpathchr[MAXPATH];
 static char geometrychr[MAXPATH];
 static char passwdargchr[MAXPATH];
-
+static char rfbport[MAXPATH];
 
 -(id)init{
     self = [super init];
@@ -58,6 +59,7 @@ static char passwdargchr[MAXPATH];
         _passwordPath = nil;
         _passwordArgPath = nil;
         self.doCheck = NO;
+        self.cfg = [QVDConfig configWithDefaults];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(realStart)
                                                      name:@"allowStart"
@@ -87,7 +89,10 @@ static char passwdargchr[MAXPATH];
     [weakSelf notificateServiceChanged:@"QVDXVNCServiceStarting"];
     dispatch_group_async(_group, self.serviceQueue, ^{
         
-        char *myargv[] = {"Xvnc",":0","-br","-geometry", geometrychr,"-pixelformat", "rgb888","-pixdepths", "1","4","8","15","16","24","32","+xinerama","+render","-CompareFB=0","-desktop=QVD",passwdargchr,"-fp",fontpathchr,"-ac","-Log","*:stderr:100"};
+    char *myargv[] = {"Xvnc",self.cfg.xvncDisplay,"-br","-geometry", geometrychr,"-pixelformat", "rgb888","-pixdepths", "1","4","8","15","16","24","32","+xinerama","+render","-CompareFB=0","-rfbport",rfbport,"-desktop=QVD",passwdargchr,"-fp",fontpathchr,"-ac","-Log","*:stderr:100"};
+//        char *myargv[] = {"Xvnc",":0","-br","-geometry", geometrychr,"-pixelformat", "rgb888","-pixdepths", "1","4","8","15","16","24","32","+xinerama","+render","-CompareFB=0","-rfbport",rfbport,"-desktop=QVD",passwdargchr,"-fp",fontpathchr,"-ac","-Log","*:stderr:100"};
+//        char *myargv[] = {"Xvnc",":0","-br","-geometry", geometrychr,"-pixelformat", "rgb888","-pixdepths", "1","4","8","15","16","24","32","+xinerama","+render","-CompareFB=0","-desktop=QVD",passwdargchr,"-fp",fontpathchr,"-ac","-Log","*:stderr:100"};
+        NSLog(@"Xvnc args: %s", *myargv);
         int myargc=sizeof(myargv)/sizeof(char *);
         if (chdir([[weakSelf getBasePath] UTF8String])<0){
             perror("chdir");
@@ -142,7 +147,8 @@ static char passwdargchr[MAXPATH];
             [weakSelf logToMainThread:@"Start control service"];
             while(weakSelf.doCheck){
                 [weakSelf logToMainThread:@"control thread checking"];
-                int result = wait_for_tcpconnect("127.0.0.1", 5900, 1, 0);
+                // TODO wait for tcp connect
+                int result = wait_for_tcpconnect(self.cfg.xvncHost, self.cfg.xvncXDisplayPort, 0, 200000);
                 if (result != 0) {
                     [weakSelf logToMainThread:@"Service check error...."];
                     if(weakSelf.initialCheck){
@@ -163,7 +169,8 @@ static char passwdargchr[MAXPATH];
                         }
                     }
                 }
-                [NSThread sleepForTimeInterval:.5f];
+                // TODO change sleep time to global
+                [NSThread sleepForTimeInterval:.2f];
             }
         });
     }
@@ -190,6 +197,7 @@ static char passwdargchr[MAXPATH];
     strncpy(fontpathchr, [[self getFontPath] UTF8String], MAXPATH);
     strncpy(geometrychr, [[self getGeometry] UTF8String], MAXPATH);
     strncpy(passwdargchr, [[self getPasswordArgPath] UTF8String], MAXPATH);
+    strncpy(rfbport, [[self getRfbPort] UTF8String], MAXPATH);
 }
 
 - (NSString *) getBasePath {
@@ -230,6 +238,14 @@ static char passwdargchr[MAXPATH];
                                 [self getPasswordPath]];
     }
     return  self.passwordArgPath;
+}
+
+- (NSString *) getRfbPort {
+    if(!self.rfbPort){
+        self.rfbPort  = [NSString stringWithFormat:@"%d",
+                              self.cfg.xvncVncPort];
+    }
+    return self.rfbPort;
 }
 
 @end

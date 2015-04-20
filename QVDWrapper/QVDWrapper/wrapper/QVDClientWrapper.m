@@ -167,7 +167,7 @@
         qvd_set_home(self.qvd,self.homedir.UTF8String);
     }
     
-    qvd_set_display(self.qvd, [[QVDConfig configWithDefaults] xvncDisplay]);
+    qvd_set_display(self.qvd, [[QVDConfig configWithDefaults] xvncFullDisplay]);
     
     if (curl_easy_setopt(self.qvd->curl, CURLOPT_NOSIGNAL, 1) != CURLE_OK) {
         NSLog(@"Error setting CURLOPT_NOSIGNAL");
@@ -178,7 +178,7 @@
         self.listvm =[self convertVMlistIntoNSArray];
         dispatch_async(dispatch_get_main_queue(), ^(){
             if(self.statusDelegate){
-                [self.statusDelegate vmListRetreived:self.listvm];
+                [self.statusDelegate vmListRetrieved:self.listvm];
             }
         });
         
@@ -210,6 +210,7 @@
     NSLog(@"QVDClientWrapper: connectToVm %d with qvd %p", self.selectedvmid, self.qvd);
     dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
         qvd_connect_to_vm(self.qvd, self.selectedvmid);
+        // TODO there should probably be a notification here
     });
    // self.connect_result = qvd_connect_to_vm(self.qvd, self.selectedvmid);
     
@@ -290,7 +291,7 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
     NSLog(@"Message from delegate: [%@]",aMessage);
 }
 
-- (void) vmListRetreived:(NSArray *) aVmList{
+- (void) vmListRetrieved:(NSArray *) aVmList{
     
 }
 

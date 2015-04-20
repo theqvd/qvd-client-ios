@@ -17,6 +17,7 @@
 @property (assign,nonatomic) int wsCheckTimeout;
 //XVNC Properties
 @property (assign,nonatomic) char *xvncHost;
+@property (assign,nonatomic) char *xvncFullDisplay;
 @property (assign,nonatomic) char *xvncDisplay;
 @property (assign,nonatomic) char *xvncPassword;
 @property (assign,nonatomic) int xvncVncPort;

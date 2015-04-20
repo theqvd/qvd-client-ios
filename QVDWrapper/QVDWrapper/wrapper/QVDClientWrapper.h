@@ -12,7 +12,7 @@
 
     @optional
     - (void) qvdProgressMessage:(NSString *) aMessage;
-    - (void) vmListRetreived:(NSArray *) aVmList;
+    - (void) vmListRetrieved:(NSArray *) aVmList;
 
 @end
 

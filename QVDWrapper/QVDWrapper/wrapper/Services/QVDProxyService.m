@@ -7,6 +7,7 @@
 //
 
 #import "QVDProxyService.h"
+#import "QVDConfig.h"
 #include "websocket.h"
 #include "tcpconnect.h"
 
@@ -20,6 +21,7 @@
 @property (nonatomic) dispatch_queue_t serviceQueue;
 @property (nonatomic) dispatch_queue_t controlQueue;
 @property (nonatomic) dispatch_group_t group;
+@property (nonatomic) QVDConfig *cfg;
 @property BOOL doCheck;
 
 @end
@@ -34,6 +36,7 @@
         _controlQueue = dispatch_queue_create(SERVICE_CHECK, NULL);
         _group = dispatch_group_create();
         self.doCheck = NO;
+        self.cfg = [QVDConfig configWithDefaults];
     }
     return self;
 }
@@ -48,7 +51,7 @@
     [self setServiceStatus:SRV_STARTED_PENDING_CHECK];
      [weakSelf notificateServiceChanged:@"QVDProxyServiceStarting"];
     dispatch_group_async(_group, self.serviceQueue, ^{
-        int result = websockify(1, "127.0.0.1", 5800, "127.0.0.1", 5900);
+        int result = websockify(1, self.cfg.wsHost, self.cfg.wsPort, self.cfg.xvncHost, self.cfg.xvncVncPort);
         [weakSelf logToMainThread:[NSString stringWithFormat:@"El resultado del socketServer es: %d",result]];
         if(result == 1){
             [weakSelf stopControl];
@@ -81,7 +84,8 @@
              weakSelf.doCheck = YES;
              [weakSelf logToMainThread:@"Start control service"];
              while(weakSelf.doCheck){
-                 int result = wait_for_tcpconnect("127.0.0.1", 5800, 1, 0);
+                 // TODO change timeout
+                 int result = wait_for_tcpconnect(self.cfg.wsHost, self.cfg.wsPort, 0, 200000);
                  if (result != 0) {
                      [weakSelf logToMainThread:@"Service check error...."];
                  } else {
@@ -94,7 +98,8 @@
                          [weakSelf logToMainThread:@"Service check success... no stopControl"];
                      }
                  }
-                 [NSThread sleepForTimeInterval:.5f];
+                 // TODO change timeout
+                 [NSThread sleepForTimeInterval:.2f];
              }
          });
     }

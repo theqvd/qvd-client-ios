@@ -58,6 +58,8 @@
     NSString *novnc_url = [ NSString stringWithFormat:@"file://%@?autoconnect=true&logging=%@&host=%s&port=%d&encrypt=false&true_color=1&password=%s", novnc_path, loglevel, "127.0.0.1", 5800, "ben1to" ];
     NSLog(@"novnc_url %@", novnc_url);
     NSURL *url = [NSURL URLWithString:novnc_url];
+    // The url should probably loaded in a webview delegate
+    [NSThread sleepForTimeInterval:.5f];
     self.serviceRequest = [NSURLRequest requestWithURL:url];
 }
 
@@ -111,7 +113,7 @@
     [self loadUrl];
 }
 
-- (void) vmListRetreived:(NSArray *) aVmList{
+- (void) vmListRetrieved:(NSArray *) aVmList{
     //Not required
 }
 

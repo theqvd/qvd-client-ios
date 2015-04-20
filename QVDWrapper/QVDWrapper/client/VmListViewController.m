@@ -31,6 +31,7 @@
         if(aConnection){
             self.connection = aConnection;
         } else {
+            // TODO init
             self.connection = [ConnectionVO initWithUser:@"appledevprogram@qindel.com" andPassword:@"applepass" andHost:@"demo.theqvd.com"];
         }
     }
@@ -85,7 +86,7 @@
     
 }
 
-- (void) vmListRetreived:(NSArray *) aVmList{
+- (void) vmListRetrieved:(NSArray *) aVmList{
     self.loginRequired = NO;
     [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
     [KVNProgress showSuccess];
@@ -117,7 +118,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
      QVDVmVO *anVm = [self.vmList objectAtIndex:[indexPath row]];
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    [[QVDClientWrapper sharedManager] connectToVm:[anVm id]];
+    // done in the vncViewController
+    //[[QVDClientWrapper sharedManager] connectToVm:[anVm id]];
     
     VncViewController *vnc = [[VncViewController alloc] initWithVm:anVm];
     [self.navigationController pushViewController:vnc animated:YES];

@@ -16,13 +16,14 @@
         aux.wsHost = "127.0.0.1";
         aux.wsPort = 5800;
         aux.wsStartupTimeout = 10;
-        aux.wsCheckTimeout = 20000; //20s
+        aux.wsCheckTimeout = 20; //20s
         aux.xvncHost = "127.0.0.1";
-        aux.xvncDisplay = "127.0.0.1:0";
+        aux.xvncFullDisplay = "127.0.0.1:0";
+        aux.xvncDisplay = ":0";
         aux.xvncPassword = "ben1to";
-        aux.xvncVncPort = 5900;
+        aux.xvncVncPort = 5910;
         aux.xvncStartupTimeout = 15;
-        aux.xvncXDisplayPort = 5900;
+        aux.xvncXDisplayPort = 6000;
         aux.xvncCheckTimeout = 20000;
         aux.noVncTopFrameHeight = 36;
         
