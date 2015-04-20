@@ -1,0 +1,19 @@
+TODO
+====
+  - Create new repo in Qindel. Init repo
+  - Document init repo.
+  - Verify webview ios: handlers
+  - Verify webview web site size (full screen)
+  - Document the flow of all the classes for a basic connection
+  - xvnc 64 bit work...
+  - TODO add an observer for ios
+  - Handle going forward and backward in the connection once the xvnc is established
+  - Remvoe libcurl.a should not be needed
+  - Revmove sleep before the webview
+
+Logic
+=====
+ViewController.m
+
+  -> Start XVNC -> QVDXvncService alloc init + observer
+  -> Start proxyService
