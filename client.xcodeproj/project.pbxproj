@@ -5936,6 +5936,7 @@
 				5423ED141AAC43C100B3BA76 /* CopyFiles */,
 				545C894D1AD3363D00CB9776 /* CopyFiles */,
 				935F0229B4F7BDC302D73974 /* Copy Pods Resources */,
+				A62D5D371AE97533003D1BDB /* Sign files */,
 			);
 			buildRules = (
 			);
@@ -6056,6 +6057,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A62D5D371AE97533003D1BDB /* Sign files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Sign files";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# this seems that it is not needed right now\nmyscript=1\nLOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"client.app\"\nIDENTITY=\"693D06D9AB7AD7C0F436621555B2C0CD8D54720E\"\n#codesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/html_resources\"\n#\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -6188,6 +6203,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = NO;
