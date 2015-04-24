@@ -1334,7 +1334,6 @@
 		545519411A9E54FE003E42CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545519401A9E54FE003E42CA /* Images.xcassets */; };
 		545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545519421A9E54FE003E42CA /* LaunchScreen.xib */; };
 		545519501A9E54FE003E42CA /* QVDWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */; };
-		545C87711AD2CE3100CB9776 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C87701AD2CE3100CB9776 /* libcurl.a */; };
 		545C87751AD30FFB00CB9776 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 545C87731AD30FFB00CB9776 /* LoginViewController.m */; };
 		545C87761AD30FFB00CB9776 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545C87741AD30FFB00CB9776 /* LoginViewController.xib */; };
 		545C877B1AD310D100CB9776 /* VncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 545C87791AD310D100CB9776 /* VncViewController.m */; };
@@ -4117,7 +4116,6 @@
 		545519491A9E54FE003E42CA /* clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5455194E1A9E54FE003E42CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QVDWrapperTests.m; sourceTree = "<group>"; };
-		545C87701AD2CE3100CB9776 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = QVDWrapper/binary_libs/libcurl.a; sourceTree = "<group>"; };
 		545C87721AD30FFB00CB9776 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = client/LoginViewController.h; sourceTree = "<group>"; };
 		545C87731AD30FFB00CB9776 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = client/LoginViewController.m; sourceTree = "<group>"; };
 		545C87741AD30FFB00CB9776 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = client/LoginViewController.xib; sourceTree = "<group>"; };
@@ -4245,7 +4243,6 @@
 			files = (
 				54B85CA31A9E55CC0098B49E /* libc++.dylib in Frameworks */,
 				54B85CA51A9E55D50098B49E /* libresolv.dylib in Frameworks */,
-				545C87711AD2CE3100CB9776 /* libcurl.a in Frameworks */,
 				544B2C251AAC44DA0037101E /* UIKit.framework in Frameworks */,
 				54B85CA01A9E55930098B49E /* libqvdxvnc.a in Frameworks */,
 				54B85CA11A9E55930098B49E /* libwebsockify.a in Frameworks */,
@@ -5690,7 +5687,6 @@
 		545519271A9E54FE003E42CA = {
 			isa = PBXGroup;
 			children = (
-				545C87701AD2CE3100CB9776 /* libcurl.a */,
 				544B2C281AAC44EC0037101E /* CoreGraphics.framework */,
 				544B2C261AAC44E20037101E /* Foundation.framework */,
 				544B2C241AAC44DA0037101E /* UIKit.framework */,
