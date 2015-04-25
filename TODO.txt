@@ -1,15 +1,15 @@
 TODO
 ====
-  - Create new repo in Qindel. Init repo
-  - Document init repo.
   - Verify webview ios: handlers
   - Verify webview web site size (full screen)
-  - Document the flow of all the classes for a basic connection
-  - xvnc 64 bit work...
-  - TODO add an observer for ios
   - Handle going forward and backward in the connection once the xvnc is established
-  - Remvoe libcurl.a should not be needed
-  - Revmove sleep before the webview
+  - Remove sleep before the webview
+  - Handle how to stop the connection in VncViewController
+  - Handle how to handle vmlist error
+  - Handle how to handle
+
+  - Document the flow of all the classes for a basic connection
+  - TODO add an observer for ios
 
 Logic
 =====

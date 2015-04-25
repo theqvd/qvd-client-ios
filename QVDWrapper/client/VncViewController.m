@@ -46,10 +46,10 @@
                 NSString *anErrorMessage = [NSString stringWithFormat:@"Error conectando a la vm: %@",[[QVDClientWrapper sharedManager] getLastError]];
                 [KVNProgress showErrorWithStatus:anErrorMessage];
             }
-            
+
         }
     }
-  
+
 }
 
 -(void)loadUrl{
@@ -71,7 +71,36 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    NSString *url = [[request URL] absoluteString ];
+    if ([url hasPrefix:@"ios"]) {
+        [ self webToNativeCall:url ];
+        return NO;
+    }
+    //    NSLog(@"webView delegate invoked for url %@", url);
     return YES;
+}
+
+- (void) webToNativeCall:(NSString *)url {
+    if ([ url hasPrefix:@"ios-log:"]) {
+        NSArray *stringArray = [ url componentsSeparatedByString:@":%23IOS%23" ];
+        if (stringArray.count == 2) {
+            NSLog(@"UIWebView console: %@", [ stringArray objectAtIndex:1]);
+        } else {
+            NSLog(@"UIWebView console: Error in the String format should be ios-log:#IOS# but is %@", url);
+        }
+
+        return;
+    }
+    NSLog(@"QVDShowVmController: webToNativeCall: Invoking url %@", url);
+    if ([ url isEqualToString:@"ios:disconnect"]) {
+      NSLog(@"Disconnect invoked");
+      [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
+      [[QVDClientWrapper sharedManager] endConnection];
+      // TODO go to end url
+      return;
+    }
+
+    NSLog(@"QVDShowVmController: webToNativeCall: Unknown url invoked %@", url);
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
@@ -85,7 +114,7 @@
     NSLog(@"==================");
     NSLog(@"%@",error);
     NSLog(@"==================");
-    
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
