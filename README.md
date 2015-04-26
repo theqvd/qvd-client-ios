@@ -14,3 +14,13 @@ Una vez installado nos situamos en el proyecto QVDWrapper y ejecutamos el siguie
 `$ pod install`
 
 y desde ese momento trabajaremos con el workspace
+
+Prerequisitos
+=============
+Estos prerequisitos estan fuera de cocoapods:
+ - libqvdclient.a
+ - libqvdvnc.a
+ - libwebsockify.a
+ - noVNC
+
+
