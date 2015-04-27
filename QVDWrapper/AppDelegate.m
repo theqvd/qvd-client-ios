@@ -23,6 +23,15 @@
     [self.window makeKeyAndVisible];
     //Launch defaultViewController
     
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        UIView *addStatusBar = [[UIView alloc] init];
+        addStatusBar.frame = CGRectMake(0, 0, 320, 20);
+        //change this to match your navigation bar or view color or tool bar
+        //You can also use addStatusBar.backgroundColor = [UIColor BlueColor]; or any other color
+        addStatusBar.backgroundColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
+        [self.window.rootViewController.view addSubview:addStatusBar];
+    }
+    
     LoginViewController *login = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
     [self.window setRootViewController:nav];

@@ -63,8 +63,15 @@
     self.serviceRequest = [NSURLRequest requestWithURL:url];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
     if(self.serviceRequest){
         [self.navegador loadRequest:self.serviceRequest];
     }
@@ -94,13 +101,20 @@
     NSLog(@"QVDShowVmController: webToNativeCall: Invoking url %@", url);
     if ([ url isEqualToString:@"ios:disconnect"]) {
       NSLog(@"Disconnect invoked");
-      [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
-      [[QVDClientWrapper sharedManager] endConnection];
-      // TODO go to end url
+        [self disconnectFromVM];
       return;
     }
 
     NSLog(@"QVDShowVmController: webToNativeCall: Unknown url invoked %@", url);
+}
+
+-(void)disconnectFromVM{
+    [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
+    [[QVDClientWrapper sharedManager] endConnection:[_selectedVm id]];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
+    
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
@@ -119,8 +133,10 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
-    [[QVDClientWrapper sharedManager] endConnection];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                            withAnimation:UIStatusBarAnimationFade];
+    //[[QVDClientWrapper sharedManager] setStatusDelegate:nil];
+    //[[QVDClientWrapper sharedManager] endConnection:[_selectedVm id]];
 }
 
 -(void)showLoading{
@@ -145,5 +161,13 @@
 - (void) vmListRetrieved:(NSArray *) aVmList{
     //Not required
 }
+
+- (void) qvdError:(NSString *)aMessage{
+    [KVNProgress showErrorWithStatus:aMessage completion:^{
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+}
+
 
 @end

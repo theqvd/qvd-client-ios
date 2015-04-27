@@ -13,6 +13,7 @@
     @optional
     - (void) qvdProgressMessage:(NSString *) aMessage;
     - (void) vmListRetrieved:(NSArray *) aVmList;
+    - (void) qvdError:(NSString *)aMessage;
 
 @end
 
@@ -38,7 +39,7 @@
     -(void)listOfVms;
     -(int)connectToVm:(int) anVmId;
     -(int)stopVm;
-    -(void)endConnection;
+    -(void) endConnection:(int) anVmId;
     -(NSString *)getLastError;
 
 @end

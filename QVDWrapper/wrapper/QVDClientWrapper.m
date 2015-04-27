@@ -18,12 +18,14 @@
 #define NETWORK_OPTIONS @[@"Local",@"ADSL",@"Modem"]
 #define PLATFORM @"ios"
 @interface QVDClientWrapper ()
-    @property (nonatomic) qvdclient *qvd;
-    @property (nonatomic) int connect_result;
-    @property (strong,nonatomic) QVDProxyService *srvProxy;
-    @property (strong,nonatomic) QVDXvncService *srvXvnc;
-    @property (assign,nonatomic) BOOL xvncStarted;
-    @property (nonatomic) int pendingStatus; //0 nothing, 1 listVm, 2connectToVm
+@property (nonatomic) qvdclient *qvd;
+@property (nonatomic) int connect_result;
+@property (strong,nonatomic) QVDProxyService *srvProxy;
+@property (strong,nonatomic) QVDXvncService *srvXvnc;
+@property (assign,nonatomic) BOOL xvncStarted;
+@property (nonatomic) int pendingStatus; //0 nothing, 1 listVm, 2connectToVm
+@property (assign,nonatomic) BOOL listVmOnStart;
+@property (assign,nonatomic) BOOL internalConnect;
 
 @end
 
@@ -50,6 +52,8 @@
     if(self){
         QVDConfig *configuration = [QVDConfig configWithDefaults];
         _xvncStarted = NO;
+        _listVmOnStart = NO;
+        _internalConnect = NO;
         //Credentials
         _name = @"";
         _login = @"";
@@ -103,7 +107,7 @@
     if (self.qvd->vmlist == NULL) {
         return nil;
     }
-
+    
     for (vm_ptr = self.qvd->vmlist, i=0; i < self.qvd->numvms; ++i, vm_ptr = vm_ptr->next) {
         if (vm_ptr == NULL) {
             NSLog(@"QVDClientWrapper: Internal error converting vmlist in position %d, pointer is null and should not be", i);
@@ -116,9 +120,9 @@
         }
         
         QVDVmVO *vm = [[QVDVmVO alloc] initWithId:data->id
-                                         andName:data->name
-                                        andState:data->state
-                                      andBlocked:data->blocked];
+                                          andName:data->name
+                                         andState:data->state
+                                       andBlocked:data->blocked];
         [ vms addObject:vm];
     }
     return vms;
@@ -134,24 +138,27 @@
 -(void) listOfVms{
     if([self servicesRunning]){
         [self realListOfVms];
+    } else {
+        self.listVmOnStart = YES;
     }
 }
 
-
-- (void) realListOfVms{
+-(BOOL)doInternalConnect{
+    if(self.internalConnect){
+        return YES;
+    }
     if(!self.login || !self.pass || !self.host){
         NSLog(@"User credentials invalid");
-        return;
+        return NO;
     }
     //Setup debug
-        dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
+    
+    
     if(self.debug){
         qvd_set_debug();
     }
     //Init qvd client
     self.qvd = qvd_init([self.host UTF8String], self.port, [self.login UTF8String], [self.pass UTF8String]);
-    
-    //TODO: certificate and progress
     qvd_set_no_cert_check(self.qvd);
     qvd_set_progress_callback(self.qvd, progress_callback);
     
@@ -172,18 +179,56 @@
     if (curl_easy_setopt(self.qvd->curl, CURLOPT_NOSIGNAL, 1) != CURLE_OK) {
         NSLog(@"Error setting CURLOPT_NOSIGNAL");
     }
-    
-    qvd_list_of_vm(self.qvd);
     if(self.qvd){
-        self.listvm =[self convertVMlistIntoNSArray];
-        dispatch_async(dispatch_get_main_queue(), ^(){
-            if(self.statusDelegate){
-                [self.statusDelegate vmListRetrieved:self.listvm];
-            }
-        });
-        
+        char *messagechar = qvd_get_last_error(self.qvd);
+        NSString *qvd_error = [NSString stringWithUTF8String:messagechar];
+        if(![qvd_error isEqualToString:@""]){
+            [self.statusDelegate qvdError:qvd_error];
+        } else {
+            self.internalConnect = NO;
+        }
+        self.internalConnect  = YES;
+        NSLog(@"Tenemos QVD object...");
+    } else {
+        self.internalConnect  = NO;
+        NSLog(@"NO!!!! tenemos qvd object");
     }
-        });
+    return self.internalConnect;
+    
+}
+
+- (void) realListOfVms{
+    
+    
+    
+    dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
+        if([self doInternalConnect]){
+            //TODO: certificate and progress
+            
+            if(self.qvd){
+                qvd_list_of_vm(self.qvd);
+                
+                char *messagechar = qvd_get_last_error(self.qvd);
+                NSString *qvd_error = [NSString stringWithUTF8String:messagechar];
+                if(![qvd_error isEqualToString:@""]){
+                    [self.statusDelegate qvdError:qvd_error];
+                } else {
+                self.listvm =[self convertVMlistIntoNSArray];
+                dispatch_async(dispatch_get_main_queue(), ^(){
+                    if(self.statusDelegate){
+                        [self.statusDelegate vmListRetrieved:self.listvm];
+                    }
+                });
+                }
+                
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^(){
+                    [self.statusDelegate qvdError:@"Connection failed"];
+                });
+            }
+        }
+    });
+    
 }
 
 - (int) stopVm {
@@ -192,7 +237,7 @@
         NSLog(@"QVDClientWrapper: stopVm: Error qvd pointer is NULL, returning -1");
         return -1;
     }
-
+    
     self.connect_result = qvd_stop_vm(self.qvd, self.selectedvmid);
     NSLog(@"QVDClientWrapper: stopVm %d with qvd %p result was %d", self.selectedvmid, self.qvd, self.connect_result);
     return self.connect_result;
@@ -212,7 +257,7 @@
         qvd_connect_to_vm(self.qvd, self.selectedvmid);
         // TODO there should probably be a notification here
     });
-   // self.connect_result = qvd_connect_to_vm(self.qvd, self.selectedvmid);
+    // self.connect_result = qvd_connect_to_vm(self.qvd, self.selectedvmid);
     
     NSLog(@"QVDClientWrapper: connectToVm %d with qvd %p result was %d", self.selectedvmid, self.qvd, self.connect_result);
     return self.connect_result;
@@ -220,15 +265,17 @@
 
 
 
-- (void) endConnection {
+- (void) endConnection:(int) anVmId {
     NSLog(@"QVDClientWrapper: endConnection");
     if (self.qvd == NULL) {
         NSLog(@"QVDClientWrapper: endConnection: qvd pointer is null, not ending connection, waiting for init");
         return;
     }
+    qvd_stop_vm(self.qvd,anVmId);
     qvd_end_connection(self.qvd);
     //Stop services
     [self stopServices];
+    self.internalConnect = NO;
 }
 
 #pragma mark - Notification Methods
@@ -250,7 +297,7 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
     NSLog(@"QVDClientWrapper: accept_unknown_cert_callback (%s, %s)", cert_pem_str, cert_pem_data);
     pemstr = [ [ NSString alloc ] initWithUTF8String: cert_pem_str ];
     pemdata = [ [ NSString alloc ] initWithUTF8String: cert_pem_data ];
-
+    
     
     return result;
 }
@@ -271,7 +318,7 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
                                                  selector:@selector(xvncServiceStarted)
                                                      name:@"QVDXVNCServiceStarted"
                                                    object:nil];
-
+        
         self.srvProxy=  [[QVDProxyService alloc] init];
         self.srvXvnc =  [[QVDXvncService alloc] init];
         [self.srvXvnc startService];
@@ -284,7 +331,11 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
 
 -(void)xvncServiceStarted{
     self.xvncStarted = YES;
-    [self listOfVms];
+    if(self.listVmOnStart){
+        NSLog(@"=================> ServicesStarted, calling list of vm");
+        self.listVmOnStart = NO;
+        [self realListOfVms];
+    }
 }
 
 - (void) qvdProgressMessage:(NSString *) aMessage{

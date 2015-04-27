@@ -15,6 +15,7 @@
 #import "VncViewController.h"
 #import "VmListViewController.h"
 #import "ConnectionVO.h"
+#import "KVNProgress.h"
 
 @interface LoginViewController ()
 
@@ -42,6 +43,12 @@
     }
     VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:auxConnection];
     [self.navigationController pushViewController:vmList animated:YES];
+}
+
+- (void) qvdError:(NSString *)aMessage{
+    [KVNProgress showErrorWithStatus:aMessage completion:^{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
 }
 
 

@@ -70,6 +70,7 @@
 -(void)stopService{
     NSLog(@"[QVDProxyService]->[stopService]");
     if([self getSrvStatus] == SRV_STARTED){
+        NSLog(@"[QVDProxyService]->[stopService] websockify_stop()");
         websockify_stop();
     }
 }

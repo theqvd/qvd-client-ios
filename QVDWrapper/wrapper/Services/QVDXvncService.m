@@ -179,8 +179,9 @@ static char rfbport[MAXPATH];
 
 
 -(void)stopService{
-    NSLog(@"[QVDProxyService]->[stopService]");
+    NSLog(@"[QVDXvncService]->[stopService]");
     if([self getSrvStatus] == SRV_STARTED){
+         NSLog(@"[QVDXvncService]->[stopService] dix_main_end()");
         dix_main_end();
     }
 }

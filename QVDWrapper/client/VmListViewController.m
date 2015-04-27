@@ -126,5 +126,12 @@
     
 }
 
+- (void) qvdError:(NSString *)aMessage{
+    [KVNProgress showErrorWithStatus:aMessage completion:^{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+}
+
+
 
 @end

@@ -1319,6 +1319,7 @@
 		5423ED201AAC43D300B3BA76 /* map-ISO8859-9 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA891AA7901800C487CB /* map-ISO8859-9 */; };
 		5423ED211AAC43D300B3BA76 /* map-JISX0201.1976-0 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8A1AA7901800C487CB /* map-JISX0201.1976-0 */; };
 		5423ED221AAC43D300B3BA76 /* map-KOI8-R in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8B1AA7901800C487CB /* map-KOI8-R */; };
+		544128D01AEEC2E900258103 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 544128CF1AEEC2E900258103 /* libcurl.a */; };
 		544B2C251AAC44DA0037101E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C241AAC44DA0037101E /* UIKit.framework */; };
 		544B2C271AAC44E20037101E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C261AAC44E20037101E /* Foundation.framework */; };
 		544B2C291AAC44EC0037101E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C281AAC44EC0037101E /* CoreGraphics.framework */; };
@@ -4091,6 +4092,7 @@
 		5423ECD71AAC438800B3BA76 /* tcvn-0.enc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tcvn-0.enc"; sourceTree = "<group>"; };
 		5423ECD81AAC438800B3BA76 /* tis620-2.enc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tis620-2.enc"; sourceTree = "<group>"; };
 		5423ECD91AAC438800B3BA76 /* viscii1.1-1.enc.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "viscii1.1-1.enc.gz"; sourceTree = "<group>"; };
+		544128CF1AEEC2E900258103 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = QVDWrapper/binary_libs/libcurl.a; sourceTree = "<group>"; };
 		544B2C241AAC44DA0037101E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		544B2C261AAC44E20037101E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		544B2C281AAC44EC0037101E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -4244,11 +4246,12 @@
 				54B85CA31A9E55CC0098B49E /* libc++.dylib in Frameworks */,
 				54B85CA51A9E55D50098B49E /* libresolv.dylib in Frameworks */,
 				544B2C251AAC44DA0037101E /* UIKit.framework in Frameworks */,
+				544128D01AEEC2E900258103 /* libcurl.a in Frameworks */,
 				54B85CA01A9E55930098B49E /* libqvdxvnc.a in Frameworks */,
 				54B85CA11A9E55930098B49E /* libwebsockify.a in Frameworks */,
+				54B85C9F1A9E55930098B49E /* libqvdclient.a in Frameworks */,
 				544B2C271AAC44E20037101E /* Foundation.framework in Frameworks */,
 				544B2C291AAC44EC0037101E /* CoreGraphics.framework in Frameworks */,
-				54B85C9F1A9E55930098B49E /* libqvdclient.a in Frameworks */,
 				F70FE8A80CCF37FE97D31920 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5895,6 +5898,7 @@
 		83A0F1182EA60F5D3F5B1733 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				544128CF1AEEC2E900258103 /* libcurl.a */,
 				798567CA8D10C5571AA86896 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -5972,7 +5976,7 @@
 				TargetAttributes = {
 					5455192F1A9E54FE003E42CA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = MA65P2J3XT;
+						DevelopmentTeam = M9A9AUBW65;
 					};
 					545519481A9E54FE003E42CA = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -6234,7 +6238,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = QVDWrapper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
