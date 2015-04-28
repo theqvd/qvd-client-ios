@@ -271,10 +271,10 @@
         NSLog(@"QVDClientWrapper: endConnection: qvd pointer is null, not ending connection, waiting for init");
         return;
     }
-    qvd_stop_vm(self.qvd,anVmId);
+    // qvd_stop_vm(self.qvd,anVmId);
     qvd_end_connection(self.qvd);
-    //Stop services
-    [self stopServices];
+    //Stop services not needed
+    // [self stopServices];
     self.internalConnect = NO;
 }
 
