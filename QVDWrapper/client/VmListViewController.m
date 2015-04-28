@@ -52,13 +52,13 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = @"Máquinas disponibles";
+    self.title = @"Maquinas disponibles";
 
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     if(self.loginRequired){
-        
+
         [[QVDClientWrapper sharedManager] setStatusDelegate:self];
         [[QVDClientWrapper sharedManager] setCredentialsWitUser:[self.connection userLogin] password: [self.connection userPassword] host:[self.connection qvdHost]];
         [self showLoading];
@@ -83,7 +83,7 @@
 
 - (void) qvdProgressMessage:(NSString *) aMessage{
     [KVNProgress updateStatus:[NSString stringWithFormat:@"Progress: %@",aMessage]];
-    
+
 }
 
 - (void) vmListRetrieved:(NSArray *) aVmList{
@@ -104,14 +104,14 @@
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     QVDVmVO *anVm = [self.vmList objectAtIndex:[indexPath row]];
-    
+
     VmMachineCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VmMachineCollectionViewCell" forIndexPath:indexPath];
     [[cell vmName] setText:[anVm name]];
     [[cell vmState] setText:[anVm state]];
-    
-    
+
+
     return cell;
 }
 
@@ -120,10 +120,10 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     // done in the vncViewController
     //[[QVDClientWrapper sharedManager] connectToVm:[anVm id]];
-    
+
     VncViewController *vnc = [[VncViewController alloc] initWithVm:anVm];
     [self.navigationController pushViewController:vnc animated:YES];
-    
+
 }
 
 - (void) qvdError:(NSString *)aMessage{
