@@ -209,6 +209,7 @@ Util.init_logging = function (level) {
 
     Util.Debug = Util.Info = Util.Warn = Util.Error = function (msg) {};
     // IOS hack
+    /*
     console = new Object();
     console.log = function(log) {
 	var iframe = document.createElement("IFRAME");
@@ -217,7 +218,7 @@ Util.init_logging = function (level) {
 	iframe.parentNode.removeChild(iframe);
 	iframe=null;
     };
-
+    */
     /* jshint -W086 */
     switch (level) {
         case 'debug':

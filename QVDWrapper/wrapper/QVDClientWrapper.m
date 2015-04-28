@@ -255,7 +255,12 @@
     NSLog(@"QVDClientWrapper: connectToVm %d with qvd %p", self.selectedvmid, self.qvd);
     dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
         qvd_connect_to_vm(self.qvd, self.selectedvmid);
-        // TODO there should probably be a notification here
+        char *messagechar = qvd_get_last_error(self.qvd);
+        NSString *qvd_error = [NSString stringWithUTF8String:messagechar];
+        NSString *endconnection = [NSString stringWithFormat:@"Connection has finished.%@", qvd_error ];
+        NSLog(@"%@", endconnection);
+        [ self endConnection:self.selectedvmid];
+        [ self.statusDelegate qvdError:endconnection];
     });
     // self.connect_result = qvd_connect_to_vm(self.qvd, self.selectedvmid);
     

@@ -52,7 +52,7 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = @"Maquinas disponibles";
+    self.title = @"List of VMs";
 
 }
 
