@@ -1,13 +1,16 @@
 PODS:
   - IQKeyboardManager (3.2.2)
   - KVNProgress (2.2.1)
+  - SimpleKeychain (0.3.0)
 
 DEPENDENCIES:
   - IQKeyboardManager (~> 3.2)
   - KVNProgress (~> 2.2)
+  - SimpleKeychain
 
 SPEC CHECKSUMS:
   IQKeyboardManager: 99df8006864663a4126a77b9a2f7ea70077eff31
   KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
+  SimpleKeychain: 8de48eb1de10c6403911a6be52e127e5b5d31404
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.37.0.beta.1

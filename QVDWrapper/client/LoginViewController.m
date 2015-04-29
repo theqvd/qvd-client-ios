@@ -16,6 +16,8 @@
 #import "VmListViewController.h"
 #import "ConnectionVO.h"
 #import "KVNProgress.h"
+#import "A0SimpleKeychain.h"
+
 
 @interface LoginViewController ()
 
@@ -44,6 +46,31 @@
     }
     VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:auxConnection saveCredentials:self.switchRemember.isOn];
     [self.navigationController pushViewController:vmList animated:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self retreiveUserInfo];
+}
+
+-(void)retreiveUserInfo{
+    
+    if([[A0SimpleKeychain keychain] hasValueForKey:@"qvd-user"]){
+        
+        [self.txtLogin setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-user"]];
+        [self.txtPassword setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-pwd"]];
+        [self.txtHost setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-host"]];
+        [self.switchRemember setOn:YES];
+    } else {
+        [self.switchRemember setOn:NO];
+        [self.txtHost setText:@""];
+        [self.txtPassword setText:@""];
+        [self.txtHost setText:@""];
+        
+    }
+    
+
+
 }
 
 

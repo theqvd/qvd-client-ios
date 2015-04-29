@@ -13,6 +13,7 @@
 #import "VmMachineCollectionViewCell.h"
 #import "QVDVmVO.h"
 #import "VncViewController.h"
+#import "A0SimpleKeychain.h"
 
 
 @interface VmListViewController ()
@@ -28,6 +29,9 @@
     self = [self initWithNibName:nil bundle:nil];
     if(self){
         _vmList = nil;
+        if(!save){
+            [[A0SimpleKeychain keychain] clearAll];
+        }
         if(aConnection){
             self.connection = aConnection;
         } else {
@@ -92,6 +96,11 @@
     [KVNProgress showSuccess];
     self.vmList = aVmList;
     [self.cvVmMachines reloadData];
+    
+    [[A0SimpleKeychain keychain] setString:self.connection.userLogin forKey:@"qvd-user"];
+    [[A0SimpleKeychain keychain] setString:self.connection.userPassword forKey:@"qvd-pwd"];
+    [[A0SimpleKeychain keychain] setString:self.connection.qvdHost forKey:@"qvd-host"];
+    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -127,6 +136,7 @@
 }
 
 - (void) qvdError:(NSString *)aMessage{
+    [[A0SimpleKeychain keychain] clearAll];
     [KVNProgress showErrorWithStatus:aMessage completion:^{
         [self.navigationController popToRootViewControllerAnimated:YES];
     }];

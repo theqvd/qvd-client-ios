@@ -110,10 +110,10 @@
 
 -(void)disconnectFromVM{
     //[[QVDClientWrapper sharedManager] setStatusDelegate:nil];
-    [KVNProgress show];
+    //[KVNProgress show];
     [[QVDClientWrapper sharedManager] endConnection:[_selectedVm id]];
-    //[self.navigationController setNavigationBarHidden:NO animated:YES];
-    //[self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
     
 }
@@ -175,6 +175,7 @@
     [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
 }
 
 
