@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -12,6 +12,7 @@
                 <outlet property="txtHost" destination="sH2-SM-DlF" id="9oe-fD-WiD"/>
                 <outlet property="txtLogin" destination="oro-Iq-gHw" id="rab-mn-CYa"/>
                 <outlet property="txtPassword" destination="yEB-rN-8sP" id="ep9-ba-Bua"/>
+                <outlet property="versionLabel" destination="QGh-Y0-nQB" id="we7-4V-i3T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -58,8 +59,22 @@
                         <action selector="doLogin:" destination="-1" eventType="touchUpInside" id="a5G-tk-1ur"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versión:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGh-Y0-nQB">
+                    <rect key="frame" x="8" y="739" width="358" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="FPT-f9-tfM"/>
+                        <constraint firstAttribute="width" constant="358" id="w4r-Uy-Fyg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" red="0.52941176469999995" green="0.52941176469999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="QGh-Y0-nQB" secondAttribute="bottom" constant="8" id="P8G-9z-cqo"/>
+                <constraint firstItem="QGh-Y0-nQB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="wge-HJ-Mhu"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <point key="canvasLocation" x="797" y="613"/>

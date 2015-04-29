@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *switchRemember;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btLogin;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
