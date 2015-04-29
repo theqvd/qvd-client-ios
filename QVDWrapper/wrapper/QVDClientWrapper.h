@@ -14,6 +14,7 @@
     - (void) qvdProgressMessage:(NSString *) aMessage;
     - (void) vmListRetrieved:(NSArray *) aVmList;
     - (void) qvdError:(NSString *)aMessage;
+    - (void) connectionFinished;
 
 @end
 

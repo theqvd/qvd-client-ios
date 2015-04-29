@@ -42,14 +42,8 @@
     if(![auxHost isEqualToString:@""] || ![auxLogin isEqualToString:@""] || ![auxPassword isEqualToString:@""]){
         auxConnection = [ConnectionVO initWithUser:auxLogin andPassword:auxPassword andHost:auxHost];
     }
-    VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:auxConnection];
+    VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:auxConnection saveCredentials:self.switchRemember.isOn];
     [self.navigationController pushViewController:vmList animated:YES];
-}
-
-- (void) qvdError:(NSString *)aMessage{
-    [KVNProgress showErrorWithStatus:aMessage completion:^{
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }];
 }
 
 

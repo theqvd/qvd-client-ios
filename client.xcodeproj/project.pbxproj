@@ -1331,7 +1331,6 @@
 		544F9AC11ADBB986000A5609 /* VmMachineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544F9ABF1ADBB986000A5609 /* VmMachineCollectionViewCell.xib */; };
 		545519361A9E54FE003E42CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 545519351A9E54FE003E42CA /* main.m */; };
 		545519391A9E54FE003E42CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 545519381A9E54FE003E42CA /* AppDelegate.m */; };
-		5455193C1A9E54FE003E42CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455193B1A9E54FE003E42CA /* ViewController.m */; };
 		545519411A9E54FE003E42CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545519401A9E54FE003E42CA /* Images.xcassets */; };
 		545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545519421A9E54FE003E42CA /* LaunchScreen.xib */; };
 		545519501A9E54FE003E42CA /* QVDWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */; };
@@ -4111,8 +4110,6 @@
 		545519351A9E54FE003E42CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		545519371A9E54FE003E42CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		545519381A9E54FE003E42CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5455193A1A9E54FE003E42CA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5455193B1A9E54FE003E42CA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		545519401A9E54FE003E42CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		545519431A9E54FE003E42CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		545519491A9E54FE003E42CA /* clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5719,8 +5716,6 @@
 				54B85C921A9E55930098B49E /* binary_libs */,
 				545519371A9E54FE003E42CA /* AppDelegate.h */,
 				545519381A9E54FE003E42CA /* AppDelegate.m */,
-				5455193A1A9E54FE003E42CA /* ViewController.h */,
-				5455193B1A9E54FE003E42CA /* ViewController.m */,
 				545519401A9E54FE003E42CA /* Images.xcassets */,
 				545519421A9E54FE003E42CA /* LaunchScreen.xib */,
 				545519331A9E54FE003E42CA /* Supporting Files */,
@@ -6083,7 +6078,6 @@
 				545C877B1AD310D100CB9776 /* VncViewController.m in Sources */,
 				544F9AC01ADBB986000A5609 /* VmMachineCollectionViewCell.m in Sources */,
 				54B29A0C1AB44E64004408AE /* QVDClientWrapper.m in Sources */,
-				5455193C1A9E54FE003E42CA /* ViewController.m in Sources */,
 				545519391A9E54FE003E42CA /* AppDelegate.m in Sources */,
 				549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */,
 				54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */,

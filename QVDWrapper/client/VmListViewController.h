@@ -13,6 +13,6 @@
 @interface VmListViewController : UIViewController<QVDStatusDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *cvVmMachines;
--(id)initWithConnection:(ConnectionVO *) aConnection;
+-(id)initWithConnection:(ConnectionVO *) aConnection saveCredentials:(BOOL)save;
 
 @end

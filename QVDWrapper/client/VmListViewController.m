@@ -24,7 +24,7 @@
 
 @implementation VmListViewController
 
--(id)initWithConnection:(ConnectionVO *) aConnection{
+-(id)initWithConnection:(ConnectionVO *) aConnection saveCredentials:(BOOL)save{
     self = [self initWithNibName:nil bundle:nil];
     if(self){
         _vmList = nil;
@@ -132,6 +132,9 @@
     }];
 }
 
+-(void)connectionFinished{
+    
+}
 
 
 @end

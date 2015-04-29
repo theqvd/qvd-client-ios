@@ -109,10 +109,11 @@
 }
 
 -(void)disconnectFromVM{
-    [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
+    //[[QVDClientWrapper sharedManager] setStatusDelegate:nil];
+    [KVNProgress show];
     [[QVDClientWrapper sharedManager] endConnection:[_selectedVm id]];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.navigationController setNavigationBarHidden:NO animated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
 
     
 }
@@ -133,8 +134,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                            withAnimation:UIStatusBarAnimationFade];
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO];
     //[[QVDClientWrapper sharedManager] setStatusDelegate:nil];
     //[[QVDClientWrapper sharedManager] endConnection:[_selectedVm id]];
 }
@@ -168,6 +168,15 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }];
 }
+
+
+-(void)connectionFinished{
+    [KVNProgress showSuccessWithStatus:@"VM disconnected"];
+    [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 
 @end
