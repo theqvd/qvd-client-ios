@@ -19,6 +19,14 @@ TODO
   - Document the flow of all the classes for a basic connection
   - TODO add an observer for ios
 
+  - Do not run qvd_stop_vm(self.qvd,anVmId);
+  - Check for QVDXvncService stopService, see where it is invoked
+  - Check libcurl.a
+  - check webview logging, which is too much
+  - Increase number of checks for session takeover
+  - check for TCP_NODELAY in the webproxy
+  - Check for 2 connections
+
 
 Logic
 =====
@@ -33,248 +41,18 @@ See usage of #noVNC_screen_pad #noVNC_container
 
 ui.js
 
-nito@cardalda:~/w/svn/QVD-trunk/libqvdclient $ cd ios/client/noVNC/
-nito@cardalda:~/w/svn/QVD-trunk/libqvdclient/ios/client/noVNC $ svn diff -r 24291
-Index: include/rfb.js
-===================================================================
---- include/rfb.js	(.../branches/clienteTresEnUno/ios/client/client/noVNC)	(revision 24291)
-+++ include/rfb.js	(.../trunk/libqvdclient/ios/client/noVNC)	(working copy)
-@@ -258,6 +258,9 @@
-         } else if (rfb_state in {'failed':1, 'disconnected':1}) {
-             Util.Error("Received onclose while disconnected" + msg);
-         } else  {
-+            // Exit connection
-+	    //	    window.alert("Debug for qvd");
-+            //window.location = "ios:disconnect";
-             fail('Server disconnected' + msg);
-         }
-     });
-Index: include/util.js
-===================================================================
---- include/util.js	(.../branches/clienteTresEnUno/ios/client/client/noVNC)	(revision 24291)
-+++ include/util.js	(.../trunk/libqvdclient/ios/client/noVNC)	(working copy)
-@@ -132,11 +132,20 @@
-     }
+ssl client
+==========
+nito@cardalda:~/tmp/qvd-client-ios $ git config --global http.sslCert /home/nito/w/nito/keys/nito.crt
+nito@cardalda:~/tmp/qvd-client-ios $ git config --global http.sslKey /home/nito/w/nito/keys/nito.key
+nito.key           nito.key.20080527  nito.key.20081018  nito.key.20140917
+nito@cardalda:~/tmp/qvd-client-ios $ git config --global http.sslKey /home/nito/w/nito/keys/nito.key
+nito@cardalda:~/tmp/qvd-client-ios $ git config --global http.sslCaInfo /home/nito/w/nito/keys/cacert.pem
+nito@cardalda:~/tmp/qvd-client-ios $ git config --global http.sslVerify false
+nito@cardalda:~/tmp/qvd-client-ios $ git clone  https://intranet.qindel.com/git/qvd-client-ios.git
 
-     Util.Debug = Util.Info = Util.Warn = Util.Error = function (msg) {};
-+    // IOS hack
-+    console = new Object();
-+    console.log = function(log) {
-+	var iframe = document.createElement("IFRAME");
-+	iframe.setAttribute("src", "ios-log:#IOS#" + log);
-+	document.documentElement.appendChild(iframe);
-+	iframe.parentNode.removeChild(iframe);
-+	iframe=null;
-+    };
-     switch (level) {
-         case 'debug': Util.Debug = function (msg) { console.log(msg); };
-         case 'info':  Util.Info  = function (msg) { console.log(msg); };
--        case 'warn':  Util.Warn  = function (msg) { console.warn(msg); };
--        case 'error': Util.Error = function (msg) { console.error(msg); };
-+        case 'warn':  Util.Warn  = function (msg) { console.log(msg); };
-+        case 'error': Util.Error = function (msg) { console.log(msg); };
-         case 'none':
-             break;
-         default:
-Index: include/ui.js
-===================================================================
---- include/ui.js	(.../branches/clienteTresEnUno/ios/client/client/noVNC)	(revision 24291)
-+++ include/ui.js	(.../trunk/libqvdclient/ios/client/noVNC)	(working copy)
-@@ -196,7 +196,7 @@
-     $D("xvpButton").onclick = UI.toggleXvpPanel;
-     $D("clipboardButton").onclick = UI.toggleClipboardPanel;
-     $D("settingsButton").onclick = UI.toggleSettingsPanel;
--    //    $D("connectButton").onclick = UI.toggleConnectPanel;
-+//    $D("connectButton").onclick = UI.toggleConnectPanel;
-     $D("disconnectButton").onclick = UI.disconnect;
-     // $D("descriptionButton").onclick = UI.toggleConnectPanel;
+En Mac ademas hay que incluir en el keychain 
 
-@@ -637,11 +637,12 @@
-     switch (UI.rfb_state) {
-         case 'fatal':
-         case 'failed':
-+        case 'disconnected':
-+//            $D('connectButton').style.display = "";
-+//            $D('disconnectButton').style.display = "none";
-+//           break;
-+             window.location = "ios:disconnect";
-         case 'loaded':
--        case 'disconnected':
--            $D('connectButton').style.display = "";
--            $D('disconnectButton').style.display = "none";
--            break;
-         default:
-             $D('connectButton').style.display = "none";
-             $D('disconnectButton').style.display = "";
-nito@cardalda:~/w/svn/QVD-trunk/libqvdclient/ios/client/noVNC $
-
-
-Index: include/rfb.js
-===================================================================
---- include/rfb.js      (.../branches/clienteTresEnUno/ios/client/client/noVNC) (revision 24334)
-+++ include/rfb.js      (.../trunk/libqvdclient/ios/client/noVNC)       (working copy)
-@@ -258,6 +258,9 @@
-         } else if (rfb_state in {'failed':1, 'disconnected':1}) {
-             Util.Error("Received onclose while disconnected" + msg);
-         } else  {
-+            // Exit connection
-+           //      window.alert("Debug for qvd");
-+            //window.location = "ios:disconnect";
-             fail('Server disconnected' + msg);
-         }
-     });
-Index: include/util.js
-===================================================================
---- include/util.js     (.../branches/clienteTresEnUno/ios/client/client/noVNC) (revision 24334)
-+++ include/util.js     (.../trunk/libqvdclient/ios/client/noVNC)       (working copy)
-@@ -132,11 +132,20 @@
-     }
-
-     Util.Debug = Util.Info = Util.Warn = Util.Error = function (msg) {};
-+    // IOS hack
-+    console = new Object();
-+    console.log = function(log) {
-+       var iframe = document.createElement("IFRAME");
-+       iframe.setAttribute("src", "ios-log:#IOS#" + log);
-+       document.documentElement.appendChild(iframe);
-+       iframe.parentNode.removeChild(iframe);
-+       iframe=null;
-+    };
-     switch (level) {
-         case 'debug': Util.Debug = function (msg) { console.log(msg); };
-         case 'info':  Util.Info  = function (msg) { console.log(msg); };
--        case 'warn':  Util.Warn  = function (msg) { console.warn(msg); };
--        case 'error': Util.Error = function (msg) { console.error(msg); };
-+        case 'warn':  Util.Warn  = function (msg) { console.log(msg); };
-+        case 'error': Util.Error = function (msg) { console.log(msg); };
-         case 'none':
-             break;
-         default:
-Index: include/ui.js
-===================================================================
---- include/ui.js       (.../branches/clienteTresEnUno/ios/client/client/noVNC) (revision 24334)
-+++ include/ui.js       (.../trunk/libqvdclient/ios/client/noVNC)       (working copy)
-@@ -637,12 +637,12 @@
-     switch (UI.rfb_state) {
-         case 'fatal':
-         case 'failed':
--        case 'loaded':
-         case 'disconnected':
- //            $D('connectButton').style.display = "";
- //            $D('disconnectButton').style.display = "none";
- //           break;
--               window.location = "ios:disconnect";
-+             window.location = "ios:disconnect";
-+        case 'loaded':
-         default:
-             $D('connectButton').style.display = "none";
-             $D('disconnectButton').style.display = "";
-
-
-diff -Naurb include/base.css /home/nito/w/svn/QVD-trunk/libqvdclient/ios/client/noV
-NC/include/base.css
---- include/base.css    2015-04-26 08:11:20.555998433 +0200
-+++ /home/nito/w/svn/QVD-trunk/libqvdclient/ios/client/noVNC/include/base.css   201
-4-09-06 15:14:25.569630040 +0200
-@@ -377,7 +377,7 @@
-#noVNC_logo {
-   margin-top: 170px;
-   margin-left: 10px;
--  color:yellow;
-+  color:orange;
-   text-align:left;
-   font-family: 'Orbitron', 'OrbitronTTF', sans-serif;
-   line-height:90%;
-@@ -510,3 +510,8 @@
-     font-size: 90px;
-   }
- }
-+
-+/* Disable settings */
-+#settingsButton {
-+   display: none;
-+ }
-\ No newline at end of file
-
-
-Index: include/ui.js
-===================================================================
---- include/ui.js       (.../branches/clienteTresEnUno/ios/client/client/noVNC) (re
-vision 23728)
-+++ include/ui.js       (.../trunk/libqvdclient/ios/client/noVNC)       (working co
-py)
-@@ -196,9 +196,9 @@
-     $D("xvpButton").onclick = UI.toggleXvpPanel;
-     $D("clipboardButton").onclick = UI.toggleClipboardPanel;
-     $D("settingsButton").onclick = UI.toggleSettingsPanel;
--    $D("connectButton").onclick = UI.toggleConnectPanel;
-+//    $D("connectButton").onclick = UI.toggleConnectPanel;
-     $D("disconnectButton").onclick = UI.disconnect;
--    $D("descriptionButton").onclick = UI.toggleConnectPanel;
-+    // $D("descriptionButton").onclick = UI.toggleConnectPanel;
- 
-     $D("noVNC_clipboard_text").onfocus = UI.displayBlur;
-     $D("noVNC_clipboard_text").onblur = UI.displayFocus;
-@@ -637,11 +637,12 @@
-     switch (UI.rfb_state) {
-         case 'fatal':
-         case 'failed':
-+        case 'disconnected':
-+//            $D('connectButton').style.display = "";
-+//            $D('disconnectButton').style.display = "none";
-+//           break;
-+             window.location = "ios:disconnect";
-         case 'loaded':
--        case 'disconnected':
--            $D('connectButton').style.display = "";
--            $D('disconnectButton').style.display = "none";
--            break;
-         default:
-             $D('connectButton').style.display = "none";
-             $D('disconnectButton').style.display = "";
-@@ -682,7 +683,7 @@
-     var host, port, password, path;
- 
-     UI.closeSettingsMenu();
--    UI.toggleConnectPanel();
-+    //    UI.toggleConnectPanel();
- 
-     host = $D('noVNC_host').value;
-     port = $D('noVNC_port').value;
-@@ -710,9 +711,11 @@
-     UI.closeSettingsMenu();
-     UI.rfb.disconnect();
- 
--    $D('noVNC_logo').style.display = "block";
-+    //$D('noVNC_logo').style.display = "block";
-     UI.connSettingsOpen = false;
--    UI.toggleConnectPanel();
-+    // do not present the connect button
-+    //UI.toggleConnectPanel();
-+    window.location = "ios:disconnect";
- },
- 
- displayBlur: function() {
-Index: include/base.css
-===================================================================
---- include/base.css    (.../branches/clienteTresEnUno/ios/client/client/noVNC) (revision 23728)
-+++ include/base.css    (.../trunk/libqvdclient/ios/client/noVNC)       (working copy)
-@@ -377,7 +377,7 @@
- #noVNC_logo {
-   margin-top: 170px;
-   margin-left: 10px;
--  color:yellow;
-+  color:orange;
-   text-align:left;
-   font-family: 'Orbitron', 'OrbitronTTF', sans-serif;
-   line-height:90%;
-@@ -510,3 +510,8 @@
-     font-size: 90px;
-   }
- }
-+
-+/* Disable settings */
-+#settingsButton {
-+   display: none;
-+ }
-\ No newline at end of file
+keychain -i
+unlock-keychain /Users/nito/Library/Keychains/login.keychain
+add-trusted-cert -d -r trustRoot -k /Users/nito/Library/Keychains/login.keychain /Users/nito/w/nito/keys/nito.crt
