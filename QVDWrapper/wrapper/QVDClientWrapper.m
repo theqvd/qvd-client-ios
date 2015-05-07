@@ -159,7 +159,12 @@
     }
     //Init qvd client
     self.qvd = qvd_init([self.host UTF8String], self.port, [self.login UTF8String], [self.pass UTF8String]);
+    // Set home dir
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    NSString *home_path = [[ fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil] path];
+    qvd_set_home(self.qvd, [home_path UTF8String]);
     qvd_set_no_cert_check(self.qvd);
+    
     qvd_set_progress_callback(self.qvd, progress_callback);
     
     if(self.fullscreen){
@@ -257,11 +262,12 @@
     dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
         qvd_connect_to_vm(self.qvd, self.selectedvmid);
         char *messagechar = qvd_get_last_error(self.qvd);
-        NSString *qvd_error = [NSString stringWithUTF8String:messagechar];
-        NSString *endconnection = [NSString stringWithFormat:@"Connection has finished.%@", qvd_error ];
+        NSString *endconnection = [NSString stringWithFormat:@"Connection has finished.%s", messagechar ];
         NSLog(@"%@", endconnection);
-        [self endConnection:self.selectedvmid];
         dispatch_async(dispatch_get_main_queue(), ^(){;
+            // We free in the main thread to avoid concurrency problems
+            qvd_free(self.qvd);
+            self.internalConnect = NO;
             if(self.statusDelegate)
                     [self.statusDelegate connectionFinished];
         });
@@ -280,11 +286,10 @@
         NSLog(@"QVDClientWrapper: endConnection: qvd pointer is null, not ending connection, waiting for init");
         return;
     }
-    // qvd_stop_vm(self.qvd,anVmId);
+    // This will end the connection thread in connectToVM
     qvd_end_connection(self.qvd);
     //Stop services not needed
     // [self stopServices];
-    self.internalConnect = NO;
 }
 
 #pragma mark - Notification Methods
