@@ -3,21 +3,21 @@ qvd-ios
 
 Qindel QVD iOS Client
 
-Para su uso tenemos que emplear cocoapods:
+For your usage you need to use cocoapods:
 
-Para instalar cocoapods ejecutaremos el siguiente comando
+To install cocoapods execute the following command:
 
 `$ sudo gem install cocoapods`
 
-Una vez installado nos situamos en el proyecto QVDWrapper y ejecutamos el siguiente comando
+Once installed change to the QVDwrapper directory and run
 
 `$ pod install`
 
-y desde ese momento trabajaremos con el workspace
+And from that moment we will work in the workspace
 
-Prerequisitos
+Prerequisites
 =============
-Estos prerequisitos estan fuera de cocoapods:
+These prerequistes are outside of cocoapods:
  - libqvdclient.a
  - libqvdvnc.a
  - libwebsockify.a
