@@ -38,7 +38,7 @@
         aux.qvdDefaultHeight = 768;
         aux.qvdDefaultLinkItem = 1;
         aux.qvdDefaultPort = 8443;
-        aux.qvdDefaultDebug = YES;
+        aux.qvdDefaultDebug = NO;
         aux.qvdUseMock = NO;
         aux.qvdDefaultFullScreen = NO;
         
