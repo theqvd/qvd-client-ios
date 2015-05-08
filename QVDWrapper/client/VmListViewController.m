@@ -120,6 +120,14 @@
     VmMachineCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VmMachineCollectionViewCell" forIndexPath:indexPath];
     [[cell vmName] setText:[anVm name]];
     [[cell vmState] setText:[anVm state]];
+    if(cell.selectedBackgroundView){
+        [cell.selectedBackgroundView setBackgroundColor:[UIColor whiteColor]];
+        [cell.backgroundView setBackgroundColor:[UIColor colorWithRed:224./255. green:224./255. blue:224./255. alpha:1.]];
+    } else {
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0., 0., 250., 150.)];
+        [cell.selectedBackgroundView setBackgroundColor:[UIColor whiteColor]];
+        [cell.backgroundView setBackgroundColor:[UIColor colorWithRed:224./255. green:224./255. blue:224./255. alpha:1.]];
+    }
 
 
     return cell;
@@ -129,7 +137,8 @@
      QVDVmVO *anVm = [self.vmList objectAtIndex:[indexPath row]];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
      cell.contentView.backgroundColor = [UIColor whiteColor];
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    
     // done in the vncViewController
     //[[QVDClientWrapper sharedManager] connectToVm:[anVm id]];
 
