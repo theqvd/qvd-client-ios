@@ -2,8 +2,23 @@
 //  QVDClientWrapper.m
 //  QVDWrapper
 //
+//    Qvd client for IOS
+//    Copyright (C) 2015  theqvd.com trade mark of Qindel Formacion y Servicios SL
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as
+//    published by the Free Software Foundation, either version 3 of the
+//    License, or (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Oscar Costoya Vidal on 14/3/15.
-//  Copyright (c) 2015 Qindel. All rights reserved.
 //
 
 #import "QVDClientWrapper.h"
@@ -77,7 +92,7 @@
         //Network options
         _linkitem = 1; // By default ADSL
         //Vm list
-        
+
         NSFileManager *fm = [ NSFileManager new];
         NSError *err = nil;
         NSURL * suppurl = [ fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&err];
@@ -111,7 +126,7 @@
     if (self.qvd->vmlist == NULL) {
         return nil;
     }
-    
+
     for (vm_ptr = self.qvd->vmlist, i=0; i < self.qvd->numvms; ++i, vm_ptr = vm_ptr->next) {
         if (vm_ptr == NULL) {
             NSLog(@"QVDClientWrapper: Internal error converting vmlist in position %d, pointer is null and should not be", i);
@@ -122,7 +137,7 @@
             NSLog(@"QVDClientWrapper: Internal error converting vmlist in position %d, data pointer is null and should not be", i);
             return nil;
         }
-        
+
         QVDVmVO *vm = [[QVDVmVO alloc] initWithId:data->id
                                           andName:data->name
                                          andState:data->state
@@ -156,8 +171,8 @@
         return NO;
     }
     //Setup debug
-    
-    
+
+
     if(self.debug){
         qvd_set_debug();
     }
@@ -168,23 +183,23 @@
     NSString *home_path = [[ fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil] path];
     qvd_set_home(self.qvd, [home_path UTF8String]);
     qvd_set_no_cert_check(self.qvd);
-    
+
     qvd_set_progress_callback(self.qvd, progress_callback);
-    
+
     if(self.fullscreen){
         qvd_set_fullscreen(self.qvd);
     }
-    
+
     qvd_set_geometry(self.qvd, [[self getGeometry] UTF8String]);
-    
+
     qvd_set_os(self.qvd, self.os.UTF8String);
-    
+
     if (self.homedir){
         qvd_set_home(self.qvd,self.homedir.UTF8String);
     }
-    
+
     qvd_set_display(self.qvd, [[QVDConfig configWithDefaults] xvncFullDisplay]);
-    
+
     if (curl_easy_setopt(self.qvd->curl, CURLOPT_NOSIGNAL, 1) != CURLE_OK) {
         NSLog(@"Error setting CURLOPT_NOSIGNAL");
     }
@@ -203,20 +218,20 @@
         NSLog(@"NO!!!! tenemos qvd object");
     }
     return self.internalConnect;
-    
+
 }
 
 - (void) realListOfVms{
-    
-    
-    
+
+
+
     dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
         if([self doInternalConnect]){
             //TODO: certificate and progress
-            
+
             if(self.qvd){
                 qvd_list_of_vm(self.qvd);
-                
+
                 char *messagechar = qvd_get_last_error(self.qvd);
                 NSString *qvd_error = [NSString stringWithUTF8String:messagechar];
                 if(![qvd_error isEqualToString:@""]){
@@ -229,7 +244,7 @@
                     }
                 });
                 }
-                
+
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^(){
                     [self.statusDelegate qvdError:@"Connection failed"];
@@ -237,7 +252,7 @@
             }
         }
     });
-    
+
 }
 
 - (int) stopVm {
@@ -246,7 +261,7 @@
         NSLog(@"QVDClientWrapper: stopVm: Error qvd pointer is NULL, returning -1");
         return -1;
     }
-    
+
     self.connect_result = qvd_stop_vm(self.qvd, self.selectedvmid);
     NSLog(@"QVDClientWrapper: stopVm %d with qvd %p result was %d", self.selectedvmid, self.qvd, self.connect_result);
     return self.connect_result;
@@ -262,7 +277,7 @@
         self.selectedvmid = anVmId;
     }
     NSLog(@"QVDClientWrapper: connectToVm %d with qvd %p", self.selectedvmid, self.qvd);
-    
+
     dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
         qvd_connect_to_vm(self.qvd, self.selectedvmid);
         char *messagechar = qvd_get_last_error(self.qvd);
@@ -279,7 +294,7 @@
         });
     });
     // self.connect_result = qvd_connect_to_vm(self.qvd, self.selectedvmid);
-    
+
     NSLog(@"QVDClientWrapper: connectToVm %d with qvd %p result was %d", self.selectedvmid, self.qvd, self.connect_result);
     return self.connect_result;
 }
@@ -318,8 +333,8 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
     NSLog(@"QVDClientWrapper: accept_unknown_cert_callback (%s, %s)", cert_pem_str, cert_pem_data);
     pemstr = [ [ NSString alloc ] initWithUTF8String: cert_pem_str ];
     pemdata = [ [ NSString alloc ] initWithUTF8String: cert_pem_data ];
-    
-    
+
+
     return result;
 }
 
@@ -334,12 +349,12 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
 
 -(BOOL)servicesRunning{
     if(!self.xvncStarted){
-        
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(xvncServiceStarted)
                                                      name:@"QVDXVNCServiceStarted"
                                                    object:nil];
-        
+
         self.srvProxy=  [[QVDProxyService alloc] init];
         self.srvXvnc =  [[QVDXvncService alloc] init];
         [self.srvXvnc startService];
@@ -364,7 +379,7 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
 }
 
 - (void) vmListRetrieved:(NSArray *) aVmList{
-    
+
 }
 
 -(NSString *)getLastError{

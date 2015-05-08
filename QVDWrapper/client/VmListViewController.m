@@ -2,8 +2,23 @@
 //  VmListViewController.m
 //  QVDWrapper
 //
+//    Qvd client for IOS
+//    Copyright (C) 2015  theqvd.com trade mark of Qindel Formacion y Servicios SL
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as
+//    published by the Free Software Foundation, either version 3 of the
+//    License, or (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Oscar Costoya Vidal on 13/4/15.
-//  Copyright (c) 2015 Qindel. All rights reserved.
 //
 
 #import "VmListViewController.h"
@@ -96,11 +111,11 @@
     [KVNProgress showSuccess];
     self.vmList = aVmList;
     [self.cvVmMachines reloadData];
-    
+
     [[A0SimpleKeychain keychain] setString:self.connection.userLogin forKey:@"qvd-user"];
     [[A0SimpleKeychain keychain] setString:self.connection.userPassword forKey:@"qvd-pwd"];
     [[A0SimpleKeychain keychain] setString:self.connection.qvdHost forKey:@"qvd-host"];
-    
+
 }
 
 
@@ -138,7 +153,7 @@
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
      cell.contentView.backgroundColor = [UIColor whiteColor];
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    
+
     // done in the vncViewController
     //[[QVDClientWrapper sharedManager] connectToVm:[anVm id]];
 
@@ -149,7 +164,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor colorWithRed:224./255. green:224./255. blue:224./255. alpha:1.];
 
@@ -164,7 +179,7 @@
 }
 
 -(void)connectionFinished{
-    
+
 }
 
 

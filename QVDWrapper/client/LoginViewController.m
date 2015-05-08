@@ -2,8 +2,23 @@
 //  LoginViewController.m
 //  QVDWrapper
 //
+//    Qvd client for IOS
+//    Copyright (C) 2015  theqvd.com trade mark of Qindel Formacion y Servicios SL
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as
+//    published by the Free Software Foundation, either version 3 of the
+//    License, or (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Oscar Costoya Vidal on 6/4/15.
-//  Copyright (c) 2015 Qindel. All rights reserved.
 //
 
 #import "LoginViewController.h"
@@ -70,9 +85,9 @@
 }
 
 -(void)retreiveUserInfo{
-    
+
     if([[A0SimpleKeychain keychain] hasValueForKey:@"qvd-user"]){
-        
+
         [self.txtLogin setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-user"]];
         [self.txtPassword setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-pwd"]];
         [self.txtHost setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-host"]];
@@ -82,18 +97,18 @@
         [self.txtHost setText:@""];
         [self.txtPassword setText:@""];
         [self.txtHost setText:@""];
-        
+
     }
 }
 
 - (BOOL)validateForm {
     NSString *errorMessage;
-    
+
     NSString *regex = @"[^@]+@[A-Za-z0-9.-]+\\.[A-Za-z]+";
     NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    
+
     BOOL result = YES;
-    
+
     if (!(self.txtHost.text.length >= 1)){
         self.txtHost.textColor = [UIColor redColor];
         errorMessage = @"Please enter a first name";
@@ -117,10 +132,10 @@
 -(void)updateInterfaceWithReachability:(Reachability *)reachability{
 
     self.connectionAvailable = NO;
-    
+
     NetworkStatus netStatus = [reachability currentReachabilityStatus];
     BOOL connectionRequired = [reachability connectionRequired];
-    
+
     switch (netStatus)
     {
         case NotReachable:        {
@@ -129,7 +144,7 @@
             connectionRequired = NO;
             break;
         }
-            
+
         case ReachableViaWWAN:        {
             self.connectionAvailable = YES;
             NSLog(@"NetworkCheck ===> Reachable WWAN");
@@ -142,7 +157,7 @@
             break;
         }
     }
-    
+
     if (connectionRequired)
     {
         self.connectionAvailable = NO;

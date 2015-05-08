@@ -2,8 +2,23 @@
 //  QVDProxyService.m
 //  QVDWrapper
 //
+//    Qvd client for IOS
+//    Copyright (C) 2015  theqvd.com trade mark of Qindel Formacion y Servicios SL
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as
+//    published by the Free Software Foundation, either version 3 of the
+//    License, or (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Oscar Costoya Vidal on 10/3/15.
-//  Copyright (c) 2015 Qindel. All rights reserved.
 //
 
 #import "QVDProxyService.h"
@@ -42,11 +57,11 @@
 }
 
 -(void)startService{
-    
 
-    
+
+
   __weak typeof(self) weakSelf = self;
-    
+
     [self initControl];
     [self setServiceStatus:SRV_STARTED_PENDING_CHECK];
      [weakSelf notificateServiceChanged:@"QVDProxyServiceStarting"];
@@ -60,7 +75,7 @@
             [weakSelf setServiceStatus:SRV_FAILED];
         }
     });
-    
+
 }
 
 -(void)checkDependencies{
@@ -90,7 +105,7 @@
                  if (result != 0) {
                      [weakSelf logToMainThread:@"Service check error...."];
                  } else {
-                     
+
                      if([weakSelf getSrvStatus] == SRV_STARTED_PENDING_CHECK){
                          [weakSelf setServiceStatus:SRV_STARTED];
                          [weakSelf notificateServiceChanged:@"QVDProxyServiceStarted"];
