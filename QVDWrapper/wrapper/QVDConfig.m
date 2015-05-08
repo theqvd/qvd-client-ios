@@ -7,6 +7,13 @@
 //
 
 #import "QVDConfig.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+
+@interface QVDConfig()
+- (void) setGeometry;
+@end
 
 @implementation QVDConfig
 
@@ -25,7 +32,7 @@
         aux.xvncStartupTimeout = 15;
         aux.xvncXDisplayPort = 6000;
         aux.xvncCheckTimeout = 20000;
-        aux.noVncTopFrameHeight = 36;
+        aux.noVncTopFrameHeight = 20; // was 36
         
         aux.qvdDefaultWidth = 1024;
         aux.qvdDefaultHeight = 768;
@@ -33,7 +40,7 @@
         aux.qvdDefaultPort = 8443;
         aux.qvdDefaultDebug = YES;
         aux.qvdUseMock = NO;
-        aux.qvdDefaultFullScreen = YES;
+        aux.qvdDefaultFullScreen = NO;
         
         //TODO: Remove from release, pending conditional constant definition for develop
         aux.qvdDevelop = YES;
@@ -41,7 +48,15 @@
         aux.qvdDefaultPass = @"applepass";
         aux.qvdDefaultHost = @"demo.theqvd.com";
     }
+    [ aux setGeometry];
     return aux;
+}
+
+- (void) setGeometry {
+    CGFloat currentWidth = MAX([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+    CGFloat currentHeight = MIN([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height) - self.noVncTopFrameHeight;
+    self.qvdDefaultWidth = (int) currentWidth;
+    self.qvdDefaultHeight = (int) currentHeight;
 }
 
 @end

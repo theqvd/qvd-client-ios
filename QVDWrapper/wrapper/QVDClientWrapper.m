@@ -64,8 +64,8 @@
         _port = 8443;
         _debug = [configuration qvdDefaultDebug];
         _fullscreen = [configuration qvdDefaultFullScreen];
-        _width = [[UIScreen mainScreen] bounds].size.width;
-        _height = [[UIScreen mainScreen] bounds].size.height;
+        _width = [configuration qvdDefaultWidth];
+        _height = [configuration qvdDefaultHeight];
         _x509certfile = @"";
         _x509keyfile = @"";
         _usecertfiles = NO;

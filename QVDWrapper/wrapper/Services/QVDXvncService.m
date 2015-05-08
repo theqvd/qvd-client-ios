@@ -18,7 +18,6 @@
 
 #define MAXPATH 2048
 
-const int NOVNC_TOP_FRAME_HEIGHT = 36;
 
 
 @interface QVDXvncService ()
@@ -219,10 +218,8 @@ static char rfbport[MAXPATH];
     return  self.fontPath;
 }
 
-- (NSString *) getGeometry {
-    CGFloat currentWidth = MAX([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
-    CGFloat currentHeight = MIN([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height) - NOVNC_TOP_FRAME_HEIGHT;
-    return [NSString stringWithFormat:@"%dx%d", (int)currentWidth, (int)currentHeight];
+- (NSString *) getGeometry {    
+    return [NSString stringWithFormat:@"%dx%d", self.cfg.qvdDefaultWidth, self.cfg.qvdDefaultHeight];
 }
 
 - (NSString *) getPasswordPath {
