@@ -103,6 +103,7 @@
     
 }
 
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if(self.vmList){
         return [self.vmList count];
@@ -126,6 +127,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
      QVDVmVO *anVm = [self.vmList objectAtIndex:[indexPath row]];
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+     cell.contentView.backgroundColor = [UIColor whiteColor];
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     // done in the vncViewController
     //[[QVDClientWrapper sharedManager] connectToVm:[anVm id]];
@@ -134,6 +137,15 @@
     [self.navigationController pushViewController:vnc animated:YES];
 
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor colorWithRed:224./255. green:224./255. blue:224./255. alpha:1.];
+
+}
+
 
 - (void) qvdError:(NSString *)aMessage{
     [[A0SimpleKeychain keychain] clearAll];

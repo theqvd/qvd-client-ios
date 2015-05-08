@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "QVDClientWrapper.h"
+#import "CustomTextField.h"
 
 @interface LoginViewController : UIViewController<QVDStatusDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *txtHost;
-@property (weak, nonatomic) IBOutlet UITextField *txtLogin;
+@property (weak, nonatomic) IBOutlet CustomTextField *txtHost;
+@property (weak, nonatomic) IBOutlet CustomTextField *txtLogin;
 @property (weak, nonatomic) IBOutlet UISwitch *switchRemember;
-@property (weak, nonatomic) IBOutlet UITextField *txtPassword;
+@property (weak, nonatomic) IBOutlet CustomTextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btLogin;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 

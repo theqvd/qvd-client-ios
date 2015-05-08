@@ -1340,6 +1340,8 @@
 		545C877C1AD310D100CB9776 /* VncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545C877A1AD310D100CB9776 /* VncViewController.xib */; };
 		545C89511AD33CBE00CB9776 /* html_resources in Resources */ = {isa = PBXBuildFile; fileRef = 545C89501AD33CBE00CB9776 /* html_resources */; };
 		549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 549E787D1ACFF448006E7714 /* QVDVmVO.m */; };
+		54AC4E691AFCA0D800D4623D /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 54AC4E681AFCA0D800D4623D /* CustomTextField.m */; };
+		54AC4E6D1AFCA59800D4623D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 54AC4E6C1AFCA59800D4623D /* Reachability.m */; };
 		54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B29A051AB43F9C004408AE /* QVDXvncService.m */; };
 		54B29A0C1AB44E64004408AE /* QVDClientWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B29A0B1AB44E64004408AE /* QVDClientWrapper.m */; };
 		54B85C9E1A9E55930098B49E /* tcpconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = 54B85C981A9E55930098B49E /* tcpconnect.c */; };
@@ -4135,6 +4137,10 @@
 		549E78871ACFF812006E7714 /* multi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multi.h; sourceTree = "<group>"; };
 		549E78881ACFF812006E7714 /* stdcheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdcheaders.h; sourceTree = "<group>"; };
 		549E78891ACFF812006E7714 /* typecheck-gcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "typecheck-gcc.h"; sourceTree = "<group>"; };
+		54AC4E671AFCA0D800D4623D /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTextField.h; path = client/Ui/CustomTextField.h; sourceTree = "<group>"; };
+		54AC4E681AFCA0D800D4623D /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTextField.m; path = client/Ui/CustomTextField.m; sourceTree = "<group>"; };
+		54AC4E6B1AFCA59800D4623D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = client/libs/Reachability.h; sourceTree = "<group>"; };
+		54AC4E6C1AFCA59800D4623D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = client/libs/Reachability.m; sourceTree = "<group>"; };
 		54B29A041AB43F9C004408AE /* QVDXvncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QVDXvncService.h; path = wrapper/Services/QVDXvncService.h; sourceTree = "<group>"; };
 		54B29A051AB43F9C004408AE /* QVDXvncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QVDXvncService.m; path = wrapper/Services/QVDXvncService.m; sourceTree = "<group>"; };
 		54B29A071AB43FCB004408AE /* QVDService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QVDService.h; path = wrapper/Services/QVDService.h; sourceTree = "<group>"; };
@@ -5754,6 +5760,8 @@
 		545C87771AD3100200CB9776 /* client */ = {
 			isa = PBXGroup;
 			children = (
+				54AC4E6A1AFCA58C00D4623D /* libs */,
+				54AC4E661AFCA0BD00D4623D /* Ui */,
 				544F9ABC1ADBB958000A5609 /* Cells */,
 				544F9AB81ADBB316000A5609 /* VO */,
 				545C87721AD30FFB00CB9776 /* LoginViewController.h */,
@@ -5776,6 +5784,24 @@
 				549E787D1ACFF448006E7714 /* QVDVmVO.m */,
 			);
 			name = VO;
+			sourceTree = "<group>";
+		};
+		54AC4E661AFCA0BD00D4623D /* Ui */ = {
+			isa = PBXGroup;
+			children = (
+				54AC4E671AFCA0D800D4623D /* CustomTextField.h */,
+				54AC4E681AFCA0D800D4623D /* CustomTextField.m */,
+			);
+			name = Ui;
+			sourceTree = "<group>";
+		};
+		54AC4E6A1AFCA58C00D4623D /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				54AC4E6B1AFCA59800D4623D /* Reachability.h */,
+				54AC4E6C1AFCA59800D4623D /* Reachability.m */,
+			);
+			name = libs;
 			sourceTree = "<group>";
 		};
 		54B85C921A9E55930098B49E /* binary_libs */ = {
@@ -6084,9 +6110,11 @@
 				54B85C9E1A9E55930098B49E /* tcpconnect.c in Sources */,
 				545519361A9E54FE003E42CA /* main.m in Sources */,
 				54EAADE21AB8975F00AF84C7 /* QVDConnectService.m in Sources */,
+				54AC4E6D1AFCA59800D4623D /* Reachability.m in Sources */,
 				54EB36B01AAF7C2200710DCC /* QVDProxyService.m in Sources */,
 				545C87751AD30FFB00CB9776 /* LoginViewController.m in Sources */,
 				544B2C2C1AAC46020037101E /* QVDConfig.m in Sources */,
+				54AC4E691AFCA0D800D4623D /* CustomTextField.m in Sources */,
 				544F9AB51ADBB05A000A5609 /* VmListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6210,6 +6238,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = QVDWrapper/Info.plist;
@@ -6232,6 +6261,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = QVDWrapper/Info.plist;
