@@ -45,7 +45,8 @@
 
 - (IBAction)doLogin:(id)sender {
     [self doCheckInetConnection];
-    if([self validateForm]){
+    BOOL allowLogin = [[QVDClientWrapper sharedManager] loginAllowed];
+    if([self validateForm] && allowLogin){
         if(self.connectionAvailable){
         NSString *auxLogin = [self.txtLogin.text stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSString *auxPassword = [self.txtPassword.text stringByReplacingOccurrencesOfString:@" " withString:@""];

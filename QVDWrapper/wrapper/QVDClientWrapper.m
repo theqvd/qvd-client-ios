@@ -27,6 +27,7 @@
 @property (assign,nonatomic) BOOL listVmOnStart;
 @property (assign,nonatomic) BOOL internalConnect;
 
+
 @end
 
 @implementation QVDClientWrapper
@@ -39,6 +40,8 @@
     });
     return sharedMyManager;
 }
+
+
 
 -(void)setCredentialsWitUser:(NSString *) anUser password:(NSString *)anPassword host:(NSString *) anHost{
     self.login = anUser ? anUser : @"";
@@ -54,6 +57,7 @@
         _xvncStarted = NO;
         _listVmOnStart = NO;
         _internalConnect = NO;
+        _loginAllowed = YES;
         //Credentials
         _name = @"";
         _login = @"";
@@ -268,8 +272,10 @@
             // We free in the main thread to avoid concurrency problems
             qvd_free(self.qvd);
             self.internalConnect = NO;
-            if(self.statusDelegate)
-                    [self.statusDelegate connectionFinished];
+            if(self.statusDelegate){
+                [self.statusDelegate connectionFinished];
+                self.loginAllowed = YES;
+            }
         });
     });
     // self.connect_result = qvd_connect_to_vm(self.qvd, self.selectedvmid);
@@ -281,6 +287,7 @@
 
 
 - (void) endConnection:(int) anVmId {
+    self.loginAllowed = NO;
     NSLog(@"QVDClientWrapper: endConnection");
     if (self.qvd == NULL) {
         NSLog(@"QVDClientWrapper: endConnection: qvd pointer is null, not ending connection, waiting for init");

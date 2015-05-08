@@ -33,6 +33,7 @@
     @property (strong,nonatomic) NSArray *listvm;
     @property (strong,nonatomic) NSArray *linkTypes;
     @property (strong,nonatomic) id<QVDStatusDelegate> statusDelegate;
+    @property (assign,nonatomic) BOOL loginAllowed;
 
     + (id)sharedManager;
     -(void)setCredentialsWitUser:(NSString *) anUser password:(NSString *)anPassword host:(NSString *) anHost;
