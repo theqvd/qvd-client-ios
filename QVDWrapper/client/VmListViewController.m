@@ -80,7 +80,7 @@
     config.circleStrokeForegroundColor = [UIColor whiteColor];
     config.fullScreen = YES;
     [KVNProgress setConfiguration:config];
-    [KVNProgress showWithStatus:@"Conectando...."];
+    [KVNProgress showWithStatus:@"Connecting...."];
 }
 
 #pragma mark - Delegate
