@@ -41,7 +41,11 @@
 @implementation VmListViewController
 
 -(id)initWithConnection:(ConnectionVO *) aConnection saveCredentials:(BOOL)save{
-    self = [self initWithNibName:nil bundle:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self = [self initWithNibName:@"VmListViewController_iPhone" bundle:nil];
+    } else {
+        self = [self initWithNibName:@"VmListViewController_iPad" bundle:nil];
+    }
     if(self){
         _vmList = nil;
         if(!save){

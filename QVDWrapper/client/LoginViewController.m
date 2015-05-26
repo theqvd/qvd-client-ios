@@ -45,7 +45,14 @@
 
 @implementation LoginViewController
 
-
+-(id)init{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self = [self initWithNibName:@"LoginViewController_iPhone" bundle:nil];
+    } else {
+        self = [self initWithNibName:@"LoginViewController_iPad" bundle:nil];
+    }
+    return self;
+}
 
 -(void)viewDidLoad{
     [super viewDidLoad];

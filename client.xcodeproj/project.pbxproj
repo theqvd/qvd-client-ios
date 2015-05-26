@@ -1338,9 +1338,9 @@
 		549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 549E787D1ACFF448006E7714 /* QVDVmVO.m */; };
 		54A92F5C1B144219003C01F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F5A1B143D01003C01F4 /* Localizable.strings */; };
 		54A92F671B1445F4003C01F4 /* VmMachineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F661B1445F4003C01F4 /* VmMachineCollectionViewCell.xib */; };
-		54A92F6B1B144603003C01F4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F681B144603003C01F4 /* LoginViewController.xib */; };
-		54A92F6C1B144603003C01F4 /* VmListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F691B144603003C01F4 /* VmListViewController.xib */; };
-		54A92F6D1B144603003C01F4 /* VncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F6A1B144603003C01F4 /* VncViewController.xib */; };
+		54A92F6B1B144603003C01F4 /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F681B144603003C01F4 /* LoginViewController_iPad.xib */; };
+		54A92F6C1B144603003C01F4 /* VmListViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F691B144603003C01F4 /* VmListViewController_iPad.xib */; };
+		54A92F6D1B144603003C01F4 /* VncViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F6A1B144603003C01F4 /* VncViewController_iPad.xib */; };
 		54AC4E691AFCA0D800D4623D /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 54AC4E681AFCA0D800D4623D /* CustomTextField.m */; };
 		54AC4E6D1AFCA59800D4623D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 54AC4E6C1AFCA59800D4623D /* Reachability.m */; };
 		54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B29A051AB43F9C004408AE /* QVDXvncService.m */; };
@@ -4137,9 +4137,9 @@
 		54A92F591B143D01003C01F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		54A92F5B1B143D03003C01F4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		54A92F661B1445F4003C01F4 /* VmMachineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmMachineCollectionViewCell.xib; path = client/Cells/VmMachineCollectionViewCell.xib; sourceTree = "<group>"; };
-		54A92F681B144603003C01F4 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = client/LoginViewController.xib; sourceTree = "<group>"; };
-		54A92F691B144603003C01F4 /* VmListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmListViewController.xib; path = client/VmListViewController.xib; sourceTree = "<group>"; };
-		54A92F6A1B144603003C01F4 /* VncViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VncViewController.xib; path = client/VncViewController.xib; sourceTree = "<group>"; };
+		54A92F681B144603003C01F4 /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController_iPad.xib; path = client/LoginViewController_iPad.xib; sourceTree = "<group>"; };
+		54A92F691B144603003C01F4 /* VmListViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmListViewController_iPad.xib; path = client/VmListViewController_iPad.xib; sourceTree = "<group>"; };
+		54A92F6A1B144603003C01F4 /* VncViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VncViewController_iPad.xib; path = client/VncViewController_iPad.xib; sourceTree = "<group>"; };
 		54AC4E671AFCA0D800D4623D /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTextField.h; path = client/Ui/CustomTextField.h; sourceTree = "<group>"; };
 		54AC4E681AFCA0D800D4623D /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTextField.m; path = client/Ui/CustomTextField.m; sourceTree = "<group>"; };
 		54AC4E6B1AFCA59800D4623D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = client/libs/Reachability.h; sourceTree = "<group>"; };
@@ -5768,14 +5768,14 @@
 				54AC4E6A1AFCA58C00D4623D /* libs */,
 				545C87721AD30FFB00CB9776 /* LoginViewController.h */,
 				545C87731AD30FFB00CB9776 /* LoginViewController.m */,
-				54A92F681B144603003C01F4 /* LoginViewController.xib */,
+				54A92F681B144603003C01F4 /* LoginViewController_iPad.xib */,
 				54AC4E661AFCA0BD00D4623D /* Ui */,
 				544F9AB31ADBB05A000A5609 /* VmListViewController.h */,
 				544F9AB41ADBB05A000A5609 /* VmListViewController.m */,
-				54A92F691B144603003C01F4 /* VmListViewController.xib */,
+				54A92F691B144603003C01F4 /* VmListViewController_iPad.xib */,
 				545C87781AD310D100CB9776 /* VncViewController.h */,
 				545C87791AD310D100CB9776 /* VncViewController.m */,
-				54A92F6A1B144603003C01F4 /* VncViewController.xib */,
+				54A92F6A1B144603003C01F4 /* VncViewController_iPad.xib */,
 				544F9AB81ADBB316000A5609 /* VO */,
 			);
 			name = client;
@@ -6043,13 +6043,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				54A92F5C1B144219003C01F4 /* Localizable.strings in Resources */,
-				54A92F6C1B144603003C01F4 /* VmListViewController.xib in Resources */,
+				54A92F6C1B144603003C01F4 /* VmListViewController_iPad.xib in Resources */,
 				54A92F671B1445F4003C01F4 /* VmMachineCollectionViewCell.xib in Resources */,
 				545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */,
 				545519411A9E54FE003E42CA /* Images.xcassets in Resources */,
-				54A92F6D1B144603003C01F4 /* VncViewController.xib in Resources */,
+				54A92F6D1B144603003C01F4 /* VncViewController_iPad.xib in Resources */,
 				545C89511AD33CBE00CB9776 /* html_resources in Resources */,
-				54A92F6B1B144603003C01F4 /* LoginViewController.xib in Resources */,
+				54A92F6B1B144603003C01F4 /* LoginViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

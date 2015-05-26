@@ -36,7 +36,12 @@
 
 
 -(id)initWithVm:(QVDVmVO *)anVm{
-    self = [super initWithNibName:nil bundle:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self = [self initWithNibName:@"VncViewController_iPhone" bundle:nil];
+    } else {
+        self = [self initWithNibName:@"VncViewController_iPad" bundle:nil];
+    }
+    
     if(self){
         _selectedVm = anVm;
         _hasToConnect = YES;

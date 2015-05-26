@@ -47,7 +47,7 @@
         [self.window.rootViewController.view addSubview:addStatusBar];
     }
 
-    LoginViewController *login = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    LoginViewController *login = [[LoginViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
     [self.window setRootViewController:nav];
     return YES;
