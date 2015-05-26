@@ -71,7 +71,8 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = @"List of VMs";
+    self.title = NSLocalizedString(@"common.titleVmList",@"List of VMs");
+    
 
 }
 
@@ -95,13 +96,15 @@
     config.circleStrokeForegroundColor = [UIColor whiteColor];
     config.fullScreen = YES;
     [KVNProgress setConfiguration:config];
-    [KVNProgress showWithStatus:@"Connecting...."];
+    
+    [KVNProgress showWithStatus:NSLocalizedString(@"messages.connecting",@"Connecting....")];
 }
 
 #pragma mark - Delegate
 
 - (void) qvdProgressMessage:(NSString *) aMessage{
-    [KVNProgress updateStatus:[NSString stringWithFormat:@"Progress: %@",aMessage]];
+    
+    [KVNProgress updateStatus:[NSString stringWithFormat:NSLocalizedString(@"messages.progress",@"Progress:"),aMessage]];
 
 }
 

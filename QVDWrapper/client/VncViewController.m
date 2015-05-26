@@ -49,7 +49,7 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = @"The QVD";
+    self.title = NSLocalizedString(@"common.titleGeneric",@"The QVD");
     if(self.hasToConnect){
         if(self.selectedVm){
             [self showLoading];
@@ -164,7 +164,7 @@
     config.circleStrokeForegroundColor = [UIColor whiteColor];
     config.fullScreen = YES;
     [KVNProgress setConfiguration:config];
-    [KVNProgress showWithStatus:@"Connecting...."];
+    [KVNProgress showWithStatus:NSLocalizedString(@"messages.connecting",@"Connecting....")];
 }
 
 - (void) qvdProgressMessage:(NSString *) aMessage{
@@ -186,7 +186,7 @@
 
 
 -(void)connectionFinished{
-    [KVNProgress showSuccessWithStatus:@"VM disconnected"];
+    [KVNProgress showSuccessWithStatus:NSLocalizedString(@"messages.vmDisconnected",@"VM disconnected")];
     [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];

@@ -1325,21 +1325,22 @@
 		544B2C291AAC44EC0037101E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C281AAC44EC0037101E /* CoreGraphics.framework */; };
 		544B2C2C1AAC46020037101E /* QVDConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B2C2B1AAC46020037101E /* QVDConfig.m */; };
 		544F9AB51ADBB05A000A5609 /* VmListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F9AB41ADBB05A000A5609 /* VmListViewController.m */; };
-		544F9AB71ADBB070000A5609 /* VmListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544F9AB61ADBB070000A5609 /* VmListViewController.xib */; };
 		544F9ABB1ADBB32F000A5609 /* ConnectionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F9ABA1ADBB32F000A5609 /* ConnectionVO.m */; };
 		544F9AC01ADBB986000A5609 /* VmMachineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F9ABE1ADBB986000A5609 /* VmMachineCollectionViewCell.m */; };
-		544F9AC11ADBB986000A5609 /* VmMachineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544F9ABF1ADBB986000A5609 /* VmMachineCollectionViewCell.xib */; };
 		545519361A9E54FE003E42CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 545519351A9E54FE003E42CA /* main.m */; };
 		545519391A9E54FE003E42CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 545519381A9E54FE003E42CA /* AppDelegate.m */; };
 		545519411A9E54FE003E42CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545519401A9E54FE003E42CA /* Images.xcassets */; };
 		545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545519421A9E54FE003E42CA /* LaunchScreen.xib */; };
 		545519501A9E54FE003E42CA /* QVDWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */; };
 		545C87751AD30FFB00CB9776 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 545C87731AD30FFB00CB9776 /* LoginViewController.m */; };
-		545C87761AD30FFB00CB9776 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545C87741AD30FFB00CB9776 /* LoginViewController.xib */; };
 		545C877B1AD310D100CB9776 /* VncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 545C87791AD310D100CB9776 /* VncViewController.m */; };
-		545C877C1AD310D100CB9776 /* VncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545C877A1AD310D100CB9776 /* VncViewController.xib */; };
 		545C89511AD33CBE00CB9776 /* html_resources in Resources */ = {isa = PBXBuildFile; fileRef = 545C89501AD33CBE00CB9776 /* html_resources */; };
 		549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 549E787D1ACFF448006E7714 /* QVDVmVO.m */; };
+		54A92F5C1B144219003C01F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F5A1B143D01003C01F4 /* Localizable.strings */; };
+		54A92F671B1445F4003C01F4 /* VmMachineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F661B1445F4003C01F4 /* VmMachineCollectionViewCell.xib */; };
+		54A92F6B1B144603003C01F4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F681B144603003C01F4 /* LoginViewController.xib */; };
+		54A92F6C1B144603003C01F4 /* VmListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F691B144603003C01F4 /* VmListViewController.xib */; };
+		54A92F6D1B144603003C01F4 /* VncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A92F6A1B144603003C01F4 /* VncViewController.xib */; };
 		54AC4E691AFCA0D800D4623D /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 54AC4E681AFCA0D800D4623D /* CustomTextField.m */; };
 		54AC4E6D1AFCA59800D4623D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 54AC4E6C1AFCA59800D4623D /* Reachability.m */; };
 		54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B29A051AB43F9C004408AE /* QVDXvncService.m */; };
@@ -4101,28 +4102,23 @@
 		544B2C2B1AAC46020037101E /* QVDConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QVDConfig.m; path = wrapper/QVDConfig.m; sourceTree = "<group>"; };
 		544F9AB31ADBB05A000A5609 /* VmListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VmListViewController.h; path = client/VmListViewController.h; sourceTree = "<group>"; };
 		544F9AB41ADBB05A000A5609 /* VmListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VmListViewController.m; path = client/VmListViewController.m; sourceTree = "<group>"; };
-		544F9AB61ADBB070000A5609 /* VmListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmListViewController.xib; path = client/VmListViewController.xib; sourceTree = "<group>"; };
 		544F9AB91ADBB32F000A5609 /* ConnectionVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionVO.h; path = client/VO/ConnectionVO.h; sourceTree = "<group>"; };
 		544F9ABA1ADBB32F000A5609 /* ConnectionVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnectionVO.m; path = client/VO/ConnectionVO.m; sourceTree = "<group>"; };
 		544F9ABD1ADBB986000A5609 /* VmMachineCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VmMachineCollectionViewCell.h; path = client/Cells/VmMachineCollectionViewCell.h; sourceTree = "<group>"; };
 		544F9ABE1ADBB986000A5609 /* VmMachineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VmMachineCollectionViewCell.m; path = client/Cells/VmMachineCollectionViewCell.m; sourceTree = "<group>"; };
-		544F9ABF1ADBB986000A5609 /* VmMachineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmMachineCollectionViewCell.xib; path = client/Cells/VmMachineCollectionViewCell.xib; sourceTree = "<group>"; };
 		545519301A9E54FE003E42CA /* client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		545519341A9E54FE003E42CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		545519351A9E54FE003E42CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		545519371A9E54FE003E42CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		545519381A9E54FE003E42CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		545519401A9E54FE003E42CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		545519431A9E54FE003E42CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		545519491A9E54FE003E42CA /* clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5455194E1A9E54FE003E42CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5455194F1A9E54FE003E42CA /* QVDWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QVDWrapperTests.m; sourceTree = "<group>"; };
 		545C87721AD30FFB00CB9776 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = client/LoginViewController.h; sourceTree = "<group>"; };
 		545C87731AD30FFB00CB9776 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = client/LoginViewController.m; sourceTree = "<group>"; };
-		545C87741AD30FFB00CB9776 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = client/LoginViewController.xib; sourceTree = "<group>"; };
 		545C87781AD310D100CB9776 /* VncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VncViewController.h; path = client/VncViewController.h; sourceTree = "<group>"; };
 		545C87791AD310D100CB9776 /* VncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VncViewController.m; path = client/VncViewController.m; sourceTree = "<group>"; };
-		545C877A1AD310D100CB9776 /* VncViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VncViewController.xib; path = client/VncViewController.xib; sourceTree = "<group>"; };
 		545C89501AD33CBE00CB9776 /* html_resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html_resources; sourceTree = "<group>"; };
 		549E787C1ACFF448006E7714 /* QVDVmVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QVDVmVO.h; path = wrapper/VO/QVDVmVO.h; sourceTree = "<group>"; };
 		549E787D1ACFF448006E7714 /* QVDVmVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QVDVmVO.m; path = wrapper/VO/QVDVmVO.m; sourceTree = "<group>"; };
@@ -4137,6 +4133,13 @@
 		549E78871ACFF812006E7714 /* multi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multi.h; sourceTree = "<group>"; };
 		549E78881ACFF812006E7714 /* stdcheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdcheaders.h; sourceTree = "<group>"; };
 		549E78891ACFF812006E7714 /* typecheck-gcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "typecheck-gcc.h"; sourceTree = "<group>"; };
+		54A92F3D1B143BD2003C01F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		54A92F591B143D01003C01F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		54A92F5B1B143D03003C01F4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		54A92F661B1445F4003C01F4 /* VmMachineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmMachineCollectionViewCell.xib; path = client/Cells/VmMachineCollectionViewCell.xib; sourceTree = "<group>"; };
+		54A92F681B144603003C01F4 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = client/LoginViewController.xib; sourceTree = "<group>"; };
+		54A92F691B144603003C01F4 /* VmListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmListViewController.xib; path = client/VmListViewController.xib; sourceTree = "<group>"; };
+		54A92F6A1B144603003C01F4 /* VncViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VncViewController.xib; path = client/VncViewController.xib; sourceTree = "<group>"; };
 		54AC4E671AFCA0D800D4623D /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTextField.h; path = client/Ui/CustomTextField.h; sourceTree = "<group>"; };
 		54AC4E681AFCA0D800D4623D /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTextField.m; path = client/Ui/CustomTextField.m; sourceTree = "<group>"; };
 		54AC4E6B1AFCA59800D4623D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = client/libs/Reachability.h; sourceTree = "<group>"; };
@@ -5683,9 +5686,9 @@
 		544F9ABC1ADBB958000A5609 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				54A92F661B1445F4003C01F4 /* VmMachineCollectionViewCell.xib */,
 				544F9ABD1ADBB986000A5609 /* VmMachineCollectionViewCell.h */,
 				544F9ABE1ADBB986000A5609 /* VmMachineCollectionViewCell.m */,
-				544F9ABF1ADBB986000A5609 /* VmMachineCollectionViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -5718,6 +5721,7 @@
 		545519321A9E54FE003E42CA /* QVDWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				54A92F531B143C9B003C01F4 /* resources */,
 				545C89501AD33CBE00CB9776 /* html_resources */,
 				54B85C921A9E55930098B49E /* binary_libs */,
 				545519371A9E54FE003E42CA /* AppDelegate.h */,
@@ -5760,19 +5764,19 @@
 		545C87771AD3100200CB9776 /* client */ = {
 			isa = PBXGroup;
 			children = (
-				54AC4E6A1AFCA58C00D4623D /* libs */,
-				54AC4E661AFCA0BD00D4623D /* Ui */,
 				544F9ABC1ADBB958000A5609 /* Cells */,
-				544F9AB81ADBB316000A5609 /* VO */,
+				54AC4E6A1AFCA58C00D4623D /* libs */,
 				545C87721AD30FFB00CB9776 /* LoginViewController.h */,
 				545C87731AD30FFB00CB9776 /* LoginViewController.m */,
-				545C87741AD30FFB00CB9776 /* LoginViewController.xib */,
-				545C87781AD310D100CB9776 /* VncViewController.h */,
-				545C87791AD310D100CB9776 /* VncViewController.m */,
-				545C877A1AD310D100CB9776 /* VncViewController.xib */,
+				54A92F681B144603003C01F4 /* LoginViewController.xib */,
+				54AC4E661AFCA0BD00D4623D /* Ui */,
 				544F9AB31ADBB05A000A5609 /* VmListViewController.h */,
 				544F9AB41ADBB05A000A5609 /* VmListViewController.m */,
-				544F9AB61ADBB070000A5609 /* VmListViewController.xib */,
+				54A92F691B144603003C01F4 /* VmListViewController.xib */,
+				545C87781AD310D100CB9776 /* VncViewController.h */,
+				545C87791AD310D100CB9776 /* VncViewController.m */,
+				54A92F6A1B144603003C01F4 /* VncViewController.xib */,
+				544F9AB81ADBB316000A5609 /* VO */,
 			);
 			name = client;
 			sourceTree = "<group>";
@@ -5784,6 +5788,14 @@
 				549E787D1ACFF448006E7714 /* QVDVmVO.m */,
 			);
 			name = VO;
+			sourceTree = "<group>";
+		};
+		54A92F531B143C9B003C01F4 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				54A92F5A1B143D01003C01F4 /* Localizable.strings */,
+			);
+			name = resources;
 			sourceTree = "<group>";
 		};
 		54AC4E661AFCA0BD00D4623D /* Ui */ = {
@@ -6012,6 +6024,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 545519271A9E54FE003E42CA;
 			productRefGroup = 545519311A9E54FE003E42CA /* Products */;
@@ -6029,13 +6042,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				545C877C1AD310D100CB9776 /* VncViewController.xib in Resources */,
-				544F9AB71ADBB070000A5609 /* VmListViewController.xib in Resources */,
+				54A92F5C1B144219003C01F4 /* Localizable.strings in Resources */,
+				54A92F6C1B144603003C01F4 /* VmListViewController.xib in Resources */,
+				54A92F671B1445F4003C01F4 /* VmMachineCollectionViewCell.xib in Resources */,
 				545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */,
 				545519411A9E54FE003E42CA /* Images.xcassets in Resources */,
-				544F9AC11ADBB986000A5609 /* VmMachineCollectionViewCell.xib in Resources */,
+				54A92F6D1B144603003C01F4 /* VncViewController.xib in Resources */,
 				545C89511AD33CBE00CB9776 /* html_resources in Resources */,
-				545C87761AD30FFB00CB9776 /* LoginViewController.xib in Resources */,
+				54A92F6B1B144603003C01F4 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6141,9 +6155,19 @@
 		545519421A9E54FE003E42CA /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				545519431A9E54FE003E42CA /* Base */,
+				54A92F3D1B143BD2003C01F4 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		54A92F5A1B143D01003C01F4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54A92F591B143D01003C01F4 /* Base */,
+				54A92F5B1B143D03003C01F4 /* es */,
+			);
+			name = Localizable.strings;
+			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -6262,7 +6286,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = QVDWrapper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

@@ -9,6 +9,8 @@
             <connections>
                 <outlet property="btLogin" destination="i4E-DX-T6W" id="LLu-9o-Xei"/>
                 <outlet property="gaugeView" destination="vjC-Hh-Id5" id="zeq-s1-2uc"/>
+                <outlet property="lblSaveCredentials" destination="Zfi-OV-3J4" id="Hp3-F3-Uvc"/>
+                <outlet property="lblTeadDownConnection" destination="31C-hf-dOX" id="Srd-N3-Hsw"/>
                 <outlet property="switchRemember" destination="HHa-6R-Ewe" id="v2w-oP-R9P"/>
                 <outlet property="txtHost" destination="sH2-SM-DlF" id="9oe-fD-WiD"/>
                 <outlet property="txtLogin" destination="oro-Iq-gHw" id="rab-mn-CYa"/>
@@ -45,7 +47,7 @@
                     <rect key="frame" x="894" y="413" width="51" height="31"/>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save credentials:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfi-OV-3J4">
-                    <rect key="frame" x="593" y="418" width="150" height="21"/>
+                    <rect key="frame" x="593" y="418" width="212" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" white="0.57784231085526316" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>

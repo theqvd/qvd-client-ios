@@ -1,0 +1,25 @@
+/* 
+  Localizations.strings
+  client
+
+  Created by Oscar Costoya Vidal on 26/5/15.
+  Copyright (c) 2015 Qindel. All rights reserved.
+*/
+"common.error"="Error";
+"common.ok"="OK";
+"common.titleGeneric"="The QVD";
+"common.titleVmList"="List of VMs";
+"messages.compilationInfo"="Version: %@ (Build: %@)";
+"messages.vmDisconnected"="VM disconnected";
+"messages.progress"="Progress: %@";
+"messages.connecting"="Connecting....";
+"messages.error.connectionNotAvailable"="The connection is not available";
+"messages.error.vmConnectionError"="Error connecting to the vm: %@";
+"messages.error.conenctionFailed"="Connection failed";
+
+"component.txtHost"="Host";
+"component.txtUser"="Login";
+"component.txtPassword"="Password";
+"component.lblRemember"="Save credentials:";
+"component.btLogin"="Login";
+"messages.tearDown"="tear down connection, please wait";

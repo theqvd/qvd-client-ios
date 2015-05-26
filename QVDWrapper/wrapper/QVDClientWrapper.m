@@ -247,7 +247,7 @@
 
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^(){
-                    [self.statusDelegate qvdError:@"Connection failed"];
+                    [self.statusDelegate qvdError: NSLocalizedString(@"messages.error.conenctionFailed",@"Connection failed")];
                 });
             }
         }

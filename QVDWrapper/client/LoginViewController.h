@@ -34,5 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btLogin;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet UIView *gaugeView;
+@property (weak, nonatomic) IBOutlet UILabel *lblSaveCredentials;
+@property (weak, nonatomic) IBOutlet UILabel *lblTeadDownConnection;
 
 @end

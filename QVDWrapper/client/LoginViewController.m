@@ -54,8 +54,17 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = @"The QVD";
-    self.versionLabel.text = [NSString stringWithFormat:@"Versión: %@ (Build: %@)",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    self.title = NSLocalizedString(@"common.titleGeneric",@"The QVD");
+    self.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"messages.compilationInfo",@"Versión"),[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    
+    [self.txtHost setPlaceholder:NSLocalizedString(@"component.txtHost", @"Host")];
+    [self.txtLogin setPlaceholder:NSLocalizedString(@"component.txtUser", @"User")];
+    [self.txtPassword setPlaceholder:NSLocalizedString(@"component.txtPassword", @"Password")];
+    [self.btLogin setTitle:NSLocalizedString(@"component.btLogin", @"Login") forState:UIControlStateNormal];
+    [self.lblSaveCredentials setText:@"Pruebas"];
+    [self.lblSaveCredentials setText:NSLocalizedString(@"component.lblRemember", @"Remember credentials")];
+    
+    [self.lblTeadDownConnection setText:NSLocalizedString(@"messages.tearDown", @"Tear down message")];
 }
 
 - (IBAction)doLogin:(id)sender {
@@ -73,7 +82,13 @@
         VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:auxConnection saveCredentials:self.switchRemember.isOn];
         [self.navigationController pushViewController:vmList animated:YES];
         } else {
-            UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"La conexión no está disponible" delegate:nil cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+            
+            
+            
+            
+            
+            
+            UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"common.error",@"Error") message:NSLocalizedString(@"messages.error.connectionNotAvailable",@"La conexión no está disponible") delegate:nil cancelButtonTitle:NSLocalizedString(@"common.ok",@"Aceptar") otherButtonTitles:nil];
             [anAlert show];
         }
     }
@@ -123,7 +138,6 @@
 }
 
 - (BOOL)validateForm {
-    NSString *errorMessage;
 
     NSString *regex = @"[^@]+@[A-Za-z0-9.-]+\\.[A-Za-z]+";
     NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -132,7 +146,6 @@
 
     if (!(self.txtHost.text.length >= 1)){
         self.txtHost.textColor = [UIColor redColor];
-        errorMessage = @"Please enter a first name";
         result = NO;
     } else if (!(self.txtPassword.text.length >= 1)){
         self.txtPassword.textColor = [UIColor redColor];
