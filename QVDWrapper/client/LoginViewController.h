@@ -33,5 +33,6 @@
 @property (weak, nonatomic) IBOutlet CustomTextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btLogin;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UIView *gaugeView;
 
 @end

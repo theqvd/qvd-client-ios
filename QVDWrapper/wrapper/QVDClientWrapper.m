@@ -290,6 +290,8 @@
             if(self.statusDelegate){
                 [self.statusDelegate connectionFinished];
                 self.loginAllowed = YES;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"QVD_ALLOW_CONNECT" object:self userInfo:nil];
+
             }
         });
     });

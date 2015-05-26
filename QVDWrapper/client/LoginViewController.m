@@ -79,6 +79,27 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkConnectionStatus)
+                                                 name:@"QVD_ALLOW_CONNECT"
+                                               object:nil];
+    
+    [self.gaugeView setHidden:[[QVDClientWrapper sharedManager] loginAllowed]];
+    [self.btLogin setEnabled:[[QVDClientWrapper sharedManager] loginAllowed]];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)checkConnectionStatus{
+    [self.gaugeView setHidden:[[QVDClientWrapper sharedManager] loginAllowed]];
+    [self.btLogin setEnabled:[[QVDClientWrapper sharedManager] loginAllowed]];
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self retreiveUserInfo];
