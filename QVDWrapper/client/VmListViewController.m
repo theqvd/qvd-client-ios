@@ -189,5 +189,39 @@
 
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return UIInterfaceOrientationMaskLandscape;
+    }
+    
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationPortrait;
+    } else {
+        return (UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight);
+    }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    
+     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+         return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+     } else {
+         if((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)){
+             return YES;
+         }
+         return NO;
+     }
+}
 
 @end

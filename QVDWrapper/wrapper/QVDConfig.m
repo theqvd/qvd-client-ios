@@ -72,6 +72,7 @@
     CGFloat currentHeight = MIN([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height) - self.noVncTopFrameHeight;
     self.qvdDefaultWidth = (int) currentWidth;
     self.qvdDefaultHeight = (int) currentHeight;
+    NSLog(@"Current geometry: %f | %f",currentWidth,currentHeight);
 }
 
 @end

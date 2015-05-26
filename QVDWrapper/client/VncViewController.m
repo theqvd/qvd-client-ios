@@ -86,6 +86,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [UINavigationController attemptRotationToDeviceOrientation];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -95,6 +97,7 @@
     if(self.serviceRequest){
         [self.navegador loadRequest:self.serviceRequest];
     }
+    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -157,6 +160,7 @@
     //[[UIApplication sharedApplication] setStatusBarHidden:NO];
     //[[QVDClientWrapper sharedManager] setStatusDelegate:nil];
     //[[QVDClientWrapper sharedManager] endConnection:[_selectedVm id]];
+    [UINavigationController attemptRotationToDeviceOrientation];
 }
 
 -(void)showLoading{
@@ -199,5 +203,34 @@
 }
 
 
+
+- (BOOL)shouldAutorotate {
+    NSLog(@"========> Calling shouldAutoRotate on View");
+    return YES;
+}
+
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationLandscapeRight;
+}
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    
+    if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+        return YES;
+        
+    } else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        return YES;
+        
+    } else {
+        return NO;
+    }
+}
 
 @end

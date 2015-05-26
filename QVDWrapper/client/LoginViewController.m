@@ -110,6 +110,7 @@
     
     [self.gaugeView setHidden:[[QVDClientWrapper sharedManager] loginAllowed]];
     [self.btLogin setEnabled:[[QVDClientWrapper sharedManager] loginAllowed]];
+    [UINavigationController attemptRotationToDeviceOrientation];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -206,6 +207,49 @@
 
     }
 }
+
+
+- (BOOL)shouldAutorotate {
+    NSLog(@"========> Calling shouldAutoRotate on View");
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
+}
+
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return UIInterfaceOrientationMaskLandscape;
+    }
+    
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationPortrait;
+    } else {
+        return (UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight);
+    }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+    } else {
+        if((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)){
+            return YES;
+        }
+        return NO;
+    }
+}
+
 
 
 @end

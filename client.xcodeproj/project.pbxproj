@@ -1320,6 +1320,10 @@
 		5423ED211AAC43D300B3BA76 /* map-JISX0201.1976-0 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8A1AA7901800C487CB /* map-JISX0201.1976-0 */; };
 		5423ED221AAC43D300B3BA76 /* map-KOI8-R in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8B1AA7901800C487CB /* map-KOI8-R */; };
 		544128D01AEEC2E900258103 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 544128CF1AEEC2E900258103 /* libcurl.a */; };
+		5447A4751B150E46001CFFC5 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447A4741B150E46001CFFC5 /* LoginViewController_iPhone.xib */; };
+		5447A4771B151166001CFFC5 /* VmListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447A4761B151166001CFFC5 /* VmListViewController_iPhone.xib */; };
+		5447A4791B15155F001CFFC5 /* VncViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447A4781B15155F001CFFC5 /* VncViewController_iPhone.xib */; };
+		5447A47C1B151E69001CFFC5 /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5447A47B1B151E69001CFFC5 /* CommonNavigationController.m */; };
 		544B2C251AAC44DA0037101E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C241AAC44DA0037101E /* UIKit.framework */; };
 		544B2C271AAC44E20037101E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C261AAC44E20037101E /* Foundation.framework */; };
 		544B2C291AAC44EC0037101E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544B2C281AAC44EC0037101E /* CoreGraphics.framework */; };
@@ -4095,6 +4099,11 @@
 		5423ECD81AAC438800B3BA76 /* tis620-2.enc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tis620-2.enc"; sourceTree = "<group>"; };
 		5423ECD91AAC438800B3BA76 /* viscii1.1-1.enc.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "viscii1.1-1.enc.gz"; sourceTree = "<group>"; };
 		544128CF1AEEC2E900258103 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = QVDWrapper/binary_libs/libcurl.a; sourceTree = "<group>"; };
+		5447A4741B150E46001CFFC5 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController_iPhone.xib; path = client/LoginViewController_iPhone.xib; sourceTree = "<group>"; };
+		5447A4761B151166001CFFC5 /* VmListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmListViewController_iPhone.xib; path = client/VmListViewController_iPhone.xib; sourceTree = "<group>"; };
+		5447A4781B15155F001CFFC5 /* VncViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VncViewController_iPhone.xib; path = client/VncViewController_iPhone.xib; sourceTree = "<group>"; };
+		5447A47A1B151E69001CFFC5 /* CommonNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonNavigationController.h; path = client/Ui/CommonNavigationController.h; sourceTree = "<group>"; };
+		5447A47B1B151E69001CFFC5 /* CommonNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonNavigationController.m; path = client/Ui/CommonNavigationController.m; sourceTree = "<group>"; };
 		544B2C241AAC44DA0037101E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		544B2C261AAC44E20037101E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		544B2C281AAC44EC0037101E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -5766,17 +5775,20 @@
 			children = (
 				544F9ABC1ADBB958000A5609 /* Cells */,
 				54AC4E6A1AFCA58C00D4623D /* libs */,
+				54A92F681B144603003C01F4 /* LoginViewController_iPad.xib */,
+				5447A4741B150E46001CFFC5 /* LoginViewController_iPhone.xib */,
 				545C87721AD30FFB00CB9776 /* LoginViewController.h */,
 				545C87731AD30FFB00CB9776 /* LoginViewController.m */,
-				54A92F681B144603003C01F4 /* LoginViewController_iPad.xib */,
 				54AC4E661AFCA0BD00D4623D /* Ui */,
+				54A92F691B144603003C01F4 /* VmListViewController_iPad.xib */,
+				5447A4761B151166001CFFC5 /* VmListViewController_iPhone.xib */,
 				544F9AB31ADBB05A000A5609 /* VmListViewController.h */,
 				544F9AB41ADBB05A000A5609 /* VmListViewController.m */,
-				54A92F691B144603003C01F4 /* VmListViewController_iPad.xib */,
+				54A92F6A1B144603003C01F4 /* VncViewController_iPad.xib */,
 				545C87781AD310D100CB9776 /* VncViewController.h */,
 				545C87791AD310D100CB9776 /* VncViewController.m */,
-				54A92F6A1B144603003C01F4 /* VncViewController_iPad.xib */,
 				544F9AB81ADBB316000A5609 /* VO */,
+				5447A4781B15155F001CFFC5 /* VncViewController_iPhone.xib */,
 			);
 			name = client;
 			sourceTree = "<group>";
@@ -5803,6 +5815,8 @@
 			children = (
 				54AC4E671AFCA0D800D4623D /* CustomTextField.h */,
 				54AC4E681AFCA0D800D4623D /* CustomTextField.m */,
+				5447A47A1B151E69001CFFC5 /* CommonNavigationController.h */,
+				5447A47B1B151E69001CFFC5 /* CommonNavigationController.m */,
 			);
 			name = Ui;
 			sourceTree = "<group>";
@@ -6043,10 +6057,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				54A92F5C1B144219003C01F4 /* Localizable.strings in Resources */,
+				5447A4791B15155F001CFFC5 /* VncViewController_iPhone.xib in Resources */,
 				54A92F6C1B144603003C01F4 /* VmListViewController_iPad.xib in Resources */,
+				5447A4751B150E46001CFFC5 /* LoginViewController_iPhone.xib in Resources */,
 				54A92F671B1445F4003C01F4 /* VmMachineCollectionViewCell.xib in Resources */,
 				545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */,
 				545519411A9E54FE003E42CA /* Images.xcassets in Resources */,
+				5447A4771B151166001CFFC5 /* VmListViewController_iPhone.xib in Resources */,
 				54A92F6D1B144603003C01F4 /* VncViewController_iPad.xib in Resources */,
 				545C89511AD33CBE00CB9776 /* html_resources in Resources */,
 				54A92F6B1B144603003C01F4 /* LoginViewController_iPad.xib in Resources */,
@@ -6121,6 +6138,7 @@
 				545519391A9E54FE003E42CA /* AppDelegate.m in Sources */,
 				549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */,
 				54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */,
+				5447A47C1B151E69001CFFC5 /* CommonNavigationController.m in Sources */,
 				54B85C9E1A9E55930098B49E /* tcpconnect.c in Sources */,
 				545519361A9E54FE003E42CA /* main.m in Sources */,
 				54EAADE21AB8975F00AF84C7 /* QVDConnectService.m in Sources */,
@@ -6275,7 +6293,7 @@
 				PRODUCT_NAME = client;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -6298,7 +6316,7 @@
 				PRODUCT_NAME = client;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

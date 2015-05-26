@@ -23,6 +23,7 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "CommonNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -48,7 +49,7 @@
     }
 
     LoginViewController *login = [[LoginViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+    CommonNavigationController *nav = [[CommonNavigationController alloc] initWithRootViewController:login];
     [self.window setRootViewController:nav];
     return YES;
 }
