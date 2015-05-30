@@ -144,6 +144,7 @@
         self.updateFromPreferences = NO;
         [self retreiveUserInfo];
     }
+    [UIViewController attemptRotationToDeviceOrientation];
 }
 
 -(void)retreiveUserInfo{
@@ -233,7 +234,6 @@
 
 
 - (BOOL)shouldAutorotate {
-    NSLog(@"========> Calling shouldAutoRotate on View");
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return YES;
     } else {

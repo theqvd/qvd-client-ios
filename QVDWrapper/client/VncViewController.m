@@ -51,6 +51,8 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+
+    
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -69,6 +71,12 @@
 
         }
     }
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        UIViewController *c = [[UIViewController alloc]init];
+        [self presentViewController:c animated:NO completion:nil];
+        [c dismissViewControllerAnimated:YES completion:nil];
+    }
 
 }
 
@@ -86,7 +94,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [UINavigationController attemptRotationToDeviceOrientation];
+    
+
 
 }
 
@@ -97,7 +106,7 @@
     if(self.serviceRequest){
         [self.navegador loadRequest:self.serviceRequest];
     }
-    
+    [UIViewController attemptRotationToDeviceOrientation];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -106,7 +115,6 @@
         [ self webToNativeCall:url ];
         return NO;
     }
-    //    NSLog(@"webView delegate invoked for url %@", url);
     return YES;
 }
 
@@ -205,7 +213,6 @@
 
 
 - (BOOL)shouldAutorotate {
-    NSLog(@"========> Calling shouldAutoRotate on View");
     return YES;
 }
 
@@ -231,6 +238,10 @@
     } else {
         return NO;
     }
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 @end

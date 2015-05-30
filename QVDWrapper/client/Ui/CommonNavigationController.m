@@ -16,6 +16,7 @@
 
 -(BOOL)shouldAutorotate
 {
+    
     BOOL autorotate = [[self.viewControllers lastObject] shouldAutorotate];
     return autorotate;
         
@@ -23,6 +24,7 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
+    
     return [[self.viewControllers lastObject] supportedInterfaceOrientations];
 
 }
