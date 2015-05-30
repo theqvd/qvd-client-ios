@@ -25,11 +25,18 @@
 
 @interface ConnectionVO : NSObject
 
-@property (strong,nonatomic) NSString *userLogin;
-@property (strong,nonatomic) NSString *userPassword;
-@property (strong,nonatomic) NSString *qvdHost;
+@property (assign,nonatomic) int qvdDefaultPort;
+@property (assign,nonatomic) int qvdDefaultWidth;
+@property (assign,nonatomic) int qvdDefaultHeight;
+@property (assign,nonatomic) int qvdDefaultLinkItem;
+@property (assign,nonatomic) BOOL qvdDefaultDebug;
+@property (assign,nonatomic) BOOL qvdDefaultFullScreen;
+@property (strong,nonatomic) NSString *qvdDefaultLogin;
+@property (strong,nonatomic) NSString *qvdDefaultPass;
+@property (strong,nonatomic) NSString *qvdDefaultHost;
 
-+(id)initWithUser:(NSString *)aUser andPassword:(NSString *)aPassword andHost:(NSString *) aHost;
+
++(id)initWithDetauls;
 
 
 @end

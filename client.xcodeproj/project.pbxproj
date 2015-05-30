@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54067D1F1B18BEE60094541C /* AdvancedSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54067D1D1B18BEE60094541C /* AdvancedSettingsViewController.m */; };
+		54067D201B18BEE60094541C /* AdvancedSettingsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54067D1E1B18BEE60094541C /* AdvancedSettingsViewController_iPhone.xib */; };
 		5423E7BF1AAC41B700B3BA76 /* vncpasswd in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8C1AA7901800C487CB /* vncpasswd */; };
 		5423E7C11AAC41D200B3BA76 /* SecurityPolicy in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA351AA7901700C487CB /* SecurityPolicy */; };
 		5423E7C31AAC41EF00B3BA76 /* rgb.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA341AA7901700C487CB /* rgb.txt */; };
@@ -2786,6 +2788,9 @@
 
 /* Begin PBXFileReference section */
 		4CBE628F23443D49FD27108A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		54067D1C1B18BEE60094541C /* AdvancedSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdvancedSettingsViewController.h; path = client/AdvancedSettingsViewController.h; sourceTree = "<group>"; };
+		54067D1D1B18BEE60094541C /* AdvancedSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdvancedSettingsViewController.m; path = client/AdvancedSettingsViewController.m; sourceTree = "<group>"; };
+		54067D1E1B18BEE60094541C /* AdvancedSettingsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdvancedSettingsViewController_iPhone.xib; path = client/AdvancedSettingsViewController_iPhone.xib; sourceTree = "<group>"; };
 		5423D53D1AA7901500C487CB /* charB08.pcf.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = charB08.pcf.gz; sourceTree = "<group>"; };
 		5423D53E1AA7901500C487CB /* charB10.pcf.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = charB10.pcf.gz; sourceTree = "<group>"; };
 		5423D53F1AA7901500C487CB /* charB12.pcf.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = charB12.pcf.gz; sourceTree = "<group>"; };
@@ -5789,6 +5794,9 @@
 				545C87791AD310D100CB9776 /* VncViewController.m */,
 				544F9AB81ADBB316000A5609 /* VO */,
 				5447A4781B15155F001CFFC5 /* VncViewController_iPhone.xib */,
+				54067D1C1B18BEE60094541C /* AdvancedSettingsViewController.h */,
+				54067D1D1B18BEE60094541C /* AdvancedSettingsViewController.m */,
+				54067D1E1B18BEE60094541C /* AdvancedSettingsViewController_iPhone.xib */,
 			);
 			name = client;
 			sourceTree = "<group>";
@@ -6061,6 +6069,7 @@
 				54A92F6C1B144603003C01F4 /* VmListViewController_iPad.xib in Resources */,
 				5447A4751B150E46001CFFC5 /* LoginViewController_iPhone.xib in Resources */,
 				54A92F671B1445F4003C01F4 /* VmMachineCollectionViewCell.xib in Resources */,
+				54067D201B18BEE60094541C /* AdvancedSettingsViewController_iPhone.xib in Resources */,
 				545519441A9E54FE003E42CA /* LaunchScreen.xib in Resources */,
 				545519411A9E54FE003E42CA /* Images.xcassets in Resources */,
 				5447A4771B151166001CFFC5 /* VmListViewController_iPhone.xib in Resources */,
@@ -6139,6 +6148,7 @@
 				549E787E1ACFF448006E7714 /* QVDVmVO.m in Sources */,
 				54B29A061AB43F9C004408AE /* QVDXvncService.m in Sources */,
 				5447A47C1B151E69001CFFC5 /* CommonNavigationController.m in Sources */,
+				54067D1F1B18BEE60094541C /* AdvancedSettingsViewController.m in Sources */,
 				54B85C9E1A9E55930098B49E /* tcpconnect.c in Sources */,
 				545519361A9E54FE003E42CA /* main.m in Sources */,
 				54EAADE21AB8975F00AF84C7 /* QVDConnectService.m in Sources */,

@@ -34,12 +34,16 @@
 #import "A0SimpleKeychain.h"
 #import "CustomTextField.h"
 #import "Reachability.h"
+#import "AdvancedSettingsViewController.h"
 
 
 @interface LoginViewController ()
 
 @property (strong,nonatomic) Reachability *inetCheck;
 @property (assign,nonatomic) BOOL connectionAvailable;
+@property (assign,nonatomic) BOOL updateFromPreferences;
+
+@property (strong,nonatomic) ConnectionVO *aSelectedConfig;
 
 @end
 
@@ -55,6 +59,7 @@
 }
 
 -(void)viewDidLoad{
+    self.updateFromPreferences = YES;
     [super viewDidLoad];
     [self doCheckInetConnection];
     self.connectionAvailable = NO;
@@ -72,21 +77,31 @@
     [self.lblSaveCredentials setText:NSLocalizedString(@"component.lblRemember", @"Remember credentials")];
     
     [self.lblTeadDownConnection setText:NSLocalizedString(@"messages.tearDown", @"Tear down message")];
+    
+    [self.btAdvancedSettings setTitle:NSLocalizedString(@"common.titleAdvancedSettings", @"") forState:UIControlStateNormal];
 }
 
 - (IBAction)doLogin:(id)sender {
     [self doCheckInetConnection];
     BOOL allowLogin = [[QVDClientWrapper sharedManager] loginAllowed];
     if([self validateForm] && allowLogin){
+        if(!self.aSelectedConfig){
+            self.aSelectedConfig = [QVDConfig configWithDefaults];
+        }
+        
+        
         if(self.connectionAvailable){
         NSString *auxLogin = [self.txtLogin.text stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSString *auxPassword = [self.txtPassword.text stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSString *auxHost = [self.txtHost.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-        ConnectionVO *auxConnection = nil;
-        if(![auxHost isEqualToString:@""] || ![auxLogin isEqualToString:@""] || ![auxPassword isEqualToString:@""]){
-            auxConnection = [ConnectionVO initWithUser:auxLogin andPassword:auxPassword andHost:auxHost];
-        }
-        VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:auxConnection saveCredentials:self.switchRemember.isOn];
+  
+        
+            
+        [self.aSelectedConfig setQvdDefaultHost:auxHost];
+        [self.aSelectedConfig setQvdDefaultPass:auxPassword];
+        [self.aSelectedConfig setQvdDefaultLogin:auxLogin];
+            
+        VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:self.aSelectedConfig saveCredentials:[self.switchRemember isOn]];
         [self.navigationController pushViewController:vmList animated:YES];
         } else {
             
@@ -125,18 +140,26 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self retreiveUserInfo];
+    if(self.updateFromPreferences){
+        self.updateFromPreferences = NO;
+        [self retreiveUserInfo];
+    }
 }
 
 -(void)retreiveUserInfo{
 
-    if([[A0SimpleKeychain keychain] hasValueForKey:@"qvd-user"]){
+    if([[A0SimpleKeychain keychain] hasValueForKey:@"qvd-configuration"]){
 
-        [self.txtLogin setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-user"]];
-        [self.txtPassword setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-pwd"]];
-        [self.txtHost setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-host"]];
+        NSData *encodedObject =[[A0SimpleKeychain keychain] dataForKey:@"qvd-configuration"];
+        
+         self.aSelectedConfig =[NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+        
+        [self.txtLogin setText:[self.aSelectedConfig qvdDefaultLogin]];
+        [self.txtPassword setText:[self.aSelectedConfig qvdDefaultPass]];
+        [self.txtHost setText:[self.aSelectedConfig qvdDefaultHost]];
         [self.switchRemember setOn:YES];
     } else {
+        [[A0SimpleKeychain keychain] clearAll];
         [self.switchRemember setOn:NO];
         [self.txtHost setText:@""];
         [self.txtPassword setText:@""];
@@ -250,6 +273,42 @@
     }
 }
 
+- (IBAction)showAdvancedSettings:(id)sender {
+    
+    if(!self.aSelectedConfig){
+      self.aSelectedConfig = [QVDConfig configWithDefaults];
+    }
+    
+    NSString *auxLogin = [self.txtLogin.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *auxPassword = [self.txtPassword.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *auxHost = [self.txtHost.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [self.aSelectedConfig setQvdDefaultLogin:auxLogin];
+    [self.aSelectedConfig setQvdDefaultPass:auxPassword];
+    [self.aSelectedConfig setQvdDefaultHost:auxHost];
+    
+    AdvancedSettingsViewController *asvc = [[AdvancedSettingsViewController alloc] initViewWithConfig:self.aSelectedConfig];
+    asvc.configDelegate = self;
+    
+    UINavigationController *aNav = [[UINavigationController alloc] initWithRootViewController:asvc];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
+    
+    aNav.modalPresentationStyle = UIModalPresentationPopover;
+    aNav.popoverPresentationController.sourceView =self.pophoverView;
+    }
+    
+    [self presentViewController:aNav animated:YES completion:nil];
+    
+}
+
+- (void) configurationUpdated:(ConnectionVO *) aNewConfiguration{
+    self.aSelectedConfig = aNewConfiguration;
+    [self.txtHost setText:[self.aSelectedConfig qvdDefaultHost]];
+    [self.txtLogin setText:[self.aSelectedConfig qvdDefaultLogin]];
+    [self.txtPassword setText:[self.aSelectedConfig qvdDefaultPass]];
+    
+}
 
 
 @end

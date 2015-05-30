@@ -23,6 +23,10 @@
 
 #import <Foundation/Foundation.h>
 
+#define QVD_DEFAULT_PORT 8443
+#define QVD_DEFAULT_FULL_SCREEN NO
+#define QVD_DEFAULT_DEBUG NO
+
 @interface QVDConfig : NSObject
 
 //WS Properties

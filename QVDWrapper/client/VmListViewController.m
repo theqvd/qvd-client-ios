@@ -29,18 +29,19 @@
 #import "QVDVmVO.h"
 #import "VncViewController.h"
 #import "A0SimpleKeychain.h"
+#import "QVDConfig.h"
 
 
 @interface VmListViewController ()
 @property (assign,nonatomic) BOOL loginRequired;
-@property (strong,nonatomic) ConnectionVO *connection;
+@property (strong,nonatomic) ConnectionVO *config;
 @property (strong,nonatomic) NSArray *vmList;
 
 @end
 
 @implementation VmListViewController
 
--(id)initWithConnection:(ConnectionVO *) aConnection saveCredentials:(BOOL)save{
+-(id)initWithConnection:(ConnectionVO *) aConfig saveCredentials:(BOOL)save{
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         self = [self initWithNibName:@"VmListViewController_iPhone" bundle:nil];
     } else {
@@ -51,14 +52,18 @@
         if(!save){
             [[A0SimpleKeychain keychain] clearAll];
         }
-        if(aConnection){
-            self.connection = aConnection;
+        if(aConfig){
+            self.config = aConfig;
         } else {
-            // TODO init
-            self.connection = [ConnectionVO initWithUser:@"appledevprogram@qindel.com" andPassword:@"applepass" andHost:@"demo.theqvd.com"];
+            return nil;
         }
     }
     return self;
+}
+
+-(void)doSaveConnection{
+    NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self.config];
+    [[A0SimpleKeychain keychain] setData:encodedObject forKey:@"qvd-configuration"];
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -84,7 +89,7 @@
     if(self.loginRequired){
 
         [[QVDClientWrapper sharedManager] setStatusDelegate:self];
-        [[QVDClientWrapper sharedManager] setCredentialsWitUser:[self.connection userLogin] password: [self.connection userPassword] host:[self.connection qvdHost]];
+        [[QVDClientWrapper sharedManager] setCredentialsWitConfiguration:self.config];
         [self showLoading];
         [[QVDClientWrapper sharedManager] listOfVms];
     }
@@ -118,11 +123,7 @@
     [KVNProgress showSuccess];
     self.vmList = aVmList;
     [self.cvVmMachines reloadData];
-
-    [[A0SimpleKeychain keychain] setString:self.connection.userLogin forKey:@"qvd-user"];
-    [[A0SimpleKeychain keychain] setString:self.connection.userPassword forKey:@"qvd-pwd"];
-    [[A0SimpleKeychain keychain] setString:self.connection.qvdHost forKey:@"qvd-host"];
-
+    [self doSaveConnection];
 }
 
 

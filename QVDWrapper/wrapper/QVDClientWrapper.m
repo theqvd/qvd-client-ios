@@ -29,6 +29,7 @@
 #include "curl.h"
 #include "QVDProxyService.h"
 #include "QVDXvncService.h"
+#import "ConnectionVO.h"
 
 #define NETWORK_OPTIONS @[@"Local",@"ADSL",@"Modem"]
 #define PLATFORM @"ios"
@@ -41,6 +42,8 @@
 @property (nonatomic) int pendingStatus; //0 nothing, 1 listVm, 2connectToVm
 @property (assign,nonatomic) BOOL listVmOnStart;
 @property (assign,nonatomic) BOOL internalConnect;
+
+@property (strong,nonatomic) ConnectionVO *startConfiguration;
 
 
 @end
@@ -58,33 +61,41 @@
 
 
 
--(void)setCredentialsWitUser:(NSString *) anUser password:(NSString *)anPassword host:(NSString *) anHost{
-    self.login = anUser ? anUser : @"";
-    self.pass = anPassword ? anPassword : @"";
-    self.host = anHost ? anHost : @"";
+-(void)setCredentialsWitConfiguration:(ConnectionVO *)aConfig{
+    
+    if(aConfig){
+        self.startConfiguration = aConfig;
+        self.login = [self.startConfiguration qvdDefaultLogin];
+        self.pass = [self.startConfiguration qvdDefaultPass];
+        self.host = [self.startConfiguration qvdDefaultHost];
+        self.port = [self.startConfiguration qvdDefaultPort];
+        self.debug = [self.startConfiguration qvdDefaultDebug];
+        self.fullscreen = [self.startConfiguration qvdDefaultFullScreen];
+        self.width = [self.startConfiguration qvdDefaultWidth];
+        self.height = [self.startConfiguration qvdDefaultHeight];
+    }
 }
 
 
 -(id)init{
     self = [ super init ];
     if(self){
-        QVDConfig *configuration = [QVDConfig configWithDefaults];
         _xvncStarted = NO;
         _listVmOnStart = NO;
         _internalConnect = NO;
         _loginAllowed = YES;
         //Credentials
         _name = @"";
-        _login = @"";
-        _pass = @"";
-        _host = @"";
+        _login = [self.startConfiguration qvdDefaultLogin];
+        _pass = [self.startConfiguration qvdDefaultPass];
+        _host = [self.startConfiguration qvdDefaultHost];
         //Wrapper configuration
         _qvd = NULL;
-        _port = 8443;
-        _debug = [configuration qvdDefaultDebug];
-        _fullscreen = [configuration qvdDefaultFullScreen];
-        _width = [configuration qvdDefaultWidth];
-        _height = [configuration qvdDefaultHeight];
+        _port = [self.startConfiguration qvdDefaultPort];
+        _debug = [self.startConfiguration qvdDefaultDebug];
+        _fullscreen = [self.startConfiguration qvdDefaultFullScreen];
+        _width = [self.startConfiguration qvdDefaultWidth];
+        _height = [self.startConfiguration qvdDefaultHeight];
         _x509certfile = @"";
         _x509keyfile = @"";
         _usecertfiles = NO;
@@ -168,6 +179,9 @@
     }
     if(!self.login || !self.pass || !self.host){
         NSLog(@"User credentials invalid");
+        if(self.statusDelegate){
+            [self.statusDelegate qvdError:@"User credentials invalid"];
+        }
         return NO;
     }
     //Setup debug

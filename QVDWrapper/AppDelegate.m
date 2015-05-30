@@ -49,7 +49,7 @@
     }
 
     LoginViewController *login = [[LoginViewController alloc] init];
-    CommonNavigationController *nav = [[CommonNavigationController alloc] initWithRootViewController:login];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
     [self.window setRootViewController:nav];
     return YES;
 }

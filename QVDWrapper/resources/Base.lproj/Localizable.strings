@@ -7,6 +7,7 @@
 */
 "common.error"="Error";
 "common.ok"="OK";
+"common.cancel"="Cancel";
 "common.titleGeneric"="The QVD";
 "common.titleVmList"="List of VMs";
 "messages.compilationInfo"="Version: %@ (Build: %@)";
@@ -23,3 +24,22 @@
 "component.lblRemember"="Save credentials:";
 "component.btLogin"="Login";
 "messages.tearDown"="tear down connection, please wait";
+
+/*Advanced settings screent*/
+"common.titleAdvancedSettings"="Advanced configuration";
+"group.account"="ACCOUNT";
+"group.network"="NETWORK";
+"component.txtPort"="Port";
+"component.txtLink"="Link";
+"group.geometry"="GEOMETRY";
+"component.txtWith"="With";
+"component.txtHeight"="Height";
+"component.txtFullScreen"="Fullscreen";
+"group.debug"="DEBUG";
+"component.txtDebug"="DEBUG";
+/*Placeholders*/
+"placeholder.txtHost"="theqvd.com";
+"placeholder.txtUser"="user";
+"placeholder.txtPassword"="password";
+"placeholder.txtPort"="8443";
+"placeholder.txtLink"="ADSL";

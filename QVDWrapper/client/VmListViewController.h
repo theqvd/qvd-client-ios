@@ -24,10 +24,11 @@
 #import <UIKit/UIKit.h>
 #import "ConnectionVO.h"
 #import "QVDClientWrapper.h"
+#import "QVDConfig.h"
 
 @interface VmListViewController : UIViewController<QVDStatusDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *cvVmMachines;
--(id)initWithConnection:(ConnectionVO *) aConnection saveCredentials:(BOOL)save;
+-(id)initWithConnection:(ConnectionVO *) aConfig saveCredentials:(BOOL)save;
 
 @end

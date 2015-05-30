@@ -7,10 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="btAdvancedSettings" destination="lcr-SN-pp0" id="nAL-V0-F0W"/>
                 <outlet property="btLogin" destination="i4E-DX-T6W" id="LLu-9o-Xei"/>
                 <outlet property="gaugeView" destination="vjC-Hh-Id5" id="zeq-s1-2uc"/>
                 <outlet property="lblSaveCredentials" destination="Zfi-OV-3J4" id="Hp3-F3-Uvc"/>
                 <outlet property="lblTeadDownConnection" destination="31C-hf-dOX" id="Srd-N3-Hsw"/>
+                <outlet property="pophoverView" destination="Yx6-sy-rMB" id="t5V-PT-qR2"/>
                 <outlet property="switchRemember" destination="HHa-6R-Ewe" id="v2w-oP-R9P"/>
                 <outlet property="txtHost" destination="sH2-SM-DlF" id="9oe-fD-WiD"/>
                 <outlet property="txtLogin" destination="oro-Iq-gHw" id="rab-mn-CYa"/>
@@ -52,9 +54,13 @@
                     <color key="textColor" white="0.57784231085526316" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4E-DX-T6W">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4E-DX-T6W">
                     <rect key="frame" x="593" y="454" width="350" height="38"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="350" id="EX8-3c-eVv"/>
+                        <constraint firstAttribute="height" constant="38" id="deM-71-HEy"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <state key="normal" title="Login" backgroundImage="btBg">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,6 +69,21 @@
                     <state key="highlighted" backgroundImage="btBgPressed"/>
                     <connections>
                         <action selector="doLogin:" destination="-1" eventType="touchUpInside" id="a5G-tk-1ur"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yx6-sy-rMB">
+                    <rect key="frame" x="763" y="497" width="10" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcr-SN-pp0">
+                    <rect key="frame" x="593" y="497" width="350" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Advanced settings">
+                        <color key="titleColor" red="0.89411764709999997" green="0.42745098040000001" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showAdvancedSettings:" destination="-1" eventType="touchUpInside" id="oZP-Tc-RwQ"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versión:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGh-Y0-nQB">
@@ -79,7 +100,7 @@
                     <rect key="frame" x="14" y="265" width="490" height="238"/>
                 </imageView>
                 <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vjC-Hh-Id5">
-                    <rect key="frame" x="593" y="500" width="350" height="33"/>
+                    <rect key="frame" x="593" y="535" width="350" height="33"/>
                     <subviews>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yta-q8-4FK">
                             <rect key="frame" x="8" y="6" width="20" height="20"/>
