@@ -29,32 +29,41 @@
 #import "QVDVmVO.h"
 #import "VncViewController.h"
 #import "A0SimpleKeychain.h"
+#import "QVDConfig.h"
 
 
 @interface VmListViewController ()
 @property (assign,nonatomic) BOOL loginRequired;
-@property (strong,nonatomic) ConnectionVO *connection;
+@property (strong,nonatomic) ConnectionVO *config;
 @property (strong,nonatomic) NSArray *vmList;
 
 @end
 
 @implementation VmListViewController
 
--(id)initWithConnection:(ConnectionVO *) aConnection saveCredentials:(BOOL)save{
-    self = [self initWithNibName:nil bundle:nil];
+-(id)initWithConnection:(ConnectionVO *) aConfig saveCredentials:(BOOL)save{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self = [self initWithNibName:@"VmListViewController_iPhone" bundle:nil];
+    } else {
+        self = [self initWithNibName:@"VmListViewController_iPad" bundle:nil];
+    }
     if(self){
         _vmList = nil;
         if(!save){
             [[A0SimpleKeychain keychain] clearAll];
         }
-        if(aConnection){
-            self.connection = aConnection;
+        if(aConfig){
+            self.config = aConfig;
         } else {
-            // TODO init
-            self.connection = [ConnectionVO initWithUser:@"appledevprogram@qindel.com" andPassword:@"applepass" andHost:@"demo.theqvd.com"];
+            return nil;
         }
     }
     return self;
+}
+
+-(void)doSaveConnection{
+    NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self.config];
+    [[A0SimpleKeychain keychain] setData:encodedObject forKey:@"qvd-configuration"];
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -71,7 +80,8 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = @"List of VMs";
+    self.title = NSLocalizedString(@"common.titleVmList",@"List of VMs");
+    
 
 }
 
@@ -79,7 +89,7 @@
     if(self.loginRequired){
 
         [[QVDClientWrapper sharedManager] setStatusDelegate:self];
-        [[QVDClientWrapper sharedManager] setCredentialsWitUser:[self.connection userLogin] password: [self.connection userPassword] host:[self.connection qvdHost]];
+        [[QVDClientWrapper sharedManager] setCredentialsWitConfiguration:self.config];
         [self showLoading];
         [[QVDClientWrapper sharedManager] listOfVms];
     }
@@ -95,13 +105,15 @@
     config.circleStrokeForegroundColor = [UIColor whiteColor];
     config.fullScreen = YES;
     [KVNProgress setConfiguration:config];
-    [KVNProgress showWithStatus:@"Connecting...."];
+    
+    [KVNProgress showWithStatus:NSLocalizedString(@"messages.connecting",@"Connecting....")];
 }
 
 #pragma mark - Delegate
 
 - (void) qvdProgressMessage:(NSString *) aMessage{
-    [KVNProgress updateStatus:[NSString stringWithFormat:@"Progress: %@",aMessage]];
+    
+    [KVNProgress updateStatus:[NSString stringWithFormat:NSLocalizedString(@"messages.progress",@"Progress:"),aMessage]];
 
 }
 
@@ -111,11 +123,7 @@
     [KVNProgress showSuccess];
     self.vmList = aVmList;
     [self.cvVmMachines reloadData];
-
-    [[A0SimpleKeychain keychain] setString:self.connection.userLogin forKey:@"qvd-user"];
-    [[A0SimpleKeychain keychain] setString:self.connection.userPassword forKey:@"qvd-pwd"];
-    [[A0SimpleKeychain keychain] setString:self.connection.qvdHost forKey:@"qvd-host"];
-
+    [self doSaveConnection];
 }
 
 
@@ -182,5 +190,39 @@
 
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return UIInterfaceOrientationMaskLandscape;
+    }
+    
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationPortrait;
+    } else {
+        return (UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight);
+    }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    
+     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+         return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+     } else {
+         if((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)){
+             return YES;
+         }
+         return NO;
+     }
+}
 
 @end

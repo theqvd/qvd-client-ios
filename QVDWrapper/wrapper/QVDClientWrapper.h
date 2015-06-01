@@ -22,6 +22,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "QVDConfig.h"
+#import "ConnectionVO.h"
 
 @protocol QVDStatusDelegate
 
@@ -51,7 +53,7 @@
     @property (assign,nonatomic) BOOL loginAllowed;
 
     + (id)sharedManager;
-    -(void)setCredentialsWitUser:(NSString *) anUser password:(NSString *)anPassword host:(NSString *) anHost;
+    -(void)setCredentialsWitConfiguration:(ConnectionVO *)aConfig;
     //-(id)initWithUser:(NSString *) anUser password:(NSString *)anPassword host:(NSString *) anHost;
     -(void)listOfVms;
     -(int)connectToVm:(int) anVmId;

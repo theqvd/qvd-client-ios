@@ -22,17 +22,47 @@
 //
 
 #import "ConnectionVO.h"
+#import "QVDConfig.h"
 
 @implementation ConnectionVO
 
-+(id)initWithUser:(NSString *)aUser andPassword:(NSString *)aPassword andHost:(NSString *) aHost{
++(id)initWithDetauls{
     ConnectionVO *aux = [[ConnectionVO alloc] init];
     if(aux){
-        [aux setUserLogin:aUser];
-        [aux setUserPassword:aPassword];
-        [aux setQvdHost:aHost];
+        [aux setQvdDefaultPort:QVD_DEFAULT_PORT];
+        [aux setQvdDefaultFullScreen:NO];
+        [aux setQvdDefaultDebug:NO];
     }
     return aux;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    [encoder encodeInt:self.qvdDefaultPort forKey:@"qvdDefaultPort"];
+    [encoder encodeInt:self.qvdDefaultWidth forKey:@"qvdDefaultWidth"];
+    [encoder encodeInt:self.qvdDefaultHeight forKey:@"qvdDefaultHeight"];
+    [encoder encodeInt:self.qvdDefaultLinkItem forKey:@"qvdDefaultLinkItem"];
+    [encoder encodeBool:self.qvdDefaultDebug forKey:@"qvdDefaultDebug"];
+    [encoder encodeBool:self.qvdDefaultFullScreen forKey:@"qvdDefaultFullScreen"];
+    [encoder encodeObject:self.qvdDefaultLogin forKey:@"qvdDefaultLogin"];
+    [encoder encodeObject:self.qvdDefaultPass forKey:@"qvdDefaultPass"];
+    [encoder encodeObject:self.qvdDefaultHost forKey:@"qvdDefaultHost"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [QVDConfig configWithDefaults];
+    if(self) {
+        self.qvdDefaultPort = [decoder decodeIntForKey:@"qvdDefaultPort"];
+        self.qvdDefaultWidth = [decoder decodeIntForKey:@"qvdDefaultWidth"];
+        self.qvdDefaultHeight = [decoder decodeIntForKey:@"qvdDefaultHeight"];
+        self.qvdDefaultLinkItem = [decoder decodeIntForKey:@"qvdDefaultLinkItem"];
+        self.qvdDefaultDebug = [decoder decodeBoolForKey:@"qvdDefaultDebug"];
+        self.qvdDefaultFullScreen = [decoder decodeBoolForKey:@"qvdDefaultFullScreen"];
+        self.qvdDefaultLogin = [decoder decodeObjectForKey:@"qvdDefaultLogin"];
+        self.qvdDefaultPass = [decoder decodeObjectForKey:@"qvdDefaultPass"];
+        self.qvdDefaultHost = [decoder decodeObjectForKey:@"qvdDefaultHost"];
+    }
+    return self;
 }
 
 @end

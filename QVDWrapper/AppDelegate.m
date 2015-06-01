@@ -23,6 +23,7 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "CommonNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -47,8 +48,8 @@
         [self.window.rootViewController.view addSubview:addStatusBar];
     }
 
-    LoginViewController *login = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+    LoginViewController *login = [[LoginViewController alloc] init];
+    CommonNavigationController *nav = [[CommonNavigationController alloc] initWithRootViewController:login];
     [self.window setRootViewController:nav];
     return YES;
 }
