@@ -34,6 +34,7 @@
 
 @interface AdvancedSettingsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScroll;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerWith;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUser;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
@@ -58,6 +59,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtTitleHeight;
 @property (weak, nonatomic) IBOutlet UILabel *txtTitleFullScreen;
 @property (weak, nonatomic) IBOutlet UILabel *txtTitleDebug;
+@property (weak, nonatomic) IBOutlet UIView *formContainer;
 
 
 

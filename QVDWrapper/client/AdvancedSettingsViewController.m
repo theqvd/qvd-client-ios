@@ -1,5 +1,5 @@
 //
-//  VncViewController.h
+//  AdvancedSettingsViewController.h
 //  QVDWrapper
 //
 //    Qvd client for IOS
@@ -22,6 +22,7 @@
 //
 #import "AdvancedSettingsViewController.h"
 #import "ActionSheetStringPicker.h"
+#import "PureLayout.h"
 
 @interface AdvancedSettingsViewController ()
 
@@ -47,7 +48,14 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"common.ok", @"") style:UIBarButtonItemStyleDone target:self action:@selector(updateConfig)];
     
-    [self.contentScroll setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 523.)];
+     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+         [self.contentScroll setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 523.)];
+         [self.containerWith autoRemove];
+         self.containerWith = [self.formContainer autoSetDimension:ALDimensionWidth toSize:[[UIScreen mainScreen] bounds].size.width];
+         [self.contentScroll layoutIfNeeded];
+     } else {
+         [self.contentScroll setContentSize:CGSizeMake(320., 523.)];
+     }
     [self localizeComponents];
     [self populateConfig];
 }

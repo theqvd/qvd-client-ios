@@ -2,18 +2,21 @@ PODS:
   - ActionSheetPicker-3.0 (1.5.1)
   - IQKeyboardManager (3.2.2)
   - KVNProgress (2.2.1)
+  - PureLayout (2.0.6)
   - SimpleKeychain (0.3.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 1.5.0)
   - IQKeyboardManager (~> 3.2)
   - KVNProgress (~> 2.2)
+  - PureLayout (~> 2.0)
   - SimpleKeychain
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: de0f71e30495ed0192f7d16d0fddcab6882a0ca3
   IQKeyboardManager: 99df8006864663a4126a77b9a2f7ea70077eff31
   KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
+  PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SimpleKeychain: 8de48eb1de10c6403911a6be52e127e5b5d31404
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.1
