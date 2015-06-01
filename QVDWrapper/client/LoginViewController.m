@@ -35,6 +35,7 @@
 #import "CustomTextField.h"
 #import "Reachability.h"
 #import "AdvancedSettingsViewController.h"
+#import "FixeViewController.h"
 
 
 @interface LoginViewController ()
@@ -42,6 +43,7 @@
 @property (strong,nonatomic) Reachability *inetCheck;
 @property (assign,nonatomic) BOOL connectionAvailable;
 @property (assign,nonatomic) BOOL updateFromPreferences;
+@property (assign,nonatomic) BOOL ignoreWorkaround;
 
 @property (strong,nonatomic) ConnectionVO *aSelectedConfig;
 
@@ -125,7 +127,20 @@
     
     [self.gaugeView setHidden:[[QVDClientWrapper sharedManager] loginAllowed]];
     [self.btLogin setEnabled:[[QVDClientWrapper sharedManager] loginAllowed]];
-    [UINavigationController attemptRotationToDeviceOrientation];
+    
+    if (!(self.isMovingToParentViewController || self.isBeingPresented))
+    {
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            if(!self.self.ignoreWorkaround){
+                FixeViewController *c = [[FixeViewController alloc]init];
+                [self presentViewController:c animated:NO completion:nil];
+            } else {
+                self.ignoreWorkaround = NO;
+            }
+        }
+    }
+    
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -274,7 +289,7 @@
 }
 
 - (IBAction)showAdvancedSettings:(id)sender {
-    
+    self.ignoreWorkaround = YES;
     if(!self.aSelectedConfig){
       self.aSelectedConfig = [QVDConfig configWithDefaults];
     }
