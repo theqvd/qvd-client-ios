@@ -34,65 +34,148 @@
 #import "A0SimpleKeychain.h"
 #import "CustomTextField.h"
 #import "Reachability.h"
+#import "AdvancedSettingsViewController.h"
+#import "FixeViewController.h"
 
 
 @interface LoginViewController ()
 
 @property (strong,nonatomic) Reachability *inetCheck;
 @property (assign,nonatomic) BOOL connectionAvailable;
+@property (assign,nonatomic) BOOL updateFromPreferences;
+@property (assign,nonatomic) BOOL ignoreWorkaround;
+
+@property (strong,nonatomic) ConnectionVO *aSelectedConfig;
 
 @end
 
 @implementation LoginViewController
 
-
+-(id)init{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self = [self initWithNibName:@"LoginViewController_iPhone" bundle:nil];
+    } else {
+        self = [self initWithNibName:@"LoginViewController_iPad" bundle:nil];
+    }
+    return self;
+}
 
 -(void)viewDidLoad{
+    self.updateFromPreferences = YES;
     [super viewDidLoad];
     [self doCheckInetConnection];
     self.connectionAvailable = NO;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = @"The QVD";
-    self.versionLabel.text = [NSString stringWithFormat:@"Versión: %@ (Build: %@)",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    self.title = NSLocalizedString(@"common.titleGeneric",@"The QVD");
+    self.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"messages.compilationInfo",@"Versión"),[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    
+    [self.txtHost setPlaceholder:NSLocalizedString(@"component.txtHost", @"Host")];
+    [self.txtLogin setPlaceholder:NSLocalizedString(@"component.txtUser", @"User")];
+    [self.txtPassword setPlaceholder:NSLocalizedString(@"component.txtPassword", @"Password")];
+    [self.btLogin setTitle:NSLocalizedString(@"component.btLogin", @"Login") forState:UIControlStateNormal];
+    [self.lblSaveCredentials setText:@"Pruebas"];
+    [self.lblSaveCredentials setText:NSLocalizedString(@"component.lblRemember", @"Remember credentials")];
+    
+    [self.lblTeadDownConnection setText:NSLocalizedString(@"messages.tearDown", @"Tear down message")];
+    
+    [self.btAdvancedSettings setTitle:NSLocalizedString(@"common.titleAdvancedSettings", @"") forState:UIControlStateNormal];
 }
 
 - (IBAction)doLogin:(id)sender {
     [self doCheckInetConnection];
     BOOL allowLogin = [[QVDClientWrapper sharedManager] loginAllowed];
     if([self validateForm] && allowLogin){
+        if(!self.aSelectedConfig){
+            self.aSelectedConfig = [QVDConfig configWithDefaults];
+        }
+        
+        
         if(self.connectionAvailable){
         NSString *auxLogin = [self.txtLogin.text stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSString *auxPassword = [self.txtPassword.text stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSString *auxHost = [self.txtHost.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-        ConnectionVO *auxConnection = nil;
-        if(![auxHost isEqualToString:@""] || ![auxLogin isEqualToString:@""] || ![auxPassword isEqualToString:@""]){
-            auxConnection = [ConnectionVO initWithUser:auxLogin andPassword:auxPassword andHost:auxHost];
-        }
-        VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:auxConnection saveCredentials:self.switchRemember.isOn];
+  
+        
+            
+        [self.aSelectedConfig setQvdDefaultHost:auxHost];
+        [self.aSelectedConfig setQvdDefaultPass:auxPassword];
+        [self.aSelectedConfig setQvdDefaultLogin:auxLogin];
+            
+        VmListViewController *vmList = [[VmListViewController alloc] initWithConnection:self.aSelectedConfig saveCredentials:[self.switchRemember isOn]];
         [self.navigationController pushViewController:vmList animated:YES];
         } else {
-            UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"La conexión no está disponible" delegate:nil cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+            
+            
+            
+            
+            
+            
+            UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"common.error",@"Error") message:NSLocalizedString(@"messages.error.connectionNotAvailable",@"La conexión no está disponible") delegate:nil cancelButtonTitle:NSLocalizedString(@"common.ok",@"Aceptar") otherButtonTitles:nil];
             [anAlert show];
         }
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkConnectionStatus)
+                                                 name:@"QVD_ALLOW_CONNECT"
+                                               object:nil];
+    
+    [self.gaugeView setHidden:[[QVDClientWrapper sharedManager] loginAllowed]];
+    [self.btLogin setEnabled:[[QVDClientWrapper sharedManager] loginAllowed]];
+    
+    if (!(self.isMovingToParentViewController || self.isBeingPresented))
+    {
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            if(!self.self.ignoreWorkaround){
+                FixeViewController *c = [[FixeViewController alloc]init];
+                [self presentViewController:c animated:NO completion:nil];
+            } else {
+                self.ignoreWorkaround = NO;
+            }
+        }
+    }
+    
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)checkConnectionStatus{
+    [self.gaugeView setHidden:[[QVDClientWrapper sharedManager] loginAllowed]];
+    [self.btLogin setEnabled:[[QVDClientWrapper sharedManager] loginAllowed]];
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self retreiveUserInfo];
+    if(self.updateFromPreferences){
+        self.updateFromPreferences = NO;
+        [self retreiveUserInfo];
+    }
+    [UIViewController attemptRotationToDeviceOrientation];
 }
 
 -(void)retreiveUserInfo{
 
-    if([[A0SimpleKeychain keychain] hasValueForKey:@"qvd-user"]){
+    if([[A0SimpleKeychain keychain] hasValueForKey:@"qvd-configuration"]){
 
-        [self.txtLogin setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-user"]];
-        [self.txtPassword setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-pwd"]];
-        [self.txtHost setText:[[A0SimpleKeychain keychain] stringForKey:@"qvd-host"]];
+        NSData *encodedObject =[[A0SimpleKeychain keychain] dataForKey:@"qvd-configuration"];
+        
+         self.aSelectedConfig =[NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+        
+        [self.txtLogin setText:[self.aSelectedConfig qvdDefaultLogin]];
+        [self.txtPassword setText:[self.aSelectedConfig qvdDefaultPass]];
+        [self.txtHost setText:[self.aSelectedConfig qvdDefaultHost]];
         [self.switchRemember setOn:YES];
     } else {
+        [[A0SimpleKeychain keychain] clearAll];
         [self.switchRemember setOn:NO];
         [self.txtHost setText:@""];
         [self.txtPassword setText:@""];
@@ -102,7 +185,6 @@
 }
 
 - (BOOL)validateForm {
-    NSString *errorMessage;
 
     NSString *regex = @"[^@]+@[A-Za-z0-9.-]+\\.[A-Za-z]+";
     NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -111,7 +193,6 @@
 
     if (!(self.txtHost.text.length >= 1)){
         self.txtHost.textColor = [UIColor redColor];
-        errorMessage = @"Please enter a first name";
         result = NO;
     } else if (!(self.txtPassword.text.length >= 1)){
         self.txtPassword.textColor = [UIColor redColor];
@@ -164,6 +245,84 @@
         //No hay conexión disponible
 
     }
+}
+
+
+- (BOOL)shouldAutorotate {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
+}
+
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return UIInterfaceOrientationMaskLandscape;
+    }
+    
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationPortrait;
+    } else {
+        return (UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight);
+    }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+    } else {
+        if((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)){
+            return YES;
+        }
+        return NO;
+    }
+}
+
+- (IBAction)showAdvancedSettings:(id)sender {
+    self.ignoreWorkaround = YES;
+    if(!self.aSelectedConfig){
+      self.aSelectedConfig = [QVDConfig configWithDefaults];
+    }
+    
+    NSString *auxLogin = [self.txtLogin.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *auxPassword = [self.txtPassword.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *auxHost = [self.txtHost.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [self.aSelectedConfig setQvdDefaultLogin:auxLogin];
+    [self.aSelectedConfig setQvdDefaultPass:auxPassword];
+    [self.aSelectedConfig setQvdDefaultHost:auxHost];
+    
+    AdvancedSettingsViewController *asvc = [[AdvancedSettingsViewController alloc] initViewWithConfig:self.aSelectedConfig];
+    asvc.configDelegate = self;
+    
+    UINavigationController *aNav = [[UINavigationController alloc] initWithRootViewController:asvc];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
+    
+    aNav.modalPresentationStyle = UIModalPresentationPopover;
+    aNav.popoverPresentationController.sourceView =self.pophoverView;
+    }
+    
+    [self presentViewController:aNav animated:YES completion:nil];
+    
+}
+
+- (void) configurationUpdated:(ConnectionVO *) aNewConfiguration{
+    self.aSelectedConfig = aNewConfiguration;
+    [self.txtHost setText:[self.aSelectedConfig qvdDefaultHost]];
+    [self.txtLogin setText:[self.aSelectedConfig qvdDefaultLogin]];
+    [self.txtPassword setText:[self.aSelectedConfig qvdDefaultPass]];
+    
 }
 
 

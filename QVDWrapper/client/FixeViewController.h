@@ -1,5 +1,5 @@
 //
-//  VmListViewController.h
+//  FixeViewController.h
 //  QVDWrapper
 //
 //    Qvd client for IOS
@@ -18,17 +18,11 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Oscar Costoya Vidal on 13/4/15.
+//  Created by Oscar Costoya Vidal on 1/6/15.
 //
 
 #import <UIKit/UIKit.h>
-#import "ConnectionVO.h"
-#import "QVDClientWrapper.h"
-#import "QVDConfig.h"
 
-@interface VmListViewController : UIViewController<QVDStatusDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UICollectionView *cvVmMachines;
--(id)initWithConnection:(ConnectionVO *) aConfig saveCredentials:(BOOL)save;
+@interface FixeViewController : UIViewController
 
 @end

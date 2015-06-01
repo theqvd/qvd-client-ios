@@ -24,8 +24,9 @@
 #import <UIKit/UIKit.h>
 #import "QVDClientWrapper.h"
 #import "CustomTextField.h"
+#import "AdvancedSettingsViewController.h"
 
-@interface LoginViewController : UIViewController<QVDStatusDelegate>
+@interface LoginViewController : UIViewController<QVDStatusDelegate,QVDConfigDelegate>
 
 @property (weak, nonatomic) IBOutlet CustomTextField *txtHost;
 @property (weak, nonatomic) IBOutlet CustomTextField *txtLogin;
@@ -33,5 +34,10 @@
 @property (weak, nonatomic) IBOutlet CustomTextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btLogin;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UIView *gaugeView;
+@property (weak, nonatomic) IBOutlet UILabel *lblSaveCredentials;
+@property (weak, nonatomic) IBOutlet UILabel *lblTeadDownConnection;
+@property (weak, nonatomic) IBOutlet UIButton *btAdvancedSettings;
+@property (weak, nonatomic) IBOutlet UIView *pophoverView;
 
 @end

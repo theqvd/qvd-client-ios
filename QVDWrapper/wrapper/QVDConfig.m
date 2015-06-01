@@ -48,7 +48,6 @@
         aux.xvncXDisplayPort = 6000;
         aux.xvncCheckTimeout = 20000;
         aux.noVncTopFrameHeight = 20; // was 36
-
         aux.qvdDefaultWidth = 1024;
         aux.qvdDefaultHeight = 768;
         aux.qvdDefaultLinkItem = 1;
@@ -56,12 +55,10 @@
         aux.qvdDefaultDebug = NO;
         aux.qvdUseMock = NO;
         aux.qvdDefaultFullScreen = NO;
-
-        //TODO: Remove from release, pending conditional constant definition for develop
         aux.qvdDevelop = YES;
-        aux.qvdDefaultLogin = @"appledevprogram@qindel.com";
-        aux.qvdDefaultPass = @"applepass";
-        aux.qvdDefaultHost = @"demo.theqvd.com";
+        aux.qvdDefaultLogin = @"";
+        aux.qvdDefaultPass = @"";
+        aux.qvdDefaultHost = @"";
     }
     [ aux setGeometry];
     return aux;
@@ -72,6 +69,36 @@
     CGFloat currentHeight = MIN([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height) - self.noVncTopFrameHeight;
     self.qvdDefaultWidth = (int) currentWidth;
     self.qvdDefaultHeight = (int) currentHeight;
+    NSLog(@"Current geometry: %f | %f",currentWidth,currentHeight);
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    [encoder encodeInt:self.qvdDefaultPort forKey:@"qvdDefaultPort"];
+    [encoder encodeInt:self.qvdDefaultWidth forKey:@"qvdDefaultWidth"];
+    [encoder encodeInt:self.qvdDefaultHeight forKey:@"qvdDefaultHeight"];
+    [encoder encodeInt:self.qvdDefaultLinkItem forKey:@"qvdDefaultLinkItem"];
+    [encoder encodeBool:self.qvdDefaultDebug forKey:@"qvdDefaultDebug"];
+    [encoder encodeBool:self.qvdDefaultFullScreen forKey:@"qvdDefaultFullScreen"];
+    [encoder encodeObject:self.qvdDefaultLogin forKey:@"qvdDefaultLogin"];
+    [encoder encodeObject:self.qvdDefaultPass forKey:@"qvdDefaultPass"];
+    [encoder encodeObject:self.qvdDefaultHost forKey:@"qvdDefaultHost"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [QVDConfig configWithDefaults];
+    if(self) {
+        self.qvdDefaultPort = [decoder decodeIntForKey:@"qvdDefaultPort"];
+        self.qvdDefaultWidth = [decoder decodeIntForKey:@"qvdDefaultWidth"];
+        self.qvdDefaultHeight = [decoder decodeIntForKey:@"qvdDefaultHeight"];
+        self.qvdDefaultLinkItem = [decoder decodeIntForKey:@"qvdDefaultLinkItem"];
+        self.qvdDefaultDebug = [decoder decodeBoolForKey:@"qvdDefaultDebug"];
+        self.qvdDefaultFullScreen = [decoder decodeBoolForKey:@"qvdDefaultFullScreen"];
+        self.qvdDefaultLogin = [decoder decodeObjectForKey:@"qvdDefaultLogin"];
+        self.qvdDefaultPass = [decoder decodeObjectForKey:@"qvdDefaultPass"];
+        self.qvdDefaultHost = [decoder decodeObjectForKey:@"qvdDefaultHost"];
+    }
+    return self;
 }
 
 @end
