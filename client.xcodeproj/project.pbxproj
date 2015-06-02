@@ -6036,11 +6036,11 @@
 				TargetAttributes = {
 					5455192F1A9E54FE003E42CA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = M9A9AUBW65;
+						DevelopmentTeam = MA65P2J3XT;
 					};
 					545519481A9E54FE003E42CA = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = M9A9AUBW65;
+						DevelopmentTeam = MA65P2J3XT;
 						TestTargetID = 5455192F1A9E54FE003E42CA;
 					};
 				};
@@ -6299,7 +6299,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Oscar Costoya Vidal (JFPLE4R7EP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = QVDWrapper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
