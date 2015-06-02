@@ -182,7 +182,7 @@
 - (void) qvdError:(NSString *)aMessage{
     [[A0SimpleKeychain keychain] clearAll];
     [KVNProgress showErrorWithStatus:aMessage completion:^{
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:NO];
     }];
 }
 
