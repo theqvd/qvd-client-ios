@@ -495,7 +495,7 @@
                                         <constraint firstItem="IKb-oA-uTD" firstAttribute="top" secondItem="aTo-VI-FwQ" secondAttribute="bottom" id="waV-cM-h3O"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgJ-2r-Cvv">
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgJ-2r-Cvv">
                                     <rect key="frame" x="0.0" y="438" width="320" height="85"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEd-x1-fEy">

@@ -36,6 +36,7 @@
 #import "Reachability.h"
 #import "AdvancedSettingsViewController.h"
 #import "FixeViewController.h"
+#import "CommonNavigationController.h"
 
 
 @interface LoginViewController ()
@@ -132,8 +133,13 @@
     {
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             if(!self.self.ignoreWorkaround){
-                FixeViewController *c = [[FixeViewController alloc]init];
-                [self presentViewController:c animated:NO completion:nil];
+                
+                if(![(CommonNavigationController *)self.navigationController  ignoreRotationFix]){
+                    FixeViewController *c = [[FixeViewController alloc]init];
+                    [self presentViewController:c animated:NO completion:nil];
+                } else {
+                    [(CommonNavigationController *)self.navigationController  setIgnoreRotationFix:NO];
+                }
             } else {
                 self.ignoreWorkaround = NO;
             }

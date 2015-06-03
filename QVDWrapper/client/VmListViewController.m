@@ -30,6 +30,7 @@
 #import "VncViewController.h"
 #import "A0SimpleKeychain.h"
 #import "QVDConfig.h"
+#import "CommonNavigationController.h"
 
 
 @interface VmListViewController ()
@@ -180,9 +181,10 @@
 
 
 - (void) qvdError:(NSString *)aMessage{
+    [(CommonNavigationController *)self.navigationController  setIgnoreRotationFix:YES];
     [[A0SimpleKeychain keychain] clearAll];
     [KVNProgress showErrorWithStatus:aMessage completion:^{
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:NO];
     }];
 }
 

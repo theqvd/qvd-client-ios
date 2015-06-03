@@ -10,4 +10,6 @@
 
 @interface CommonNavigationController : UINavigationController
 
+@property(assign,nonatomic) BOOL ignoreRotationFix;
+
 @end
