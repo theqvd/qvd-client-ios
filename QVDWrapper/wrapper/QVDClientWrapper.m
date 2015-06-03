@@ -222,6 +222,7 @@
         NSString *qvd_error = [NSString stringWithUTF8String:messagechar];
         if(![qvd_error isEqualToString:@""]){
             [self.statusDelegate qvdError:qvd_error];
+            [self resetAfterLoginFailed];
         } else {
             self.internalConnect = NO;
         }
@@ -250,6 +251,8 @@
                 NSString *qvd_error = [NSString stringWithUTF8String:messagechar];
                 if(![qvd_error isEqualToString:@""]){
                     [self.statusDelegate qvdError:qvd_error];
+                    [self resetAfterLoginFailed];
+                    
                 } else {
                 self.listvm =[self convertVMlistIntoNSArray];
                 dispatch_async(dispatch_get_main_queue(), ^(){
@@ -334,7 +337,6 @@
 
 int progress_callback(qvdclient *qvd, const char *message) {
     NSString *progressMessage = [ [ NSString alloc ] initWithUTF8String: message ];
-    NSLog(@"======> Progress message [%@]",progressMessage);
     if([[QVDClientWrapper sharedManager] statusDelegate]){
         [[[QVDClientWrapper sharedManager] statusDelegate] qvdProgressMessage:progressMessage];
     }
@@ -384,7 +386,6 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
 -(void)xvncServiceStarted{
     self.xvncStarted = YES;
     if(self.listVmOnStart){
-        NSLog(@"=================> ServicesStarted, calling list of vm");
         self.listVmOnStart = NO;
         [self realListOfVms];
     }
@@ -400,6 +401,17 @@ int accept_unknown_cert_callback(qvdclient *qvd, const char *cert_pem_str, const
 
 -(NSString *)getLastError{
     return [NSString stringWithUTF8String:qvd_get_last_error(self.qvd)];
+}
+
+-(void)resetAfterLoginFailed{
+    _listVmOnStart = NO;
+    _internalConnect = NO;
+    _loginAllowed = YES;
+    if (self.qvd == NULL) {
+        NSLog(@"QVDClientWrapper: endConnection: qvd pointer is null, not ending connection, waiting for init");
+        return;
+    }
+    qvd_end_connection(self.qvd);
 }
 
 
