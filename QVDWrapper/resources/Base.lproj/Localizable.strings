@@ -43,3 +43,11 @@
 "placeholder.txtPassword"="password";
 "placeholder.txtPort"="8443";
 "placeholder.txtLink"="ADSL";
+
+"component.txtGroupCertificates"="CERTIFICATES";
+"component.txtTitleClientCertificate"="Client certificates";
+"component.titleX509Cert"="X509 Cert";
+"component.titleX509Key"="X509 Key";
+"component.txtHelp"="How to import the certificates?";
+"messages.importCertificatesInstructions"="Connect your device to iTunes, go to the tab \"Applications\" and choose \"QVD Client\" from the list to drag their certificates. \r \r Extensions allowed: .key and .pem";
+"messages.noFiles"="No certificate files found";

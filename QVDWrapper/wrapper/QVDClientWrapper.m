@@ -96,9 +96,9 @@
         _fullscreen = [self.startConfiguration qvdDefaultFullScreen];
         _width = [self.startConfiguration qvdDefaultWidth];
         _height = [self.startConfiguration qvdDefaultHeight];
-        _x509certfile = @"";
-        _x509keyfile = @"";
-        _usecertfiles = NO;
+        _x509certfile = [self.startConfiguration qvdX509Cert];
+        _x509keyfile = [self.startConfiguration qvdX509Key];
+        _usecertfiles = [self.startConfiguration qvdClientCertificates];
         _os = PLATFORM;
         //Network options
         _linkitem = 1; // By default ADSL
@@ -197,6 +197,10 @@
     NSString *home_path = [[ fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil] path];
     qvd_set_home(self.qvd, [home_path UTF8String]);
     qvd_set_no_cert_check(self.qvd);
+    
+    if(self.usecertfiles){
+        qvd_set_cert_files(self.qvd,[self.x509certfile UTF8String],[self.x509keyfile UTF8String]);
+    }
 
     qvd_set_progress_callback(self.qvd, progress_callback);
 

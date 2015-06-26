@@ -57,6 +57,10 @@
 @property (strong,nonatomic) NSString *qvdDefaultPass;
 @property (strong,nonatomic) NSString *qvdDefaultHost;
 
+@property (assign,nonatomic) BOOL qvdClientCertificates;
+@property (strong,nonatomic) NSString *qvdX509Cert;
+@property (strong,nonatomic) NSString *qvdX509Key;
+
 +(id)configWithDefaults;
 
 @end
