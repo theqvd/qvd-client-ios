@@ -61,6 +61,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtTitleDebug;
 @property (weak, nonatomic) IBOutlet UIView *formContainer;
 
+@property (weak, nonatomic) IBOutlet UILabel *txtGroupCertificates;
+@property (weak, nonatomic) IBOutlet UILabel *txtTitleClientCertificate;
+@property (weak, nonatomic) IBOutlet UILabel *titleX509Cert;
+@property (weak, nonatomic) IBOutlet UILabel *titleX509Key;
+@property (weak, nonatomic) IBOutlet UILabel *txt509Key;
+@property (weak, nonatomic) IBOutlet UILabel *txt509Cert;
+@property (weak, nonatomic) IBOutlet UIButton *bt509Cert;
+@property (weak, nonatomic) IBOutlet UIButton *bt509Key;
+@property (weak, nonatomic) IBOutlet UISwitch *switchCertificates;
+@property (weak, nonatomic) IBOutlet UILabel *txtHelp;
+
+
+
 
 
 //Delegate

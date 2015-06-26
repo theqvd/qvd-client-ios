@@ -83,6 +83,13 @@
     [encoder encodeObject:self.qvdDefaultLogin forKey:@"qvdDefaultLogin"];
     [encoder encodeObject:self.qvdDefaultPass forKey:@"qvdDefaultPass"];
     [encoder encodeObject:self.qvdDefaultHost forKey:@"qvdDefaultHost"];
+    
+    [encoder encodeBool:self.qvdClientCertificates forKey:@"qvdClientCertificates"];
+    [encoder encodeObject:self.qvdX509Cert forKey:@"qvdX509Cert"];
+    [encoder encodeObject:self.qvdX509Key forKey:@"qvdX509Key"];
+    
+    
+    
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -97,6 +104,9 @@
         self.qvdDefaultLogin = [decoder decodeObjectForKey:@"qvdDefaultLogin"];
         self.qvdDefaultPass = [decoder decodeObjectForKey:@"qvdDefaultPass"];
         self.qvdDefaultHost = [decoder decodeObjectForKey:@"qvdDefaultHost"];
+        self.qvdClientCertificates = [decoder decodeBoolForKey:@"qvdClientCertificates"];
+        self.qvdX509Cert = [decoder decodeObjectForKey:@"qvdX509Cert"];
+        self.qvdX509Key = [decoder decodeObjectForKey:@"qvdX509Key"];
     }
     return self;
 }
