@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>CFBundleDisplayName</key>
 	<string>QVD Client</string>
 	<key>CFBundleExecutable</key>

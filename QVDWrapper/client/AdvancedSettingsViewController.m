@@ -26,6 +26,15 @@
 
 @interface AdvancedSettingsViewController ()
 
+@property (strong,nonatomic) NSMutableDictionary *pemItems;
+@property (strong,nonatomic) NSMutableArray *pemItemsKeys;
+@property (strong,nonatomic) NSString *pemPath;
+
+@property (strong,nonatomic) NSMutableDictionary *keyItems;
+@property (strong,nonatomic) NSMutableArray *keyItemsKeys;
+@property (strong,nonatomic) NSString *keyPath;
+
+
 @end
 
 @implementation AdvancedSettingsViewController
@@ -49,12 +58,12 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"common.ok", @"") style:UIBarButtonItemStyleDone target:self action:@selector(updateConfig)];
     
      if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-         [self.contentScroll setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 523.)];
+         [self.contentScroll setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 632.)];
          [self.containerWith autoRemove];
          self.containerWith = [self.formContainer autoSetDimension:ALDimensionWidth toSize:[[UIScreen mainScreen] bounds].size.width];
          [self.contentScroll layoutIfNeeded];
      } else {
-         [self.contentScroll setContentSize:CGSizeMake(320., 523.)];
+         [self.contentScroll setContentSize:CGSizeMake(320., 632.)];
      }
     [self localizeComponents];
     [self populateConfig];
@@ -83,6 +92,28 @@
     }else if([self.connectionConfiguration qvdDefaultLinkItem] == 2){
         [self.txtLinkSelected setText:@"Modem"];
     }
+    
+    [self.switchCertificates setOn:[self.connectionConfiguration qvdClientCertificates]];
+    [self enableCerts:[self.connectionConfiguration qvdClientCertificates]];
+    if([self.connectionConfiguration qvdClientCertificates]){
+        if([self.connectionConfiguration qvdX509Cert]){
+            [self.txt509Cert setText:[[self.connectionConfiguration qvdX509Cert] lastPathComponent]];
+            self.pemPath = [self.connectionConfiguration qvdX509Cert];
+        } else {
+            [self.txt509Cert setText:@""];
+            self.pemPath = @"";
+        }
+        if([self.connectionConfiguration qvdX509Cert]){
+            [self.txt509Key setText:[[self.connectionConfiguration qvdX509Key]  lastPathComponent]];
+            self.keyPath = [self.connectionConfiguration qvdX509Key];
+        } else {
+            [self.txt509Key setText:@""];
+            self.keyPath = @"";
+        }
+
+    }
+    
+    
     
 }
 
@@ -178,10 +209,187 @@
     [self.txtPassword setPlaceholder:NSLocalizedString(@"placeholder.txtPassword", @"")];
     [self.txtHost setPlaceholder:NSLocalizedString(@"placeholder.txtHost", @"")];
     [self.txtPort setPlaceholder:NSLocalizedString(@"placeholder.txtPort", @"")];
+    
+    [self.txtGroupCertificates setText:NSLocalizedString(@"component.txtGroupCertificates", @"CERTIFICATES")];
+    [self.txtTitleClientCertificate setText:NSLocalizedString(@"component.txtTitleClientCertificate", @"Client certificates")];
+    [self.titleX509Cert setText:NSLocalizedString(@"component.titleX509Cert", @"X509 Cert")];
+    [self.titleX509Key setText:NSLocalizedString(@"component.titleX509Key", @"X509 Key")];
+    [self.txtHelp setText:NSLocalizedString(@"component.txtHelp", @"¿ Como importar los certificados ?")];
+    
 
     
 
 }
 
+- (IBAction)clientCertificatesChange:(id)sender {
+    [self enableCerts:[self.switchCertificates isOn]];
+}
+
+-(void)enableCerts:(BOOL)enable{
+    self.bt509Cert.enabled = enable;
+    self.bt509Key.enabled = enable;
+    self.connectionConfiguration.qvdClientCertificates = enable;
+    if(!enable){
+        self.pemPath = @"";
+        self.keyPath = @"";
+        self.txt509Cert.text = @"- - -";
+        self.txt509Key.text = @"- - -";
+        self.connectionConfiguration.qvdX509Cert = @"";
+        self.connectionConfiguration.qvdX509Key = @"";
+        
+    } else {
+        self.pemPath = @"";
+        self.keyPath = @"";
+        self.txt509Cert.text = @"";
+        self.txt509Key.text = @"";
+    }
+    
+    
+    
+    
+    
+}
+
+- (IBAction)listX509Cert:(id)sender {
+
+    NSArray *aux = [self getFilesByExtension:@"pem"];
+    self.pemItemsKeys = [[NSMutableArray alloc] init];
+    self.pemItems = [[NSMutableDictionary alloc] init];
+    for(NSString *path in aux){
+        [self.pemItemsKeys addObject:[path lastPathComponent]];
+        [self.pemItems setObject:path forKey:[path lastPathComponent]];
+    }
+    
+    if([aux count] > 0){
+    
+    [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"component.titleX509Cert", @"X509 Cert")
+                                            rows:self.pemItemsKeys
+                                initialSelection:0
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [self updateX509Cert:selectedValue];
+                                       }
+                                     cancelBlock:^(ActionSheetStringPicker *picker) {
+                                         
+                                     }
+                                          origin:self.view];
+    } else {
+        UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"messages.noFiles", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"common.ok", @"") otherButtonTitles:nil];
+        [anAlert show];
+    }
+}
+
+-(void)updateX509Cert:(NSString *)aKey{
+    if(aKey){
+        NSString *completePath = [self.pemItems objectForKey:aKey];
+        if(completePath){
+            [self.txt509Cert setText:[completePath lastPathComponent]];
+            self.pemPath = completePath;
+            self.connectionConfiguration.qvdX509Cert = completePath;
+        } else {
+            [self.txt509Cert setText:@"- - -"];
+            self.connectionConfiguration.qvdX509Cert = @"";
+        }
+    } else {
+        [self.txt509Cert setText:@"- - -"];
+        self.connectionConfiguration.qvdX509Cert = @"";
+    }
+}
+
+- (IBAction)listX509Key:(id)sender {
+    NSArray *aux = [self getFilesByExtension:@"key"];
+    self.keyItemsKeys = [[NSMutableArray alloc] init];
+    self.keyItems = [[NSMutableDictionary alloc] init];
+    for(NSString *path in aux){
+        [self.keyItemsKeys addObject:[path lastPathComponent]];
+        [self.keyItems setObject:path forKey:[path lastPathComponent]];
+    }
+        if([aux count] > 0){
+    [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"component.titleX509Key", @"X509 Key")
+                                            rows:self.keyItemsKeys
+                                initialSelection:0
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [self updateX509Key:selectedValue];
+                                       }
+                                     cancelBlock:^(ActionSheetStringPicker *picker) {
+                                         
+                                     }
+                                          origin:self.view];
+        } else {
+            UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"messages.noFiles", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"common.ok", @"") otherButtonTitles:nil];
+            [anAlert show];
+        }
+    
+}
+
+-(void)updateX509Key:(NSString *)aKey{
+    if(aKey){
+        NSString *completePath = [self.keyItems objectForKey:aKey];
+        if(completePath){
+            [self.txt509Key setText:[completePath lastPathComponent]];
+            self.keyPath = completePath;
+            self.connectionConfiguration.qvdX509Key = completePath;;
+        } else {
+            [self.txt509Key setText:@"- - -"];
+            self.connectionConfiguration.qvdX509Key = @"";
+        }
+    } else {
+        [self.txt509Key setText:@"- - -"];
+        self.connectionConfiguration.qvdX509Key = @"";
+    }
+}
+
+-(NSArray *)getFilesByExtension:(NSString *)anExtension{
+    
+    NSMutableArray *itemsArray = [[NSMutableArray alloc] init];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *bundleURL = [[NSBundle mainBundle] bundleURL];
+    
+    
+    
+    bundleURL = [NSURL fileURLWithPath:documentsPath];
+    
+    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:bundleURL
+                                          includingPropertiesForKeys:@[NSURLNameKey, NSURLIsDirectoryKey]
+                                                             options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                        errorHandler:^BOOL(NSURL *url, NSError *error)
+                                         {
+                                             if (error) {
+                                                 NSLog(@"[Error] %@ (%@)", error, url);
+                                                 return NO;
+                                             }
+                                             
+                                             return YES;
+                                         }];
+    
+    for (NSURL *fileURL in enumerator) {
+        NSString *filename;
+        [fileURL getResourceValue:&filename forKey:NSURLNameKey error:nil];
+        
+        NSNumber *isDirectory;
+        [fileURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
+        
+        // Skip directories with '_' prefix, for example
+        if ([filename hasPrefix:@"_"] && [isDirectory boolValue]) {
+            [enumerator skipDescendants];
+            continue;
+        }
+        
+        if (![isDirectory boolValue]) {
+            if([[anExtension lowercaseString] isEqualToString:[[[fileURL path] pathExtension] lowercaseString]]){
+                [itemsArray addObject:[fileURL path]];
+                NSLog(@"Find item at path: %@",[fileURL path]);
+            }
+        }
+    }
+    return itemsArray;
+}
+
+- (IBAction)showImportHelp:(id)sender {
+   UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"messages.importCertificatesInstructions", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"common.ok", @"") otherButtonTitles:nil];
+    [anAlert show];
+ 
+}
 
 @end
