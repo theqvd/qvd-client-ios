@@ -203,10 +203,15 @@
     } else if (!(self.txtPassword.text.length >= 1)){
         self.txtPassword.textColor = [UIColor redColor];
         result = NO;
-    } else if (![emailPredicate evaluateWithObject:self.txtLogin.text]){
+    } else if (!(self.txtLogin.text.length >= 1)){
         self.txtLogin.textColor = [UIColor redColor];
         result = NO;
     }
+    
+    /*else if (![emailPredicate evaluateWithObject:self.txtLogin.text]){
+        self.txtLogin.textColor = [UIColor redColor];
+        result = NO;
+    }*/
     return result;
 }
 
