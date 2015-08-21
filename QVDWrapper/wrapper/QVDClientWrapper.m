@@ -199,6 +199,7 @@
     qvd_set_no_cert_check(self.qvd);
     
     if(self.usecertfiles){
+      NSLog(@"Setting cert files to cert=%s, key=%s", [self.x509certfile UTF8String],[self.x509keyfile UTF8String]);
         qvd_set_cert_files(self.qvd,[self.x509certfile UTF8String],[self.x509keyfile UTF8String]);
     }
 
@@ -231,10 +232,10 @@
             self.internalConnect = NO;
         }
         self.internalConnect  = YES;
-        NSLog(@"Tenemos QVD object...");
+        NSLog(@"QVD object exists. Application version: %%, lib version %s", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"], qvd_get_version_text());
     } else {
         self.internalConnect  = NO;
-        NSLog(@"NO!!!! tenemos qvd object");
+        NSLog(@"NO!!!! qvd object error");
     }
     return self.internalConnect;
 
@@ -246,7 +247,6 @@
 
     dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
         if([self doInternalConnect]){
-            //TODO: certificate and progress
 
             if(self.qvd){
                 qvd_list_of_vm(self.qvd);
