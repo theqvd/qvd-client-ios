@@ -235,7 +235,7 @@
             self.internalConnect = NO;
         }
         self.internalConnect  = YES;
-	char *libqvdversion = qvd_get_version_text();
+	const char *libqvdversion = qvd_get_version_text();
 	NSString *libqvdversionstr = [NSString stringWithUTF8String:libqvdversion];
 
         NSLog(@"QVD object exists. Application version: %@, lib version %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"], libqvdversionstr);
