@@ -232,7 +232,10 @@
             self.internalConnect = NO;
         }
         self.internalConnect  = YES;
-        NSLog(@"QVD object exists. Application version: %%, lib version %s", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"], qvd_get_version_text());
+	char *libqvdversion = qvd_get_version_text();
+	NSString *libqvdversionstr = [NSString stringWithUTF8String:libqvdversion];
+
+        NSLog(@"QVD object exists. Application version: %@, lib version %s", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"], libqvdversionstr);
     } else {
         self.internalConnect  = NO;
         NSLog(@"NO!!!! qvd object error");
