@@ -188,10 +188,10 @@
 
 
     if(self.debug){
-        NLog(@"Debug is set");
+        NSLog(@"Debug is set");
         qvd_set_debug();
     } else {
-        NLog(@"Debug is not set");
+        NSLog(@"Debug is not set");
     }
     //Init qvd client
     self.qvd = qvd_init([self.host UTF8String], self.port, [self.login UTF8String], [self.pass UTF8String]);
