@@ -188,7 +188,10 @@
 
 
     if(self.debug){
+        NLog(@"Debug is set");
         qvd_set_debug();
+    } else {
+        NLog(@"Debug is not set");
     }
     //Init qvd client
     self.qvd = qvd_init([self.host UTF8String], self.port, [self.login UTF8String], [self.pass UTF8String]);
@@ -235,7 +238,7 @@
 	char *libqvdversion = qvd_get_version_text();
 	NSString *libqvdversionstr = [NSString stringWithUTF8String:libqvdversion];
 
-        NSLog(@"QVD object exists. Application version: %@, lib version %s", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"], libqvdversionstr);
+        NSLog(@"QVD object exists. Application version: %@, lib version %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"], libqvdversionstr);
     } else {
         self.internalConnect  = NO;
         NSLog(@"NO!!!! qvd object error");
