@@ -10,4 +10,6 @@
 
 @interface InfoViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITextView *infoTextView;
+
 @end

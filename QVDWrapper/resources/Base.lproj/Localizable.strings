@@ -27,6 +27,7 @@
 
 /*Advanced settings screent*/
 "common.titleAdvancedSettings"="Advanced configuration";
+"common.titleAbout"="About";
 "group.account"="ACCOUNT";
 "group.network"="NETWORK";
 "component.txtPort"="Port";
@@ -51,3 +52,5 @@
 "component.txtHelp"="How to import the certificates?";
 "messages.importCertificatesInstructions"="Connect your device to iTunes, go to the tab \"Applications\" and choose \"QVD Client\" from the list to drag their certificates. \r \r Extensions allowed: .key and .pem";
 "messages.noFiles"="No certificate files found";
+
+"messages.about"="Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.\r\rEfficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.\r\rCompletely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.\r\rObjectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.\r\rProactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly visualize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed base portals after maintainable products.";
