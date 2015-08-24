@@ -187,7 +187,7 @@
 
 - (BOOL)validateForm {
 
-    NSString *regex = @"[^@]+@[A-Za-z0-9.-]+\\.[A-Za-z]+";
+    NSString *regex = @"[A-Za-z0-9.-_$%#,:?^]+";
     NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
 
     BOOL result = YES;
