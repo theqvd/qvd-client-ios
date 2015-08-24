@@ -53,4 +53,4 @@
 "messages.importCertificatesInstructions"="Connect your device to iTunes, go to the tab \"Applications\" and choose \"QVD Client\" from the list to drag their certificates. \r \r Extensions allowed: .key and .pem";
 "messages.noFiles"="No certificate files found";
 
-"messages.about"="QVD Client\r\rCopyright Qindel http://qindel.com and QVD http://theqvd.com\r\r";
+"messages.about"="QVD Client\r\rCopyright Qindel\r\rhttp://theqvd.com\r\r";
