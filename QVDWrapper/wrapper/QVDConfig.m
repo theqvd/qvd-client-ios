@@ -119,8 +119,9 @@
     NSString *appversion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     NSString *localizedInfo = NSLocalizedString(@"common.titleAbout",@"About");
     NSString *aboutinfo = [NSString stringWithFormat:@"%@\rVersion: %@\r%@\r", localizedInfo, appversion, libqvdversionstr];
-
-    return  aboutinfo;
+    NSLog(@"aboutinfo: version:%s,version:%@,appversion:%@,localizedabout:%@,all:%@", libqvdversion, libqvdversionstr, appversion, localizedInfo, aboutinfo);
+    
+   return  aboutinfo;
 }
 
 @end
