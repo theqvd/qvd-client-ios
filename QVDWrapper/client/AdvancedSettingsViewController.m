@@ -23,6 +23,7 @@
 #import "AdvancedSettingsViewController.h"
 #import "ActionSheetStringPicker.h"
 #import "PureLayout.h"
+#import <Foundation/Foundation.h>
 
 @interface AdvancedSettingsViewController ()
 
@@ -58,12 +59,12 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"common.ok", @"") style:UIBarButtonItemStyleDone target:self action:@selector(updateConfig)];
     
      if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-         [self.contentScroll setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 632.)];
+         [self.contentScroll setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 717.)];
          [self.containerWith autoRemove];
          self.containerWith = [self.formContainer autoSetDimension:ALDimensionWidth toSize:[[UIScreen mainScreen] bounds].size.width];
          [self.contentScroll layoutIfNeeded];
      } else {
-         [self.contentScroll setContentSize:CGSizeMake(320., 632.)];
+         [self.contentScroll setContentSize:CGSizeMake(320., 717)];
      }
     [self localizeComponents];
     [self populateConfig];
@@ -113,6 +114,8 @@
 
     }
     
+    [self.switchDebug setOn:[self.connectionConfiguration qvdDefaultDebug]];
+    
     
     
 }
@@ -132,23 +135,23 @@
     [self.connectionConfiguration setQvdDefaultHost:[self.txtHost text]];
     
     int auxPort =[[self.txtPort text] intValue];
-    int auxWith=[[self.txtPort text] intValue];
-    int auxHeight=[[self.txtPort text] intValue];
+    int auxWith=[[self.txtWith text] intValue];
+    int auxHeight=[[self.txtHeight text] intValue];
 
     if(auxPort == 0){
         [self.connectionConfiguration setQvdDefaultPort:auxPort];
     } else {
         [self.connectionConfiguration setQvdDefaultPort:QVD_DEFAULT_PORT];
     }
-    if(auxWith == 0){
+    if(auxWith != 0){
         [self.connectionConfiguration setQvdDefaultWidth:auxWith];
     } else {
-         [self.connectionConfiguration setQvdDefaultWidth:[[UIScreen mainScreen] bounds].size.width];
+        [self.connectionConfiguration setQvdDefaultWidth:MAX([[UIScreen mainScreen] bounds].size.width,[[UIScreen mainScreen] bounds].size.height)];
     }
-    if(auxHeight == 0){
+    if(auxHeight != 0){
         [self.connectionConfiguration setQvdDefaultHeight:auxHeight];
     } else {
-        [self.connectionConfiguration setQvdDefaultHeight:[[UIScreen mainScreen] bounds].size.height];
+        [self.connectionConfiguration setQvdDefaultHeight:MIN([[UIScreen mainScreen] bounds].size.width,[[UIScreen mainScreen] bounds].size.height)];
     }
     
     [self.connectionConfiguration setQvdDefaultDebug:[self.switchDebug isOn]];
@@ -243,11 +246,10 @@
         self.txt509Cert.text = @"";
         self.txt509Key.text = @"";
     }
-    
-    
-    
-    
-    
+}
+
+- (IBAction)changeDebugMode:(id)sender {
+    [self.connectionConfiguration setQvdDefaultDebug:[self.switchDebug isOn]];
 }
 
 - (IBAction)listX509Cert:(id)sender {
@@ -390,6 +392,47 @@
    UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"messages.importCertificatesInstructions", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"common.ok", @"") otherButtonTitles:nil];
     [anAlert show];
  
+}
+
+
+- (BOOL)shouldAutorotate {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
+}
+
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return UIInterfaceOrientationMaskLandscape;
+    }
+    
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationPortrait;
+    } else {
+        return (UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight);
+    }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+    } else {
+        if((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)){
+            return YES;
+        }
+        return NO;
+    }
 }
 
 @end

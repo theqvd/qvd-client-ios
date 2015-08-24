@@ -71,8 +71,11 @@
         self.port = [self.startConfiguration qvdDefaultPort];
         self.debug = [self.startConfiguration qvdDefaultDebug];
         self.fullscreen = [self.startConfiguration qvdDefaultFullScreen];
-        self.width = [self.startConfiguration qvdDefaultWidth];
-        self.height = [self.startConfiguration qvdDefaultHeight];
+        self.width = [aConfig qvdDefaultWidth];
+        self.height = [aConfig qvdDefaultHeight];
+        self.x509certfile = [self.startConfiguration qvdX509Cert];
+        self.x509keyfile = [self.startConfiguration qvdX509Key];
+        self.usecertfiles = [self.startConfiguration qvdClientCertificates];
     }
 }
 
@@ -165,6 +168,11 @@
 
 #pragma mark - VM Methods
 
+-(void)listOfVmsWithConfig:(ConnectionVO *)aConfig{
+    [self setCredentialsWitConfiguration:aConfig];
+    [self listOfVms];
+}
+
 -(void) listOfVms{
     if([self servicesRunning]){
         [self realListOfVms];
@@ -185,13 +193,8 @@
         return NO;
     }
     //Setup debug
-
-
     if(self.debug){
-        NSLog(@"Debug is set");
         qvd_set_debug();
-    } else {
-        NSLog(@"Debug is not set");
     }
     //Init qvd client
     self.qvd = qvd_init([self.host UTF8String], self.port, [self.login UTF8String], [self.pass UTF8String]);
@@ -202,7 +205,7 @@
     qvd_set_no_cert_check(self.qvd);
     
     if(self.usecertfiles){
-      NSLog(@"Setting cert files to cert=%s, key=%s", [self.x509certfile UTF8String],[self.x509keyfile UTF8String]);
+        qvd_set_unknown_cert_callback(self.qvd, accept_unknown_cert_callback);
         qvd_set_cert_files(self.qvd,[self.x509certfile UTF8String],[self.x509keyfile UTF8String]);
     }
 
@@ -220,7 +223,7 @@
         qvd_set_home(self.qvd,self.homedir.UTF8String);
     }
 
-    qvd_set_display(self.qvd, [[QVDConfig configWithDefaults] xvncFullDisplay]);
+    qvd_set_display(self.qvd, XVNC_FULL_DISPLAY);
 
     if (curl_easy_setopt(self.qvd->curl, CURLOPT_NOSIGNAL, 1) != CURLE_OK) {
         NSLog(@"Error setting CURLOPT_NOSIGNAL");
@@ -235,13 +238,8 @@
             self.internalConnect = NO;
         }
         self.internalConnect  = YES;
-	const char *libqvdversion = qvd_get_version_text();
-	NSString *libqvdversionstr = [NSString stringWithUTF8String:libqvdversion];
-
-        NSLog(@"QVD object exists. Application version: %@, lib version %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"], libqvdversionstr);
     } else {
         self.internalConnect  = NO;
-        NSLog(@"NO!!!! qvd object error");
     }
     return self.internalConnect;
 
@@ -352,6 +350,8 @@ int progress_callback(qvdclient *qvd, const char *message) {
     }
     return 1;
 }
+
+
 
 //TODO: Pending check....
 
