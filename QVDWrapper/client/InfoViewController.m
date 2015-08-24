@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *aboutinfo = [QVDConfig aboutInfo]
+    NSString *aboutinfo = [QVDConfig aboutInfo];
     [self.infoTextView setText:aboutinfo];
     
     self.navigationController.navigationBar.translucent = NO;
