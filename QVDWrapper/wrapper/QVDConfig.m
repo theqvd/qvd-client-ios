@@ -24,6 +24,7 @@
 #import "QVDConfig.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#include "qvdclient.h"
 
 
 @interface QVDConfig()
