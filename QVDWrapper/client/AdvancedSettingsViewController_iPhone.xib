@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -54,7 +54,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRg-GN-0Lv">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="632"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="717"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWr-Z4-vqJ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
@@ -768,7 +768,7 @@
                                         <constraint firstItem="IKb-oA-uTD" firstAttribute="top" secondItem="aTo-VI-FwQ" secondAttribute="bottom" id="waV-cM-h3O"/>
                                     </constraints>
                                 </view>
-                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgJ-2r-Cvv">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgJ-2r-Cvv">
                                     <rect key="frame" x="0.0" y="632" width="320" height="85"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEd-x1-fEy">
@@ -804,6 +804,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BDg-EU-E8c">
                                                     <rect key="frame" x="263" y="3" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="changeDebugMode:" destination="-1" eventType="valueChanged" id="cLk-dq-XaO"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -844,7 +847,7 @@
                                 <constraint firstItem="t04-g4-NdU" firstAttribute="leading" secondItem="bRg-GN-0Lv" secondAttribute="leading" id="6MK-1h-4LC"/>
                                 <constraint firstItem="KFQ-4H-Ihj" firstAttribute="top" secondItem="t04-g4-NdU" secondAttribute="bottom" id="8OZ-IF-qbC"/>
                                 <constraint firstAttribute="trailing" secondItem="0BC-v1-Lgh" secondAttribute="trailing" id="8m4-1l-IJA"/>
-                                <constraint firstAttribute="height" constant="632" id="CRa-t7-WAm"/>
+                                <constraint firstAttribute="height" constant="717" id="CRa-t7-WAm"/>
                                 <constraint firstAttribute="trailing" secondItem="FgJ-2r-Cvv" secondAttribute="trailing" id="Egg-CT-kTA"/>
                                 <constraint firstItem="FgJ-2r-Cvv" firstAttribute="leading" secondItem="bRg-GN-0Lv" secondAttribute="leading" id="FLu-mJ-Pd8"/>
                                 <constraint firstItem="BWr-Z4-vqJ" firstAttribute="leading" secondItem="bRg-GN-0Lv" secondAttribute="leading" id="KU0-Mc-irG"/>

@@ -39,5 +39,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTeadDownConnection;
 @property (weak, nonatomic) IBOutlet UIButton *btAdvancedSettings;
 @property (weak, nonatomic) IBOutlet UIView *pophoverView;
+@property (strong, nonatomic) IBOutlet UIButton *btAbout;
 
 @end

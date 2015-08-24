@@ -71,8 +71,11 @@
         self.port = [self.startConfiguration qvdDefaultPort];
         self.debug = [self.startConfiguration qvdDefaultDebug];
         self.fullscreen = [self.startConfiguration qvdDefaultFullScreen];
-        self.width = [self.startConfiguration qvdDefaultWidth];
-        self.height = [self.startConfiguration qvdDefaultHeight];
+        self.width = [aConfig qvdDefaultWidth];
+        self.height = [aConfig qvdDefaultHeight];
+        self.x509certfile = [self.startConfiguration qvdX509Cert];
+        self.x509keyfile = [self.startConfiguration qvdX509Key];
+        self.usecertfiles = [self.startConfiguration qvdClientCertificates];
     }
 }
 
@@ -165,6 +168,11 @@
 
 #pragma mark - VM Methods
 
+-(void)listOfVmsWithConfig:(ConnectionVO *)aConfig{
+    [self setCredentialsWitConfiguration:aConfig];
+    [self listOfVms];
+}
+
 -(void) listOfVms{
     if([self servicesRunning]){
         [self realListOfVms];
@@ -185,8 +193,6 @@
         return NO;
     }
     //Setup debug
-
-
     if(self.debug){
         qvd_set_debug();
     }
@@ -199,6 +205,7 @@
     qvd_set_no_cert_check(self.qvd);
     
     if(self.usecertfiles){
+        qvd_set_unknown_cert_callback(self.qvd, accept_unknown_cert_callback);
         qvd_set_cert_files(self.qvd,[self.x509certfile UTF8String],[self.x509keyfile UTF8String]);
     }
 
@@ -216,7 +223,7 @@
         qvd_set_home(self.qvd,self.homedir.UTF8String);
     }
 
-    qvd_set_display(self.qvd, [[QVDConfig configWithDefaults] xvncFullDisplay]);
+    qvd_set_display(self.qvd, XVNC_FULL_DISPLAY);
 
     if (curl_easy_setopt(self.qvd->curl, CURLOPT_NOSIGNAL, 1) != CURLE_OK) {
         NSLog(@"Error setting CURLOPT_NOSIGNAL");
@@ -231,10 +238,8 @@
             self.internalConnect = NO;
         }
         self.internalConnect  = YES;
-        NSLog(@"Tenemos QVD object...");
     } else {
         self.internalConnect  = NO;
-        NSLog(@"NO!!!! tenemos qvd object");
     }
     return self.internalConnect;
 
@@ -346,6 +351,8 @@ int progress_callback(qvdclient *qvd, const char *message) {
     }
     return 1;
 }
+
+
 
 //TODO: Pending check....
 

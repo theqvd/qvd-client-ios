@@ -23,6 +23,8 @@
 
 #import "ConnectionVO.h"
 #import "QVDConfig.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @implementation ConnectionVO
 
@@ -33,8 +35,17 @@
         [aux setQvdDefaultFullScreen:NO];
         [aux setQvdDefaultDebug:NO];
         [aux setQvdClientCertificates:NO];
+        [aux setGeometry];
     }
     return aux;
+}
+
+- (void) setGeometry {
+    float offset = [[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone ? 20. : 10.;
+    CGFloat currentWidth = MAX([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+    CGFloat currentHeight = MIN([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height) - (44. + offset);
+    self.qvdDefaultWidth = (int) currentWidth;
+    self.qvdDefaultHeight = (int) currentHeight;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {

@@ -1322,6 +1322,8 @@
 		5423ED211AAC43D300B3BA76 /* map-JISX0201.1976-0 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8A1AA7901800C487CB /* map-JISX0201.1976-0 */; };
 		5423ED221AAC43D300B3BA76 /* map-KOI8-R in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8B1AA7901800C487CB /* map-KOI8-R */; };
 		544128D01AEEC2E900258103 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 544128CF1AEEC2E900258103 /* libcurl.a */; };
+		544712B31B8A534B0048E8F6 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 544712B11B8A534B0048E8F6 /* InfoViewController.m */; };
+		544712B41B8A534B0048E8F6 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544712B21B8A534B0048E8F6 /* InfoViewController.xib */; };
 		5447A4751B150E46001CFFC5 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447A4741B150E46001CFFC5 /* LoginViewController_iPhone.xib */; };
 		5447A4771B151166001CFFC5 /* VmListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447A4761B151166001CFFC5 /* VmListViewController_iPhone.xib */; };
 		5447A4791B15155F001CFFC5 /* VncViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447A4781B15155F001CFFC5 /* VncViewController_iPhone.xib */; };
@@ -4105,6 +4107,9 @@
 		5423ECD81AAC438800B3BA76 /* tis620-2.enc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tis620-2.enc"; sourceTree = "<group>"; };
 		5423ECD91AAC438800B3BA76 /* viscii1.1-1.enc.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "viscii1.1-1.enc.gz"; sourceTree = "<group>"; };
 		544128CF1AEEC2E900258103 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = QVDWrapper/binary_libs/libcurl.a; sourceTree = "<group>"; };
+		544712B01B8A534B0048E8F6 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = client/InfoViewController.h; sourceTree = "<group>"; };
+		544712B11B8A534B0048E8F6 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoViewController.m; path = client/InfoViewController.m; sourceTree = "<group>"; };
+		544712B21B8A534B0048E8F6 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoViewController.xib; path = client/InfoViewController.xib; sourceTree = "<group>"; };
 		5447A4741B150E46001CFFC5 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController_iPhone.xib; path = client/LoginViewController_iPhone.xib; sourceTree = "<group>"; };
 		5447A4761B151166001CFFC5 /* VmListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VmListViewController_iPhone.xib; path = client/VmListViewController_iPhone.xib; sourceTree = "<group>"; };
 		5447A4781B15155F001CFFC5 /* VncViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VncViewController_iPhone.xib; path = client/VncViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -5802,6 +5807,9 @@
 				54067D1E1B18BEE60094541C /* AdvancedSettingsViewController_iPhone.xib */,
 				5494A26E1B1C57850013CD34 /* FixeViewController.h */,
 				5494A26F1B1C57850013CD34 /* FixeViewController.m */,
+				544712B01B8A534B0048E8F6 /* InfoViewController.h */,
+				544712B11B8A534B0048E8F6 /* InfoViewController.m */,
+				544712B21B8A534B0048E8F6 /* InfoViewController.xib */,
 			);
 			name = client;
 			sourceTree = "<group>";
@@ -6072,6 +6080,7 @@
 			files = (
 				54A92F5C1B144219003C01F4 /* Localizable.strings in Resources */,
 				5447A4791B15155F001CFFC5 /* VncViewController_iPhone.xib in Resources */,
+				544712B41B8A534B0048E8F6 /* InfoViewController.xib in Resources */,
 				54A92F6C1B144603003C01F4 /* VmListViewController_iPad.xib in Resources */,
 				5447A4751B150E46001CFFC5 /* LoginViewController_iPhone.xib in Resources */,
 				54A92F671B1445F4003C01F4 /* VmMachineCollectionViewCell.xib in Resources */,
@@ -6164,6 +6173,7 @@
 				545C87751AD30FFB00CB9776 /* LoginViewController.m in Sources */,
 				544B2C2C1AAC46020037101E /* QVDConfig.m in Sources */,
 				54AC4E691AFCA0D800D4623D /* CustomTextField.m in Sources */,
+				544712B31B8A534B0048E8F6 /* InfoViewController.m in Sources */,
 				544F9AB51ADBB05A000A5609 /* VmListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
