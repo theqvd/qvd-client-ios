@@ -37,6 +37,7 @@
 #import "AdvancedSettingsViewController.h"
 #import "FixeViewController.h"
 #import "CommonNavigationController.h"
+#import "InfoViewController.h"
 
 
 @interface LoginViewController ()
@@ -78,6 +79,7 @@
     [self.btLogin setTitle:NSLocalizedString(@"component.btLogin", @"Login") forState:UIControlStateNormal];
     [self.lblSaveCredentials setText:@"Pruebas"];
     [self.lblSaveCredentials setText:NSLocalizedString(@"component.lblRemember", @"Remember credentials")];
+    [self.btAbout setTitle:NSLocalizedString(@"common.titleAbout", @"About...") forState:UIControlStateNormal];
     
     [self.lblTeadDownConnection setText:NSLocalizedString(@"messages.tearDown", @"Tear down message")];
     
@@ -128,24 +130,12 @@
     
     [self.gaugeView setHidden:[[QVDClientWrapper sharedManager] loginAllowed]];
     [self.btLogin setEnabled:[[QVDClientWrapper sharedManager] loginAllowed]];
+    [UIViewController attemptRotationToDeviceOrientation];
     
-    if (!(self.isMovingToParentViewController || self.isBeingPresented))
-    {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            if(!self.self.ignoreWorkaround){
-                
-                if(![(CommonNavigationController *)self.navigationController  ignoreRotationFix]){
-                    FixeViewController *c = [[FixeViewController alloc]init];
-                    [self presentViewController:c animated:NO completion:nil];
-                } else {
-                    [(CommonNavigationController *)self.navigationController  setIgnoreRotationFix:NO];
-                }
-            } else {
-                self.ignoreWorkaround = NO;
-            }
-        }
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        NSNumber *value = [NSNumber numberWithInt:UIDeviceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     }
-    
     
 }
 
@@ -166,6 +156,11 @@
         [self retreiveUserInfo];
     }
     [UIViewController attemptRotationToDeviceOrientation];
+    
+   /* if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        NSNumber *value = [NSNumber numberWithInt:UIDeviceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    }*/
 }
 
 -(void)retreiveUserInfo{
@@ -287,10 +282,11 @@
     }
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+        return YES;
     } else {
         if((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)){
             return YES;
@@ -316,7 +312,7 @@
     AdvancedSettingsViewController *asvc = [[AdvancedSettingsViewController alloc] initViewWithConfig:self.aSelectedConfig];
     asvc.configDelegate = self;
     
-    UINavigationController *aNav = [[UINavigationController alloc] initWithRootViewController:asvc];
+    CommonNavigationController *aNav = [[CommonNavigationController alloc] initWithRootViewController:asvc];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
     
@@ -335,6 +331,24 @@
     [self.txtPassword setText:[self.aSelectedConfig qvdDefaultPass]];
     
 }
+
+- (IBAction)showAbout:(id)sender {
+    InfoViewController *about = [[InfoViewController alloc] initWithNibName:nil bundle:nil];
+    CommonNavigationController *aNav = [[CommonNavigationController alloc] initWithRootViewController:about];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
+        aNav.modalPresentationStyle = UIModalPresentationFormSheet;
+            [self presentViewController:aNav animated:YES completion:nil];
+        aNav.view.superview.frame = CGRectMake(0, 0, 200, 200);//it's important to do this after
+        aNav.view.superview.center = self.view.center;
+            //about.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal; //transition shouldn't matter
+    } else {
+            [self presentViewController:aNav animated:YES completion:nil];
+    }
+    
+
+    
+}
+
 
 
 @end
