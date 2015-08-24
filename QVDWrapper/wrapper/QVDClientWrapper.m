@@ -251,7 +251,6 @@
 
     dispatch_async(dispatch_queue_create("qvdclient", NULL), ^{
         if([self doInternalConnect]){
-            //TODO: certificate and progress
 
             if(self.qvd){
                 qvd_list_of_vm(self.qvd);
