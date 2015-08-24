@@ -27,6 +27,8 @@
 #define QVD_DEFAULT_FULL_SCREEN NO
 #define QVD_DEFAULT_DEBUG NO
 
+#define XVNC_FULL_DISPLAY "127.0.0.1:0"
+
 @interface QVDConfig : NSObject
 
 //WS Properties

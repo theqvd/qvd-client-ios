@@ -56,6 +56,7 @@
     -(void)setCredentialsWitConfiguration:(ConnectionVO *)aConfig;
     //-(id)initWithUser:(NSString *) anUser password:(NSString *)anPassword host:(NSString *) anHost;
     -(void)listOfVms;
+    -(void)listOfVmsWithConfig:(ConnectionVO *)aConfig;
     -(int)connectToVm:(int) anVmId;
     -(int)stopVm;
     -(void) endConnection:(int) anVmId;
