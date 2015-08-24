@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="btAbout" destination="p9h-WM-d56" id="RQm-3J-4un"/>
                 <outlet property="btAdvancedSettings" destination="GQq-Hj-5PX" id="6HK-Kt-okO"/>
                 <outlet property="btLogin" destination="vDJ-o4-UwC" id="7Oz-Up-6sA"/>
                 <outlet property="gaugeView" destination="njM-yq-zJw" id="zRZ-yN-F99"/>
@@ -96,9 +97,10 @@
                         <constraint firstAttribute="width" constant="290" id="2DQ-Fd-ELH"/>
                         <constraint firstAttribute="height" constant="30" id="ZVx-0u-VkP"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Advanced settings">
                         <color key="titleColor" red="0.89411764705882357" green="0.42745098039215684" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="showAdvancedSettings:" destination="-1" eventType="touchUpInside" id="5xt-ia-yun"/>
@@ -123,21 +125,39 @@
                         <constraint firstAttribute="width" constant="290" id="pO3-CE-Lrs"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versión:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-nj-Lnz">
-                    <rect key="frame" x="15" y="468" width="290" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versión:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-nj-Lnz">
+                    <rect key="frame" x="15" y="468" width="180" height="21"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Q2O-OR-tNp"/>
-                        <constraint firstAttribute="width" constant="290" id="Yo0-hd-Htg"/>
+                        <constraint firstAttribute="width" constant="180" id="Yo0-hd-Htg"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="fvU-fY-h8v"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" red="0.52941176469999995" green="0.52941176469999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9h-WM-d56">
+                    <rect key="frame" x="203" y="464" width="102" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="102" id="SOU-hZ-tZK"/>
+                        <constraint firstAttribute="height" constant="30" id="Y2C-Mh-ERl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Acerca de...">
+                        <color key="titleColor" red="0.89411764709999997" green="0.42745098040000001" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showAbout:" destination="-1" eventType="touchUpInside" id="hne-eu-Ogf"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vDJ-o4-UwC" firstAttribute="top" secondItem="sN9-3W-Fuf" secondAttribute="bottom" constant="50" id="1p5-Yw-4Xn"/>
+                <constraint firstAttribute="trailing" secondItem="p9h-WM-d56" secondAttribute="trailing" constant="15" id="5IT-Sv-c1d"/>
                 <constraint firstItem="MaX-49-Ijc" firstAttribute="top" secondItem="sN9-3W-Fuf" secondAttribute="bottom" constant="14" id="8yv-tZ-BKS"/>
                 <constraint firstAttribute="centerX" secondItem="N2o-aV-B9e" secondAttribute="centerX" id="ARk-OK-ZTa"/>
                 <constraint firstAttribute="centerX" secondItem="aHY-0z-dzY" secondAttribute="centerX" id="C6k-rH-NK6"/>
@@ -145,6 +165,7 @@
                 <constraint firstAttribute="centerX" secondItem="sN9-3W-Fuf" secondAttribute="centerX" id="JMJ-SK-8ey"/>
                 <constraint firstItem="5HT-nj-Lnz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="NYk-U1-Rcc"/>
                 <constraint firstItem="oOQ-RX-AIQ" firstAttribute="leading" secondItem="MaX-49-Ijc" secondAttribute="trailing" constant="29" id="QQd-f0-U9f"/>
+                <constraint firstAttribute="bottom" secondItem="p9h-WM-d56" secondAttribute="bottom" constant="10" id="RB3-jz-NDL"/>
                 <constraint firstItem="aHY-0z-dzY" firstAttribute="top" secondItem="N2o-aV-B9e" secondAttribute="bottom" constant="7" id="Uba-la-792"/>
                 <constraint firstItem="N2o-aV-B9e" firstAttribute="top" secondItem="quX-Cb-XPv" secondAttribute="bottom" id="V6R-Gh-WbJ"/>
                 <constraint firstAttribute="centerX" secondItem="GQq-Hj-5PX" secondAttribute="centerX" id="Wyg-iG-mlU"/>
@@ -155,7 +176,6 @@
                 <constraint firstAttribute="centerX" secondItem="njM-yq-zJw" secondAttribute="centerX" id="cnV-CE-iQ7"/>
                 <constraint firstAttribute="bottom" secondItem="5HT-nj-Lnz" secondAttribute="bottom" constant="15" id="dcN-oE-wMB"/>
                 <constraint firstItem="oOQ-RX-AIQ" firstAttribute="top" secondItem="sN9-3W-Fuf" secondAttribute="bottom" constant="9" id="jEC-PX-giF"/>
-                <constraint firstAttribute="trailing" secondItem="5HT-nj-Lnz" secondAttribute="trailing" constant="15" id="jHI-2l-Bge"/>
                 <constraint firstItem="sN9-3W-Fuf" firstAttribute="top" secondItem="aHY-0z-dzY" secondAttribute="bottom" constant="7" id="nJj-Kv-0gh"/>
                 <constraint firstItem="quX-Cb-XPv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="orx-Ac-am4"/>
             </constraints>

@@ -37,6 +37,7 @@
 @property (assign,nonatomic) BOOL loginRequired;
 @property (strong,nonatomic) ConnectionVO *config;
 @property (strong,nonatomic) NSArray *vmList;
+@property (assign,nonatomic) BOOL saveCredentials;
 
 @end
 
@@ -50,6 +51,7 @@
     }
     if(self){
         _vmList = nil;
+        _saveCredentials = save;
         if(!save){
             [[A0SimpleKeychain keychain] clearAll];
         }
@@ -90,9 +92,11 @@
     if(self.loginRequired){
 
         [[QVDClientWrapper sharedManager] setStatusDelegate:self];
-        [[QVDClientWrapper sharedManager] setCredentialsWitConfiguration:self.config];
-        [self showLoading];
-        [[QVDClientWrapper sharedManager] listOfVms];
+         [self showLoading];
+        [[QVDClientWrapper sharedManager]  listOfVmsWithConfig:self.config];
+        //[[QVDClientWrapper sharedManager] setCredentialsWitConfiguration:self.config];
+       
+        //[[QVDClientWrapper sharedManager] listOfVms];
     }
 }
 
@@ -124,7 +128,9 @@
     [KVNProgress showSuccess];
     self.vmList = aVmList;
     [self.cvVmMachines reloadData];
-    [self doSaveConnection];
+    if(self.saveCredentials){
+        [self doSaveConnection];
+    }
 }
 
 
