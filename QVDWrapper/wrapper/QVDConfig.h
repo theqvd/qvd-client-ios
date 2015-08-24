@@ -64,5 +64,6 @@
 @property (strong,nonatomic) NSString *qvdX509Key;
 
 +(id)configWithDefaults;
++(NSString *)aboutInfo;
 
 @end

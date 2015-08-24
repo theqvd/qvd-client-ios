@@ -112,4 +112,8 @@
     return self;
 }
 
++(NSString *)aboutInfo{
+    return  NSLocalizedString(@"common.titleAbout",@"About");
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "InfoViewController.h"
+#import "QVDConfig.h"
 
 @interface InfoViewController ()
 
@@ -21,7 +22,7 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = NSLocalizedString(@"common.titleAbout",@"About");
+    self.title = [QVDConfig aboutInfo];
 
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"common.ok", @"") style:UIBarButtonItemStyleDone target:self action:@selector(updateConfig)];
