@@ -65,5 +65,6 @@
 
 +(id)configWithDefaults;
 +(NSString *)aboutInfo;
++(NSString *)aboutTitle;
 
 @end

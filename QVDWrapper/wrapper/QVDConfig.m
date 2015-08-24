@@ -117,11 +117,16 @@
     const char *libqvdversion = qvd_get_version_text();
     NSString *libqvdversionstr = [NSString stringWithUTF8String:libqvdversion];
     NSString *appversion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    NSString *localizedInfo = NSLocalizedString(@"common.titleAbout",@"About");
+    NSString *localizedInfo = NSLocalizedString(@"messages.about",@"<About>");
     NSString *aboutinfo = [NSString stringWithFormat:@"%@\rVersion: %@\r%@\r", localizedInfo, appversion, libqvdversionstr];
-    NSLog(@"aboutinfo: version:%s,version:%@,appversion:%@,localizedabout:%@,all:%@", libqvdversion, libqvdversionstr, appversion, localizedInfo, aboutinfo);
     
    return  aboutinfo;
+}
+
++(NSString *)aboutTitle{
+    NSString *abouttitle = NSLocalizedString(@"common.titleAbout",@"About");
+
+    return  abouttitle;
 }
 
 @end

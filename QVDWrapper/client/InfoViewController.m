@@ -17,12 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.infoTextView setText:NSLocalizedString(@"messages.about", @"<About>")];
+    NSString *aboutinfo = [QVDConfig aboutInfo]
+    [self.infoTextView setText:aboutinfo];
     
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237./255. green:129./255. blue:9./255. alpha:1.];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = [QVDConfig aboutInfo];
+    self.title = [QVDConfig aboutTitle];
 
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"common.ok", @"") style:UIBarButtonItemStyleDone target:self action:@selector(updateConfig)];
