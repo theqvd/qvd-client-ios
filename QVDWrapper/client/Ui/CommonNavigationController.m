@@ -18,7 +18,11 @@
 {
     
     BOOL autorotate = [[self.viewControllers lastObject] shouldAutorotate];
-    return autorotate;
+    if([self.viewControllers count] > 1){
+        return autorotate;
+    } else {
+        return YES;
+    }
         
 }
 
@@ -32,7 +36,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return [[self.viewControllers lastObject] shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    if([self.viewControllers count] > 1){
+        return [[self.viewControllers lastObject] shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    } else {
+        return YES;
+    }
 }
 
 
