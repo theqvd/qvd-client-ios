@@ -1321,7 +1321,6 @@
 		5423ED201AAC43D300B3BA76 /* map-ISO8859-9 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA891AA7901800C487CB /* map-ISO8859-9 */; };
 		5423ED211AAC43D300B3BA76 /* map-JISX0201.1976-0 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8A1AA7901800C487CB /* map-JISX0201.1976-0 */; };
 		5423ED221AAC43D300B3BA76 /* map-KOI8-R in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5423DA8B1AA7901800C487CB /* map-KOI8-R */; };
-		544128D01AEEC2E900258103 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 544128CF1AEEC2E900258103 /* libcurl.a */; };
 		544712B31B8A534B0048E8F6 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 544712B11B8A534B0048E8F6 /* InfoViewController.m */; };
 		544712B41B8A534B0048E8F6 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544712B21B8A534B0048E8F6 /* InfoViewController.xib */; };
 		5447A4751B150E46001CFFC5 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447A4741B150E46001CFFC5 /* LoginViewController_iPhone.xib */; };
@@ -4274,7 +4273,6 @@
 				54B85CA31A9E55CC0098B49E /* libc++.dylib in Frameworks */,
 				54B85CA51A9E55D50098B49E /* libresolv.dylib in Frameworks */,
 				544B2C251AAC44DA0037101E /* UIKit.framework in Frameworks */,
-				544128D01AEEC2E900258103 /* libcurl.a in Frameworks */,
 				54B85CA01A9E55930098B49E /* libqvdxvnc.a in Frameworks */,
 				54B85CA11A9E55930098B49E /* libwebsockify.a in Frameworks */,
 				54B85C9F1A9E55930098B49E /* libqvdclient.a in Frameworks */,
