@@ -1,6 +1,5 @@
 //
 //  QVDClientWrapper.m
-//  QVDWrapper
 //
 //    Qvd client for IOS
 //    Copyright (C) 2015  theqvd.com trade mark of Qindel Formacion y Servicios SL
