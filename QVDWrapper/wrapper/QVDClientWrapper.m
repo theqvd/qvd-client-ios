@@ -1,6 +1,5 @@
 //
 //  QVDClientWrapper.m
-//  QVDWrapper
 //
 //    Qvd client for IOS
 //    Copyright (C) 2015  theqvd.com trade mark of Qindel Formacion y Servicios SL
@@ -192,9 +191,10 @@
         }
         return NO;
     }
-    //Setup debug
     if(self.debug){
-        qvd_set_debug();
+        set_debug_level(2);
+    } else {
+        set_debug_level(0);
     }
     //Init qvd client
     self.qvd = qvd_init([self.host UTF8String], self.port, [self.login UTF8String], [self.pass UTF8String]);
@@ -253,6 +253,13 @@
         if([self doInternalConnect]){
 
             if(self.qvd){
+                
+                if(self.debug){
+                    set_debug_level(2);
+                } else {
+                    set_debug_level(0);
+                }
+                
                 qvd_list_of_vm(self.qvd);
 
                 char *messagechar = qvd_get_last_error(self.qvd);
@@ -312,6 +319,7 @@
             // We free in the main thread to avoid concurrency problems
             qvd_free(self.qvd);
             self.internalConnect = NO;
+            self.qvd = nil;
             if(self.statusDelegate){
                 [self.statusDelegate connectionFinished];
                 self.loginAllowed = YES;
