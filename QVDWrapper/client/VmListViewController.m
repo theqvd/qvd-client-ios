@@ -100,6 +100,14 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if ([self isMovingFromParentViewController])
+    {
+        [[QVDClientWrapper sharedManager] finishQvd];
+    }
+}
+
 -(void)showLoading{
     KVNProgressConfiguration *config = [KVNProgressConfiguration defaultConfiguration];
     config.lineWidth = 4.;
@@ -124,13 +132,14 @@
 
 - (void) vmListRetrieved:(NSArray *) aVmList{
     self.loginRequired = NO;
-    [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
+    //[[QVDClientWrapper sharedManager] setStatusDelegate:nil];
     [KVNProgress showSuccess];
     self.vmList = aVmList;
     [self.cvVmMachines reloadData];
     if(self.saveCredentials){
         [self doSaveConnection];
     }
+    
 }
 
 
@@ -195,7 +204,9 @@
 }
 
 -(void)connectionFinished{
-
+    [KVNProgress showSuccessWithStatus:NSLocalizedString(@"messages.disconnected",@"Disconnected")];
+    [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
+    [[QVDClientWrapper sharedManager] setStatusDelegate:nil];
 }
 
 - (BOOL)shouldAutorotate {

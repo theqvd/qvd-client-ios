@@ -336,17 +336,36 @@
 
 
 
-- (void) endConnection:(int) anVmId {
+- (void) endConnection {
     self.loginAllowed = NO;
     NSLog(@"QVDClientWrapper: endConnection");
     if (self.qvd == NULL) {
         NSLog(@"QVDClientWrapper: endConnection: qvd pointer is null, not ending connection, waiting for init");
         return;
     }
-    // This will end the connection thread in connectToVM
     qvd_end_connection(self.qvd);
-    //Stop services not needed
-    // [self stopServices];
+}
+
+-(void)finishQvd{
+    self.loginAllowed = NO;
+    NSLog(@"QVDClientWrapper: endConnection");
+    if (self.qvd == NULL) {
+        NSLog(@"QVDClientWrapper: endConnection: qvd pointer is null, not ending connection, waiting for init");
+        return;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^(){;
+        // We free in the main thread to avoid concurrency problems
+        qvd_free(self.qvd);
+        self.internalConnect = NO;
+        self.qvd = nil;
+        if(self.statusDelegate){
+            [self.statusDelegate connectionFinished];
+            self.loginAllowed = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QVD_ALLOW_CONNECT" object:self userInfo:nil];
+            
+        }
+    });
 }
 
 #pragma mark - Notification Methods
