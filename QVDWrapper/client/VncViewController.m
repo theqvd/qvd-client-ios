@@ -142,7 +142,7 @@
 -(void)disconnectFromVM{
     //[[QVDClientWrapper sharedManager] setStatusDelegate:nil];
     //[KVNProgress show];
-    [[QVDClientWrapper sharedManager] endConnection:[_selectedVm id]];
+    [[QVDClientWrapper sharedManager] endConnection];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];
 

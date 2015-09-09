@@ -25,6 +25,8 @@
 "common.titleVmList"="List of VMs";
 "messages.compilationInfo"="Version: %@ (Build: %@)";
 "messages.vmDisconnected"="VM disconnected";
+"messages.disconnected"="Disconnected";
+
 "messages.progress"="Progress: %@";
 "messages.connecting"="Connecting....";
 "messages.error.connectionNotAvailable"="The connection is not available";

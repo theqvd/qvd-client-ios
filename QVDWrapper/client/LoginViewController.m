@@ -156,7 +156,10 @@
         [self retreiveUserInfo];
     }
     [UIViewController attemptRotationToDeviceOrientation];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkConnectionStatus)
+                                                 name:@"QVD_ALLOW_CONNECT"
+                                               object:nil];
    /* if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         NSNumber *value = [NSNumber numberWithInt:UIDeviceOrientationPortrait];
         [[UIDevice currentDevice] setValue:value forKey:@"orientation"];

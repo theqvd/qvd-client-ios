@@ -59,7 +59,8 @@
     -(void)listOfVmsWithConfig:(ConnectionVO *)aConfig;
     -(int)connectToVm:(int) anVmId;
     -(int)stopVm;
-    -(void) endConnection:(int) anVmId;
+    -(void) endConnection;
+    -(void)finishQvd;
     -(NSString *)getLastError;
 
 @end
