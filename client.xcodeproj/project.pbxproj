@@ -6331,7 +6331,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/QVDWrapper/binary_libs",
 				);
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+				);
 				PRODUCT_NAME = client;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -6355,7 +6358,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/QVDWrapper/binary_libs",
 				);
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+				);
 				PRODUCT_NAME = client;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
