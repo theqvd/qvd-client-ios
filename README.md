@@ -19,6 +19,7 @@ Prerequisites
 =============
 
 These prerequistes are outside of cocoapods:
+
  - libqvdclient.a
  - libqvdvnc.a
  - libwebsockify.a
