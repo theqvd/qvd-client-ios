@@ -180,7 +180,7 @@
 }
 
 -(void)updateLink:(NSInteger)selectedIndex{
-    [self.connectionConfiguration setQvdDefaultLinkItem:selectedIndex];
+    [self.connectionConfiguration setQvdDefaultLinkItem:(int)selectedIndex];
     if(selectedIndex == 0){
         [self.txtLinkSelected setText:@"Local"];
     } else if(selectedIndex == 1){
@@ -405,7 +405,7 @@
 }
 
 
--(NSUInteger)supportedInterfaceOrientations
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return UIInterfaceOrientationMaskPortrait;
