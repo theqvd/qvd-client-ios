@@ -190,9 +190,6 @@
 
 - (BOOL)validateForm {
 
-    NSString *regex = @"[A-Za-z0-9.-_$%#,:?^]+";
-    NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-
     BOOL result = YES;
 
     if (!(self.txtHost.text.length >= 1)){
@@ -267,7 +264,7 @@
 }
 
 
--(NSUInteger)supportedInterfaceOrientations
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return UIInterfaceOrientationMaskPortrait;
