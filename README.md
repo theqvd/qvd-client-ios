@@ -24,4 +24,3 @@ These prerequistes are outside of cocoapods:
  - libqvdvnc.a
  - libwebsockify.a
  - noVNC
-
